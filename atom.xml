@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-04T14:50:15.304Z</updated>
+  <updated>2017-09-05T13:22:56.907Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -16,11 +16,176 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Git常用命令</title>
+    <link href="maode.github.io/2017/09/05/git-command-170905/"/>
+    <id>maode.github.io/2017/09/05/git-command-170905/</id>
+    <published>2017-09-05T08:32:41.000Z</published>
+    <updated>2017-09-05T13:22:56.907Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#告诉Github，你要使用的用户名</span></div><div class="line">$ git config --global user.name <span class="string">"Your Name Here"</span></div><div class="line"><span class="comment">#设置邮箱 </span></div><div class="line">$ git config --global user.email <span class="string">"your_email@example.com"</span></div><div class="line"><span class="comment">#查看用户名和邮箱</span></div><div class="line">$ git config user.name[user.email]</div><div class="line"><span class="comment">#查看所有配置项</span></div><div class="line">$ git config -l[--list]</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#克隆项目到本地[将项目拉到本地]</span></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/gavincook/test.git</div><div class="line"><span class="comment">#将所有的改动加入缓存区</span></div><div class="line">$ git add .</div><div class="line"><span class="comment">#将改动提交到本地仓库[提交时添加-a可省略前一步加入缓存区的操作]</span></div><div class="line">$ git commit [-a] -m <span class="string">"备注信息"</span></div><div class="line"><span class="comment">#更新远程版本库关联分支的变化至本地当前所在的分支</span></div><div class="line">$ git pull [remote] [branch]</div></pre></td></tr></table></figure>
+<h3 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#设置远程版本库地址</span></div><div class="line">$ git remote add origin https://github.com/maode/workInfo.git</div><div class="line"></div><div class="line"><span class="comment">#将本地的master分支推送到origin主机的master分支。此处省略了origin主机的分支名，如果远程分支不存在，则会被新建。</span></div><div class="line">$ git push origin master</div><div class="line"></div><div class="line"><span class="comment">#如果当前分支与远程分支存在追踪关系，则可以省略来源地分支名和目的地分支名都可以省略。如下：</span></div><div class="line">$ git push origin</div><div class="line"></div><div class="line"><span class="comment">#如果当前分支只和一个远程主机有追踪分支，那么主机名也可以省略。如下：</span></div><div class="line">$ git push</div><div class="line"></div><div class="line"><span class="comment">#如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，设置完成后就可以不加任何参数使用git push进行远程推送了。如下：</span></div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>创建一个新的[本地]资源库,并推送到<a href="https://github.com/maode/workInfo.git" target="_blank" rel="external">https://github.com/maode/workInfo.git</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1.在本地创建"README.md"文件</span></div><div class="line">$ touch README.md</div><div class="line"><span class="comment">#2.初始化资源库【初始化一个本地未加入版本控制的现有的项目】</span></div><div class="line">$ git init</div><div class="line"><span class="comment">#3.添加文件到版本库</span></div><div class="line">$ git add README.md</div><div class="line"><span class="comment">#4.提交更改到本地版本库</span></div><div class="line">$ git commit -m <span class="string">"first commit"</span></div><div class="line"><span class="comment">#5.设置远程版本库地址</span></div><div class="line">$ git remote add origin https://github.com/maode/workInfo.git</div><div class="line"><span class="comment">#6.推送到远程版本库</span></div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>比较详细的介绍可以参考这里：<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;设置&quot;&gt;&lt;a href=&quot;#设置&quot; class=&quot;headerlink&quot; title=&quot;设置&quot;&gt;&lt;/a&gt;设置&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#告诉Github，你要使用的用户名&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;Your Name Here&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#设置邮箱 &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.email &lt;span class=&quot;string&quot;&gt;&quot;your_email@example.com&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#查看用户名和邮箱&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config user.name[user.email]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#查看所有配置项&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config -l[--list]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Git" scheme="maode.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub配置完后链接不上，报错</title>
+    <link href="maode.github.io/2017/09/05/GitHub-link-error-170905/"/>
+    <id>maode.github.io/2017/09/05/GitHub-link-error-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:26:24.286Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
+<p>解决方法:</p>
+<a id="more"></a>
+<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
+<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>aliyun maven仓库</title>
+    <link href="maode.github.io/2017/09/05/aliyun-maven-170905/"/>
+    <id>maode.github.io/2017/09/05/aliyun-maven-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:33:48.976Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github映射自定义域名</title>
+    <link href="maode.github.io/2017/09/05/github-domain-name-170905/"/>
+    <id>maode.github.io/2017/09/05/github-domain-name-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:31:42.921Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用你自己的 Github 用户名替换 username</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/maven-command-170905/"/>
+    <id>maode.github.io/2017/09/05/maven-command-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:28:23.481Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>windows下通过SSH链接GitHub</title>
+    <link href="maode.github.io/2017/09/05/win-ssh-github-170905/"/>
+    <id>maode.github.io/2017/09/05/win-ssh-github-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:55:41.710Z</updated>
+    
+    <content type="html"><![CDATA[<p>下载安装一款git工具，如 <a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a></p>
+<p>打开 GitBash 命令窗口开始配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"要设置的用户名"</span>	<span class="comment">#配置GitHub的name</span></div><div class="line">$ git config --global user.email <span class="string">"要设置的邮箱"</span>	<span class="comment">#配置GitHub的email</span></div></pre></td></tr></table></figure>
+<p>进入到当前登录用户的目录下<br><code>$ cd ~</code><br>查看当前用户目录下是否存在<code>.ssh</code>文件夹，若不存在，则创建一个<br><code>$ mkdir .ssh</code></p>
+<a id="more"></a>
+<p>使用命令生成<code>SSH Key</code><br><code>$ ssh-keygen -t rsa -C &quot;引号里内容是用来生成密钥的注释文字，可以用github的登录邮箱&quot;</code><br>连敲三次回车，生成密钥。三次回车分别是跳过<code>“自定义密钥文件名”、“设置SSH Key的管理密码”、“确认SSH Key的管理密码”</code>三个步骤。</p>
+<p>密钥文件生成在<code>~/.ssh</code>目录下。<code>id_rsa</code>是私钥<code>id_rsa.pub</code>是公钥。</p>
+<p>用编辑器打开公钥，全选-复制，然后登录GitHub在设置项中找到添加SSH Key的选项，把公钥粘贴上，标题可根据情况自定义。</p>
+<p>配置完成 输入以下命令进行测试。<br><code>$ ssh -T git@github.com</code><br>可能会看到类似以下的警告之一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.252.1)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</div><div class="line">Are you sure you want to continue connecting (yes/no)?</div><div class="line"></div><div class="line">The authenticity of host &apos;github.com (192.30.252.1)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</div><div class="line">Are you sure you want to continue connecting (yes/no)?</div></pre></td></tr></table></figure></p>
+<p>不用管这些警告，输入yes然后回车。</p>
+<p>如果成功了，会看到以下提示消息。<br><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not
+provide shell access.</code></p>
+<p>官方文档：<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="external">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;下载安装一款git工具，如 &lt;a href=&quot;https://git-for-windows.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git for windows&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;打开 GitBash 命令窗口开始配置&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;要设置的用户名&quot;&lt;/span&gt;	&lt;span class=&quot;comment&quot;&gt;#配置GitHub的name&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.email &lt;span class=&quot;string&quot;&gt;&quot;要设置的邮箱&quot;&lt;/span&gt;	&lt;span class=&quot;comment&quot;&gt;#配置GitHub的email&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;进入到当前登录用户的目录下&lt;br&gt;&lt;code&gt;$ cd ~&lt;/code&gt;&lt;br&gt;查看当前用户目录下是否存在&lt;code&gt;.ssh&lt;/code&gt;文件夹，若不存在，则创建一个&lt;br&gt;&lt;code&gt;$ mkdir .ssh&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+      <category term="SSH" scheme="maode.github.io/tags/SSH/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo搭建GitHub博客过程</title>
     <link href="maode.github.io/2017/09/03/hexo-blog-course-170903/"/>
     <id>maode.github.io/2017/09/03/hexo-blog-course-170903/</id>
     <published>2017-09-03T07:32:41.000Z</published>
-    <updated>2017-09-04T14:50:15.304Z</updated>
+    <updated>2017-09-05T10:21:45.165Z</updated>
     
     <content type="html"><![CDATA[<h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><p><strong>nodejs，git</strong></p>
 <ul>
@@ -50,9 +215,10 @@
 <ol>
 <li>在GitHub创建博客repo（记得勾选“用README初始化仓库”选项，否则无法进行下一步的分支创建）。</li>
 <li>创建分支hexo</li>
-<li>设置默认分支为hexo（因为博客静态页文件是执行<code>hexo deploy</code>命令进行部署的，而hexo框架及文章源码需要手动执行            Git命令进行部署，将hexo设置为默认分支可以在执行<code>git push</code>命令时省略指定分支参数，方便些。）</li>
-<li>进入本地hexo文件目录下执行clone命令。clone完成后执行<code>git branch</code>应该显示当前在hexo分支下。</li>
-<li>依次执行 <code>git add . 、 git commit 、git push</code>命令部署至GitHub的hexo分支。</li>
+<li>设置默认分支为hexo（因为博客静态页文件是执行<code>hexo deploy</code>命令进行部署的，而hexo框架及文章源码需要手动执行Git命令进行部署，将hexo设置为默认分支可以在执行<code>git push</code>命令时省略指定分支参数，方便些。）</li>
+<li>使用<code>git clone git@github.com:maode/maode.github.io.git</code>命令克隆hexo分支到本地。</li>
+<li>打开clone好的<code>maode.github.io</code>目录，将<code>.git/</code>文件夹和<code>README.md</code>文件复制到hexo文件目录下。复制完成后在hexo文件目录下执行<code>git branch</code>命令应该显示当前在hexo分支下。</li>
+<li>依次执行 <code>git add . 、 git commit 、git push</code>命令部署本地hexo文件至GitHub的hexo分支。</li>
 </ol>
 <p>这样就结束了，以后每当写了新的文章，就可以执行<code>hexo deploy</code>命令部署文章静态页至master分支，执行Git命令部署hexo文件和源码文件至hexo分支。</p>
 <p><strong>更换电脑或丢失文件后的操作</strong></p>
@@ -78,26 +244,27 @@
     </summary>
     
     
-      <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
-      <category term="Git" scheme="maode.github.io/tags/Git/"/>
+      <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Yu Writer 编辑器下的空白模板</title>
-    <link href="maode.github.io/2017/09/02/empty-temp-yuwi/"/>
-    <id>maode.github.io/2017/09/02/empty-temp-yuwi/</id>
+    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
+    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
     <published>2017-09-02T07:32:41.000Z</published>
-    <updated>2017-09-03T14:49:13.343Z</updated>
+    <updated>2017-09-05T13:30:53.809Z</updated>
     
     <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
+<a id="more"></a>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
 ]]></content>
     
     <summary type="html">
     
       &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
-
     
     </summary>
     
@@ -107,14 +274,54 @@
   </entry>
   
   <entry>
+    <title>Eclipse与GitHub之间的操作</title>
+    <link href="maode.github.io/2017/09/02/eclipse-github-170905/"/>
+    <id>maode.github.io/2017/09/02/eclipse-github-170905/</id>
+    <published>2017-09-02T07:32:41.000Z</published>
+    <updated>2017-09-05T12:45:05.151Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Eclipse生SSH-Key添加到GitHub"><a href="#Eclipse生SSH-Key添加到GitHub" class="headerlink" title="Eclipse生SSH Key添加到GitHub"></a>Eclipse生SSH Key添加到GitHub</h2><p>window → preference → general → network connection → SSH2 → Key Management → generate RSA Key… → ave private key…【默认保存在“~/.ssh/”目录下】→apply.</p>
+<p>点击Export Via SFTP,在弹出窗口填入 <code>git@github.com</code>，然后会在ssh目录中生成一个<code>known_hosts</code>文件，该文件用来保存当前密钥对应的已知远程主机列表，如果没有该文件会报错。连不上Github。<br>若出现： <code>Failed to export ssh key to remote server</code> 的警告，不需理会。</p>
+<p>然后复制中间文本域中的公钥到GitHub就可以了。</p>
+<p>关于<code>known_hosts</code>文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+<a id="more"></a>
+<h2 id="从GitHub获取项目到本地Eclipse"><a href="#从GitHub获取项目到本地Eclipse" class="headerlink" title="从GitHub获取项目到本地Eclipse"></a>从GitHub获取项目到本地Eclipse</h2><p>打开Eclipse》点击File》Import》Git》Projects from Git》Clone URI（输入GitHub项目的URL）》Next  （选择本地存放目录，视具体情况可放在Eclipse的工作空间中，比较方便管理）》Next（下载完成后就代码就被抓取到指定目录了）》选择 Use the New Project wizard》【然后根据具体项目类型 next……】》Finish。</p>
+<h2 id="导入本地已存在的项目至Eclipse，如maven项目："><a href="#导入本地已存在的项目至Eclipse，如maven项目：" class="headerlink" title="导入本地已存在的项目至Eclipse，如maven项目："></a>导入本地已存在的项目至Eclipse，如maven项目：</h2><p>File》Import》Maven【Existing Maven Projects】》Next【Browser选择刚才下载好的项目】》Finish。</p>
+<h2 id="将本地Eclipse项目提交至GitHub"><a href="#将本地Eclipse项目提交至GitHub" class="headerlink" title="将本地Eclipse项目提交至GitHub"></a>将本地Eclipse项目提交至GitHub</h2><p><strong>创建并关联Eclipse项目至本地repository：</strong></p>
+<p>在Eclipse项目上单击右键》Team》Share project【勾选Use or create repository in parent folder of project,,然后在弹出的对话框中选择当前project】》点击Create repository》Finish。</p>
+<p><strong>提交项目至GitHub：</strong></p>
+<p>在github创建新的repository。</p>
+<p>在项目上单击右键Team》commit【输入commit msg、author、committer】》Commit或Commit and Push.</p>
+<p>在项目上单击右键Team》Remote》Push》在URI中输入GitHub项目的URL、用户名、密码》Next》Source ref:选择master[branch]，会自动填充Source ref:和Destination ref:为“refs/heads/master”》点击 Add all Branch Spec》Finish。</p>
+<p>在Crete repository前会有一个“Creation of repositories in the Eclipse workspace is not recommended”提示，不建议在Eclipse的工作空间中创建本地repository，【因为可能引发一连串的问题，或影响性能】可选在其它路径下创建，随意，放在工作空间中比较方便管理，目前还没发现什么问题，有问题再说吧！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Eclipse生SSH-Key添加到GitHub&quot;&gt;&lt;a href=&quot;#Eclipse生SSH-Key添加到GitHub&quot; class=&quot;headerlink&quot; title=&quot;Eclipse生SSH Key添加到GitHub&quot;&gt;&lt;/a&gt;Eclipse生SSH Key添加到GitHub&lt;/h2&gt;&lt;p&gt;window → preference → general → network connection → SSH2 → Key Management → generate RSA Key… → ave private key…【默认保存在“~/.ssh/”目录下】→apply.&lt;/p&gt;
+&lt;p&gt;点击Export Via SFTP,在弹出窗口填入 &lt;code&gt;git@github.com&lt;/code&gt;，然后会在ssh目录中生成一个&lt;code&gt;known_hosts&lt;/code&gt;文件，该文件用来保存当前密钥对应的已知远程主机列表，如果没有该文件会报错。连不上Github。&lt;br&gt;若出现： &lt;code&gt;Failed to export ssh key to remote server&lt;/code&gt; 的警告，不需理会。&lt;/p&gt;
+&lt;p&gt;然后复制中间文本域中的公钥到GitHub就可以了。&lt;/p&gt;
+&lt;p&gt;关于&lt;code&gt;known_hosts&lt;/code&gt;文件的说明可以参考该文章：&lt;a href=&quot;http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SSH原理与运用&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+      <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="maode.github.io/2017/09/01/hello-world/"/>
     <id>maode.github.io/2017/09/01/hello-world/</id>
     <published>2017-09-01T10:25:03.122Z</published>
-    <updated>2017-09-03T14:41:12.900Z</updated>
+    <updated>2017-09-04T15:04:16.261Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
@@ -126,14 +333,13 @@
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
       <category term="hello" scheme="maode.github.io/tags/hello/"/>
-    
-      <category term="test" scheme="maode.github.io/tags/test/"/>
     
   </entry>
   

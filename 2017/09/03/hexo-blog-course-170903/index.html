@@ -9,13 +9,13 @@
   <title>hexo搭建GitHub博客过程 | notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="环境要求nodejs，git  安装nodejs：nodejs官网 安装git：git for windows">
-<meta name="keywords" content="hexo,Git">
+<meta name="keywords" content="GitHub,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo搭建GitHub博客过程">
 <meta property="og:url" content="maode.github.io/2017/09/03/hexo-blog-course-170903/index.html">
 <meta property="og:site_name" content="notepad">
 <meta property="og:description" content="环境要求nodejs，git  安装nodejs：nodejs官网 安装git：git for windows">
-<meta property="og:updated_time" content="2017-09-04T14:50:15.304Z">
+<meta property="og:updated_time" content="2017-09-05T10:21:45.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建GitHub博客过程">
 <meta name="twitter:description" content="环境要求nodejs，git  安装nodejs：nodejs官网 安装git：git for windows">
@@ -190,9 +190,10 @@
 <ol>
 <li>在GitHub创建博客repo（记得勾选“用README初始化仓库”选项，否则无法进行下一步的分支创建）。</li>
 <li>创建分支hexo</li>
-<li>设置默认分支为hexo（因为博客静态页文件是执行<code>hexo deploy</code>命令进行部署的，而hexo框架及文章源码需要手动执行            Git命令进行部署，将hexo设置为默认分支可以在执行<code>git push</code>命令时省略指定分支参数，方便些。）</li>
-<li>进入本地hexo文件目录下执行clone命令。clone完成后执行<code>git branch</code>应该显示当前在hexo分支下。</li>
-<li>依次执行 <code>git add . 、 git commit 、git push</code>命令部署至GitHub的hexo分支。</li>
+<li>设置默认分支为hexo（因为博客静态页文件是执行<code>hexo deploy</code>命令进行部署的，而hexo框架及文章源码需要手动执行Git命令进行部署，将hexo设置为默认分支可以在执行<code>git push</code>命令时省略指定分支参数，方便些。）</li>
+<li>使用<code>git clone git@github.com:maode/maode.github.io.git</code>命令克隆hexo分支到本地。</li>
+<li>打开clone好的<code>maode.github.io</code>目录，将<code>.git/</code>文件夹和<code>README.md</code>文件复制到hexo文件目录下。复制完成后在hexo文件目录下执行<code>git branch</code>命令应该显示当前在hexo分支下。</li>
+<li>依次执行 <code>git add . 、 git commit 、git push</code>命令部署本地hexo文件至GitHub的hexo分支。</li>
 </ol>
 <p>这样就结束了，以后每当写了新的文章，就可以执行<code>hexo deploy</code>命令部署文章静态页至master分支，执行Git命令部署hexo文件和源码文件至hexo分支。</p>
 <p><strong>更换电脑或丢失文件后的操作</strong></p>
@@ -209,27 +210,6 @@
       
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
     </div>
     <div class="article-info article-info-index">
       
@@ -239,11 +219,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -313,8 +293,17 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/09/05/win-ssh-github-170905/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          windows下通过SSH链接GitHub
+        
+      </div>
+    </a>
   
-    <a href="/2017/09/02/empty-temp-yuwi/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2017/09/02/A-empty-temp-yuwi/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Yu Writer 编辑器下的空白模板</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -448,7 +437,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,15 +457,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hello</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
             
             <div class="clearfix"></div>
