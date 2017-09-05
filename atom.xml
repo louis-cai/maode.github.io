@@ -147,7 +147,7 @@
     <link href="maode.github.io/2017/09/05/win-ssh-github-170905/"/>
     <id>maode.github.io/2017/09/05/win-ssh-github-170905/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:55:41.710Z</updated>
+    <updated>2017-09-05T14:22:52.855Z</updated>
     
     <content type="html"><![CDATA[<p>下载安装一款git工具，如 <a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a></p>
 <p>打开 GitBash 命令窗口开始配置</p>
@@ -160,7 +160,7 @@
 <p>配置完成 输入以下命令进行测试。<br><code>$ ssh -T git@github.com</code><br>可能会看到类似以下的警告之一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.252.1)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</div><div class="line">Are you sure you want to continue connecting (yes/no)?</div><div class="line"></div><div class="line">The authenticity of host &apos;github.com (192.30.252.1)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</div><div class="line">Are you sure you want to continue connecting (yes/no)?</div></pre></td></tr></table></figure></p>
 <p>不用管这些警告，输入yes然后回车。</p>
 <p>如果成功了，会看到以下提示消息。<br><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not
-provide shell access.</code></p>
+provide shell access.</code><br>如果报错，看这里：<a href="https://maode.github.io/2017/09/05/GitHub-link-error-170905/">链接GitHub报错</a></p>
 <p>官方文档：<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="external">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
 ]]></content>
     
