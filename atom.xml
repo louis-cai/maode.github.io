@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-05T13:22:56.907Z</updated>
+  <updated>2017-09-12T15:15:28.440Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -14,6 +14,157 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java POJO 重写toString方法工具</title>
+    <link href="maode.github.io/2017/09/12/java-pojo-tostring-170912/"/>
+    <id>maode.github.io/2017/09/12/java-pojo-tostring-170912/</id>
+    <published>2017-09-12T07:32:41.000Z</published>
+    <updated>2017-09-12T15:15:28.440Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="fastjson"><a href="#fastjson" class="headerlink" title="fastjson"></a>fastjson</h2><p>依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- fastjson --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.38<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> JSON.toJSONString(<span class="keyword">this</span>, <span class="keyword">new</span> SerializerFeature[]&#123;</div><div class="line">			SerializerFeature.WriteMapNullValue, </div><div class="line">			SerializerFeature.WriteNullListAsEmpty,</div><div class="line">            SerializerFeature.WriteNullStringAsEmpty, </div><div class="line">            SerializerFeature.WriteNullNumberAsZero, </div><div class="line">            SerializerFeature.WriteNullBooleanAsFalse,</div><div class="line">            SerializerFeature.UseISO8601DateFormat&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>忽略属性：<br>在属性上加注解 <code>@JSONField(serialize=false)</code><br>SerializerFeature详解见 <a href="#附录：">附录</a></p>
+<a id="more"></a>
+<h2 id="ReflectionToStringBuilder"><a href="#ReflectionToStringBuilder" class="headerlink" title="ReflectionToStringBuilder"></a>ReflectionToStringBuilder</h2><p>依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- lang3 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//普通使用，定义返回数据格式为JSON	</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> ReflectionToStringBuilder.toString(<span class="keyword">this</span>, ToStringStyle.JSON_STYLE);</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">//过滤字段	</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> ReflectionToStringBuilder.toStringExclude(<span class="keyword">this</span>, <span class="string">"firstName"</span>, <span class="string">"dob"</span>);</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">//过滤字段，同时定义数据格式</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">	</div><div class="line">		ReflectionToStringBuilder rtsb= <span class="keyword">new</span> ReflectionToStringBuilder(<span class="keyword">this</span>, ToStringStyle.JSON_STYLE);</div><div class="line">		rtsb.setExcludeFieldNames(<span class="string">"firstName"</span>,<span class="string">"dob"</span>);</div><div class="line">		<span class="keyword">return</span> rtsb.toString();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>感觉有点麻烦，当前类里没发现更好的写法，就先这么写着吧！更喜欢fastjson。</p>
+<h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><h3 id="SerializerFeature属性"><a href="#SerializerFeature属性" class="headerlink" title="SerializerFeature属性"></a>SerializerFeature属性</h3><p>参考：<a href="http://blog.csdn.net/u010246789/article/details/52539576" target="_blank" rel="external">http://blog.csdn.net/u010246789/article/details/52539576</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">QuoteFieldNames</td>
+<td style="text-align:center">输出key时是否使用双引号,默认为true</td>
+</tr>
+<tr>
+<td style="text-align:center">UseSingleQuotes</td>
+<td style="text-align:center">使用单引号而不是双引号,默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteMapNullValue</td>
+<td style="text-align:center">是否输出值为null的字段,默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteEnumUsingToString</td>
+<td style="text-align:center">Enum输出name()或者original,默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">UseISO8601DateFormat</td>
+<td style="text-align:center">Date使用ISO8601格式输出，默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteNullListAsEmpty</td>
+<td style="text-align:center">List字段如果为null,输出为[],而非null</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteNullStringAsEmpty</td>
+<td style="text-align:center">字符类型字段如果为null,输出为”“,而非null</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteNullNumberAsZero</td>
+<td style="text-align:center">数值字段如果为null,输出为0,而非null</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteNullBooleanAsFalse</td>
+<td style="text-align:center">Boolean字段如果为null,输出为false,而非null</td>
+</tr>
+<tr>
+<td style="text-align:center">SkipTransientField</td>
+<td style="text-align:center">如果是true，类中的Get方法对应的Field是transient，序列化时将会被忽略。默认为true</td>
+</tr>
+<tr>
+<td style="text-align:center">SortField</td>
+<td style="text-align:center">按字段名称排序后输出。默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteTabAsSpecial</td>
+<td style="text-align:center">把\t做转义输出，默认为false  <code>不推荐</code></td>
+</tr>
+<tr>
+<td style="text-align:center">PrettyFormat</td>
+<td style="text-align:center">结果是否格式化,默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteClassName</td>
+<td style="text-align:center">序列化时写入类型信息，默认为false。反序列化是需用到</td>
+</tr>
+<tr>
+<td style="text-align:center">DisableCircularReferenceDetect</td>
+<td style="text-align:center">消除对同一对象循环引用的问题，默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteSlashAsSpecial</td>
+<td style="text-align:center">对斜杠’/’进行转义</td>
+</tr>
+<tr>
+<td style="text-align:center">BrowserCompatible</td>
+<td style="text-align:center">将中文都会序列化为\uXXXX格式，字节数会多一些，但是能兼容IE 6，默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteDateUseDateFormat</td>
+<td style="text-align:center">全局修改日期格式,默认为false。JSON.DEFFAULT_DATE_FORMAT = “yyyy-MM-dd”;JSON.toJSONString(obj, SerializerFeature.WriteDateUseDateFormat);</td>
+</tr>
+<tr>
+<td style="text-align:center">DisableCheckSpecialChar</td>
+<td style="text-align:center">一个对象的字符串属性中如果有特殊字符如双引号，将会在转成json时带有反斜杠转移符。如果不需要转义，可以使用这个属性。默认为false</td>
+</tr>
+<tr>
+<td style="text-align:center">NotWriteRootClassName</td>
+<td style="text-align:center">含义</td>
+</tr>
+<tr>
+<td style="text-align:center">BeanToArray</td>
+<td style="text-align:center">将对象转为array输出</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteNonStringKeyAsString</td>
+<td style="text-align:center">含义</td>
+</tr>
+<tr>
+<td style="text-align:center">NotWriteDefaultValue</td>
+<td style="text-align:center">含义</td>
+</tr>
+<tr>
+<td style="text-align:center">BrowserSecure</td>
+<td style="text-align:center">含义</td>
+</tr>
+<tr>
+<td style="text-align:center">IgnoreNonFieldGetter</td>
+<td style="text-align:center">含义</td>
+</tr>
+<tr>
+<td style="text-align:center">WriteEnumUsingName</td>
+<td style="text-align:center">含义</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;fastjson&quot;&gt;&lt;a href=&quot;#fastjson&quot; class=&quot;headerlink&quot; title=&quot;fastjson&quot;&gt;&lt;/a&gt;fastjson&lt;/h2&gt;&lt;p&gt;依赖：&lt;/p&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- fastjson --&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;com.alibaba&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;fastjson&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.2.38&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; JSON.toJSONString(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; SerializerFeature[]&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			SerializerFeature.WriteMapNullValue, &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			SerializerFeature.WriteNullListAsEmpty,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            SerializerFeature.WriteNullStringAsEmpty, &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            SerializerFeature.WriteNullNumberAsZero, &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            SerializerFeature.WriteNullBooleanAsFalse,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            SerializerFeature.UseISO8601DateFormat&amp;#125;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;忽略属性：&lt;br&gt;在属性上加注解 &lt;code&gt;@JSONField(serialize=false)&lt;/code&gt;&lt;br&gt;SerializerFeature详解见 &lt;a href=&quot;#附录：&quot;&gt;附录&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="toString" scheme="maode.github.io/tags/toString/"/>
+    
+      <category term="java" scheme="maode.github.io/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Git常用命令</title>
@@ -38,107 +189,6 @@
     
     
       <category term="Git" scheme="maode.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitHub配置完后链接不上，报错</title>
-    <link href="maode.github.io/2017/09/05/GitHub-link-error-170905/"/>
-    <id>maode.github.io/2017/09/05/GitHub-link-error-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:26:24.286Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-<a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>aliyun maven仓库</title>
-    <link href="maode.github.io/2017/09/05/aliyun-maven-170905/"/>
-    <id>maode.github.io/2017/09/05/aliyun-maven-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:33:48.976Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github映射自定义域名</title>
-    <link href="maode.github.io/2017/09/05/github-domain-name-170905/"/>
-    <id>maode.github.io/2017/09/05/github-domain-name-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:31:42.921Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
-</ol>
-<a id="more"></a>
-<ol>
-<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>用你自己的 Github 用户名替换 username</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/maven-command-170905/"/>
-    <id>maode.github.io/2017/09/05/maven-command-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -177,6 +227,107 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
       <category term="SSH" scheme="maode.github.io/tags/SSH/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github映射自定义域名</title>
+    <link href="maode.github.io/2017/09/05/github-domain-name-170905/"/>
+    <id>maode.github.io/2017/09/05/github-domain-name-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:31:42.921Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用你自己的 Github 用户名替换 username</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>aliyun maven仓库</title>
+    <link href="maode.github.io/2017/09/05/aliyun-maven-170905/"/>
+    <id>maode.github.io/2017/09/05/aliyun-maven-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:33:48.976Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub配置完后链接不上，报错</title>
+    <link href="maode.github.io/2017/09/05/GitHub-link-error-170905/"/>
+    <id>maode.github.io/2017/09/05/GitHub-link-error-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:26:24.286Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
+<p>解决方法:</p>
+<a id="more"></a>
+<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
+<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/maven-command-170905/"/>
+    <id>maode.github.io/2017/09/05/maven-command-170905/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:28:23.481Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -251,29 +402,6 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   </entry>
   
   <entry>
-    <title>Yu Writer 编辑器下的空白模板</title>
-    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
-    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
-    <published>2017-09-02T07:32:41.000Z</published>
-    <updated>2017-09-05T13:30:53.809Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
-<a id="more"></a>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="temp" scheme="maode.github.io/tags/temp/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Eclipse与GitHub之间的操作</title>
     <link href="maode.github.io/2017/09/02/eclipse-github-170905/"/>
     <id>maode.github.io/2017/09/02/eclipse-github-170905/</id>
@@ -309,6 +437,29 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
       <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Yu Writer 编辑器下的空白模板</title>
+    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
+    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
+    <published>2017-09-02T07:32:41.000Z</published>
+    <updated>2017-09-05T13:30:53.809Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
+<a id="more"></a>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="temp" scheme="maode.github.io/tags/temp/"/>
     
   </entry>
   
