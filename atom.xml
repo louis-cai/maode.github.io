@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-12T15:15:28.440Z</updated>
+  <updated>2017-09-13T08:59:50.819Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -16,9 +16,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>对RESTful的一些理解</title>
+    <link href="maode.github.io/2017/09/13/170913-RESTful/"/>
+    <id>maode.github.io/2017/09/13/170913-RESTful/</id>
+    <published>2017-09-13T07:32:41.000Z</published>
+    <updated>2017-09-13T08:59:50.819Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h2><p>一种架构方式、编码风格。</p>
+<hr>
+<p>感觉RESTful模式的关注点在于“资源”，一切皆资源，客户端对服务端发出的所有请求皆是针对某个资源的请求。RESTful对资源的动作不会过分关注，因为针对所有资源的状态和动作都是统一的。</p>
+<p>比如：</p>
+<h3 id="RESTful-风格"><a href="#RESTful-风格" class="headerlink" title="RESTful 风格"></a>RESTful 风格</h3><a id="more"></a>
+<p>以下请求当中是没有包含动作和状态的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.../.../RESTful/person	#这是请求资源 “人”</div><div class="line">.../.../RESTful/books	#这是请求资源 “书”</div></pre></td></tr></table></figure>
+<h3 id="非RESTful-风格"><a href="#非RESTful-风格" class="headerlink" title="非RESTful 风格"></a>非RESTful 风格</h3><p>以下请求当中是包含有动作或状态的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.../.../req/addPerson	#包含了动作 “增加” 一个人</div><div class="line">.../.../req/paidBooks	#包含了状态 “付费” 书籍</div></pre></td></tr></table></figure>
+<h3 id="RESTful-统一的动作"><a href="#RESTful-统一的动作" class="headerlink" title="RESTful 统一的动作"></a>RESTful 统一的动作</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">动作</th>
+<th style="text-align:center">一组资源的URI，比如<code>http://example.com/resources/</code></th>
+<th style="text-align:center">单个资源的URI，比如<code>http://example.com/resources/142</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center"><strong>列出</strong>URI，以及该资源组中每个资源的详细信息（后者可选）。</td>
+<td style="text-align:center"><strong>获取</strong>指定的资源的详细信息，格式可以自选一个合适的网络媒体类型（比如：XML、JSON等）</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">使用给定的一组资源<strong>替换</strong>当前整组资源。</td>
+<td style="text-align:center"><strong>替换/创建</strong>指定的资源。并将其追加到相应的资源组中。</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">在本组资源中<strong>创建/追加</strong>一个新的资源。该操作往往返回新资源的URL。</td>
+<td style="text-align:center">把指定的资源当做一个资源组，并在其下<strong>创建/追加</strong>一个新的元素，使其隶属于当前资源。</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center"><strong>删除</strong>整组资源。</td>
+<td style="text-align:center"><strong>删除</strong>指定的元素。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>另还有：</strong></p>
+<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a><code>HEAD</code></h4><p><code>HEAD</code>方法与<code>GET</code>方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应<code>HEAD</code>请求时不会回传资源的内容部分，即：响应主体。这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。<code>HEAD</code>方法常被用于客户端查看服务器的性能。</p>
+<h4 id="CONNECT"><a href="#CONNECT" class="headerlink" title="CONNECT"></a><code>CONNECT</code></h4><p><code>CONNECT</code>方法是<code>HTTP/1.1</code>协议预留的，能够将连接改为管道方式的代理服务器。通常用于<a href="http://itbilu.com/other/relate/N16Uaoyp.html" target="_blank" rel="external">SSL</a>加密服务器的链接与非加密的HTTP代理服务器的通信。</p>
+<h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a><code>OPTIONS</code></h4><p><code>OPTIONS</code>请求与<code>HEAD</code>类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送<code>OPTIONS</code>请求，可以测试服务器功能是否正常。JavaScript的<a href="http://itbilu.com/javascript/js/VkiXuUcC.html" target="_blank" rel="external">XMLHttpRequest</a>对象进行<code>CORS</code>跨域资源共享时，就是使用<code>OPTIONS</code>方法发送嗅探请求，以判断是否有对指定资源的访问权限。</p>
+<h4 id="TRACE"><a href="#TRACE" class="headerlink" title="TRACE"></a><code>TRACE</code></h4><p><code>TRACE</code>请求服务器回显其收到的请求信息，该方法主要用于HTTP请求的测试或诊断。</p>
+<h4 id="PATCH"><a href="#PATCH" class="headerlink" title="PATCH"></a><code>PATCH</code></h4><p><code>PATCH</code>方法出现的较晚，它在2010年的<a href="http://tools.ietf.org/html/rfc5789" target="_blank" rel="external">RFC 5789</a>标准中被定义。<code>PATCH</code>请求与<code>PUT</code>请求类似，同样用于资源的更新。二者有以下两点不同：</p>
+<ul>
+<li>但<code>PATCH</code>一般用于资源的部分更新，而<code>PUT</code>一般用于资源的整体更新。</li>
+<li>当资源不存在时，<code>PATCH</code>会创建一个新的资源，而<code>PUT</code>只会对已在资源进行更新。</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://zh.wikipedia.org/wiki/REST#cite_note-3" target="_blank" rel="external">https://zh.wikipedia.org/wiki/REST#cite_note-3</a><br><a href="http://www.ruanyifeng.com/blog/2011/09/restful" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/09/restful</a><br><a href="https://itbilu.com/other/relate/EkwKysXIl.html" target="_blank" rel="external">https://itbilu.com/other/relate/EkwKysXIl.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;RESTful&quot;&gt;&lt;a href=&quot;#RESTful&quot; class=&quot;headerlink&quot; title=&quot;RESTful&quot;&gt;&lt;/a&gt;RESTful&lt;/h2&gt;&lt;p&gt;一种架构方式、编码风格。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;感觉RESTful模式的关注点在于“资源”，一切皆资源，客户端对服务端发出的所有请求皆是针对某个资源的请求。RESTful对资源的动作不会过分关注，因为针对所有资源的状态和动作都是统一的。&lt;/p&gt;
+&lt;p&gt;比如：&lt;/p&gt;
+&lt;h3 id=&quot;RESTful-风格&quot;&gt;&lt;a href=&quot;#RESTful-风格&quot; class=&quot;headerlink&quot; title=&quot;RESTful 风格&quot;&gt;&lt;/a&gt;RESTful 风格&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="RESTful" scheme="maode.github.io/tags/RESTful/"/>
+    
+  </entry>
+  
+  <entry>
     <title>java POJO 重写toString方法工具</title>
-    <link href="maode.github.io/2017/09/12/java-pojo-tostring-170912/"/>
-    <id>maode.github.io/2017/09/12/java-pojo-tostring-170912/</id>
+    <link href="maode.github.io/2017/09/12/170912-java-pojo-tostring/"/>
+    <id>maode.github.io/2017/09/12/170912-java-pojo-tostring/</id>
     <published>2017-09-12T07:32:41.000Z</published>
     <updated>2017-09-12T15:15:28.440Z</updated>
     
@@ -168,8 +243,8 @@
   
   <entry>
     <title>Git常用命令</title>
-    <link href="maode.github.io/2017/09/05/git-command-170905/"/>
-    <id>maode.github.io/2017/09/05/git-command-170905/</id>
+    <link href="maode.github.io/2017/09/05/170905-git-command/"/>
+    <id>maode.github.io/2017/09/05/170905-git-command/</id>
     <published>2017-09-05T08:32:41.000Z</published>
     <updated>2017-09-05T13:22:56.907Z</updated>
     
@@ -193,9 +268,110 @@
   </entry>
   
   <entry>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
+    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:28:23.481Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub配置完后链接不上，报错</title>
+    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
+    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:26:24.286Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
+<p>解决方法:</p>
+<a id="more"></a>
+<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
+<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github映射自定义域名</title>
+    <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
+    <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:31:42.921Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用你自己的 Github 用户名替换 username</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>aliyun maven仓库</title>
+    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
+    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:33:48.976Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>windows下通过SSH链接GitHub</title>
-    <link href="maode.github.io/2017/09/05/win-ssh-github-170905/"/>
-    <id>maode.github.io/2017/09/05/win-ssh-github-170905/</id>
+    <link href="maode.github.io/2017/09/05/170905-win-ssh-github/"/>
+    <id>maode.github.io/2017/09/05/170905-win-ssh-github/</id>
     <published>2017-09-05T07:32:41.000Z</published>
     <updated>2017-09-05T14:22:52.855Z</updated>
     
@@ -231,110 +407,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   </entry>
   
   <entry>
-    <title>Github映射自定义域名</title>
-    <link href="maode.github.io/2017/09/05/github-domain-name-170905/"/>
-    <id>maode.github.io/2017/09/05/github-domain-name-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:31:42.921Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
-</ol>
-<a id="more"></a>
-<ol>
-<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>用你自己的 Github 用户名替换 username</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>aliyun maven仓库</title>
-    <link href="maode.github.io/2017/09/05/aliyun-maven-170905/"/>
-    <id>maode.github.io/2017/09/05/aliyun-maven-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:33:48.976Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitHub配置完后链接不上，报错</title>
-    <link href="maode.github.io/2017/09/05/GitHub-link-error-170905/"/>
-    <id>maode.github.io/2017/09/05/GitHub-link-error-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:26:24.286Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-<a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/maven-command-170905/"/>
-    <id>maode.github.io/2017/09/05/maven-command-170905/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
     <title>hexo搭建GitHub博客过程</title>
-    <link href="maode.github.io/2017/09/03/hexo-blog-course-170903/"/>
-    <id>maode.github.io/2017/09/03/hexo-blog-course-170903/</id>
+    <link href="maode.github.io/2017/09/03/170903-hexo-blog-course/"/>
+    <id>maode.github.io/2017/09/03/170903-hexo-blog-course/</id>
     <published>2017-09-03T07:32:41.000Z</published>
     <updated>2017-09-05T10:21:45.165Z</updated>
     
@@ -395,16 +470,16 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     </summary>
     
     
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
       <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
   </entry>
   
   <entry>
     <title>Eclipse与GitHub之间的操作</title>
-    <link href="maode.github.io/2017/09/02/eclipse-github-170905/"/>
-    <id>maode.github.io/2017/09/02/eclipse-github-170905/</id>
+    <link href="maode.github.io/2017/09/02/170905-eclipse-github/"/>
+    <id>maode.github.io/2017/09/02/170905-eclipse-github/</id>
     <published>2017-09-02T07:32:41.000Z</published>
     <updated>2017-09-05T12:45:05.151Z</updated>
     

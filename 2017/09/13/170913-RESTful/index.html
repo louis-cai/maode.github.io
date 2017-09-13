@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="maode.github.io">
-  <title>GitHub配置完后链接不上，报错 | notepad</title>
+  <title>对RESTful的一些理解 | notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
-<meta name="keywords" content="GitHub">
+  <meta name="description" content="RESTful一种架构方式、编码风格。  感觉RESTful模式的关注点在于“资源”，一切皆资源，客户端对服务端发出的所有请求皆是针对某个资源的请求。RESTful对资源的动作不会过分关注，因为针对所有资源的状态和动作都是统一的。 比如： RESTful 风格">
+<meta name="keywords" content="RESTful">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub配置完后链接不上，报错">
-<meta property="og:url" content="maode.github.io/2017/09/05/GitHub-link-error-170905/index.html">
+<meta property="og:title" content="对RESTful的一些理解">
+<meta property="og:url" content="maode.github.io/2017/09/13/170913-RESTful/index.html">
 <meta property="og:site_name" content="notepad">
-<meta property="og:description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
-<meta property="og:updated_time" content="2017-09-05T13:26:24.286Z">
+<meta property="og:description" content="RESTful一种架构方式、编码风格。  感觉RESTful模式的关注点在于“资源”，一切皆资源，客户端对服务端发出的所有请求皆是针对某个资源的请求。RESTful对资源的动作不会过分关注，因为针对所有资源的状态和动作都是统一的。 比如： RESTful 风格">
+<meta property="og:updated_time" content="2017-09-13T08:59:50.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GitHub配置完后链接不上，报错">
-<meta name="twitter:description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
+<meta name="twitter:title" content="对RESTful的一些理解">
+<meta name="twitter:description" content="RESTful一种架构方式、编码风格。  感觉RESTful模式的关注点在于“资源”，一切皆资源，客户端对服务端发出的所有请求皆是针对某个资源的请求。RESTful对资源的动作不会过分关注，因为针对所有资源的状态和动作都是统一的。 比如： RESTful 风格">
   
     <link rel="alternative" href="/atom.xml" title="notepad" type="application/atom+xml">
   
@@ -142,31 +142,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-GitHub-link-error-170905" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-170913-RESTful" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      GitHub配置完后链接不上，报错
+      对RESTful的一些理解
     </h1>
   
 
         
-        <a href="/2017/09/05/GitHub-link-error-170905/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
+        <a href="/2017/09/13/170913-RESTful/" class="archive-article-date">
+  	<time datetime="2017-09-13T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-<a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+        <h2 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h2><p>一种架构方式、编码风格。</p>
+<hr>
+<p>感觉RESTful模式的关注点在于“资源”，一切皆资源，客户端对服务端发出的所有请求皆是针对某个资源的请求。RESTful对资源的动作不会过分关注，因为针对所有资源的状态和动作都是统一的。</p>
+<p>比如：</p>
+<h3 id="RESTful-风格"><a href="#RESTful-风格" class="headerlink" title="RESTful 风格"></a>RESTful 风格</h3><a id="more"></a>
+<p>以下请求当中是没有包含动作和状态的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.../.../RESTful/person	#这是请求资源 “人”</div><div class="line">.../.../RESTful/books	#这是请求资源 “书”</div></pre></td></tr></table></figure>
+<h3 id="非RESTful-风格"><a href="#非RESTful-风格" class="headerlink" title="非RESTful 风格"></a>非RESTful 风格</h3><p>以下请求当中是包含有动作或状态的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.../.../req/addPerson	#包含了动作 “增加” 一个人</div><div class="line">.../.../req/paidBooks	#包含了状态 “付费” 书籍</div></pre></td></tr></table></figure>
+<h3 id="RESTful-统一的动作"><a href="#RESTful-统一的动作" class="headerlink" title="RESTful 统一的动作"></a>RESTful 统一的动作</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">动作</th>
+<th style="text-align:center">一组资源的URI，比如<code>http://example.com/resources/</code></th>
+<th style="text-align:center">单个资源的URI，比如<code>http://example.com/resources/142</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center"><strong>列出</strong>URI，以及该资源组中每个资源的详细信息（后者可选）。</td>
+<td style="text-align:center"><strong>获取</strong>指定的资源的详细信息，格式可以自选一个合适的网络媒体类型（比如：XML、JSON等）</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">使用给定的一组资源<strong>替换</strong>当前整组资源。</td>
+<td style="text-align:center"><strong>替换/创建</strong>指定的资源。并将其追加到相应的资源组中。</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">在本组资源中<strong>创建/追加</strong>一个新的资源。该操作往往返回新资源的URL。</td>
+<td style="text-align:center">把指定的资源当做一个资源组，并在其下<strong>创建/追加</strong>一个新的元素，使其隶属于当前资源。</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center"><strong>删除</strong>整组资源。</td>
+<td style="text-align:center"><strong>删除</strong>指定的元素。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>另还有：</strong></p>
+<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a><code>HEAD</code></h4><p><code>HEAD</code>方法与<code>GET</code>方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应<code>HEAD</code>请求时不会回传资源的内容部分，即：响应主体。这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。<code>HEAD</code>方法常被用于客户端查看服务器的性能。</p>
+<h4 id="CONNECT"><a href="#CONNECT" class="headerlink" title="CONNECT"></a><code>CONNECT</code></h4><p><code>CONNECT</code>方法是<code>HTTP/1.1</code>协议预留的，能够将连接改为管道方式的代理服务器。通常用于<a href="http://itbilu.com/other/relate/N16Uaoyp.html" target="_blank" rel="external">SSL</a>加密服务器的链接与非加密的HTTP代理服务器的通信。</p>
+<h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a><code>OPTIONS</code></h4><p><code>OPTIONS</code>请求与<code>HEAD</code>类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送<code>OPTIONS</code>请求，可以测试服务器功能是否正常。JavaScript的<a href="http://itbilu.com/javascript/js/VkiXuUcC.html" target="_blank" rel="external">XMLHttpRequest</a>对象进行<code>CORS</code>跨域资源共享时，就是使用<code>OPTIONS</code>方法发送嗅探请求，以判断是否有对指定资源的访问权限。</p>
+<h4 id="TRACE"><a href="#TRACE" class="headerlink" title="TRACE"></a><code>TRACE</code></h4><p><code>TRACE</code>请求服务器回显其收到的请求信息，该方法主要用于HTTP请求的测试或诊断。</p>
+<h4 id="PATCH"><a href="#PATCH" class="headerlink" title="PATCH"></a><code>PATCH</code></h4><p><code>PATCH</code>方法出现的较晚，它在2010年的<a href="http://tools.ietf.org/html/rfc5789" target="_blank" rel="external">RFC 5789</a>标准中被定义。<code>PATCH</code>请求与<code>PUT</code>请求类似，同样用于资源的更新。二者有以下两点不同：</p>
+<ul>
+<li>但<code>PATCH</code>一般用于资源的部分更新，而<code>PUT</code>一般用于资源的整体更新。</li>
+<li>当资源不存在时，<code>PATCH</code>会创建一个新的资源，而<code>PUT</code>只会对已在资源进行更新。</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://zh.wikipedia.org/wiki/REST#cite_note-3" target="_blank" rel="external">https://zh.wikipedia.org/wiki/REST#cite_note-3</a><br><a href="http://www.ruanyifeng.com/blog/2011/09/restful" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/09/restful</a><br><a href="https://itbilu.com/other/relate/EkwKysXIl.html" target="_blank" rel="external">https://itbilu.com/other/relate/EkwKysXIl.html</a></p>
 
       
 
@@ -180,7 +226,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RESTful</a>
         		</li>
       		
 		</ul>
@@ -236,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/05/GitHub-link-error-170905/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/13/170913-RESTful/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -250,18 +296,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/05/aliyun-maven-170905/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          aliyun maven仓库
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/05/maven-command-170905/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">maven常用命令</div>
+    <a href="/2017/09/12/170912-java-pojo-tostring/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java POJO 重写toString方法工具</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -288,7 +325,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RESTful"><span class="toc-number">1.</span> <span class="toc-text">RESTful</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RESTful-风格"><span class="toc-number">1.1.</span> <span class="toc-text">RESTful 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非RESTful-风格"><span class="toc-number">1.2.</span> <span class="toc-text">非RESTful 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RESTful-统一的动作"><span class="toc-number">1.3.</span> <span class="toc-text">RESTful 统一的动作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HEAD"><span class="toc-number">1.3.1.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CONNECT"><span class="toc-number">1.3.2.</span> <span class="toc-text">CONNECT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OPTIONS"><span class="toc-number">1.3.3.</span> <span class="toc-text">OPTIONS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TRACE"><span class="toc-number">1.3.4.</span> <span class="toc-text">TRACE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PATCH"><span class="toc-number">1.3.5.</span> <span class="toc-text">PATCH</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">1.4.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -394,11 +431,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -407,18 +448,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -431,6 +460,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">hello</a>
               </li>
             
             <div class="clearfix"></div>
