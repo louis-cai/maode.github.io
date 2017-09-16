@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-13T08:59:50.819Z</updated>
+  <updated>2017-09-16T17:47:43.126Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JSTL的版本还有alyun maven的故事</title>
+    <link href="maode.github.io/2017/09/17/170916-JSTL/"/>
+    <id>maode.github.io/2017/09/17/170916-JSTL/</id>
+    <published>2017-09-17T07:32:41.000Z</published>
+    <updated>2017-09-16T17:47:43.126Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一个比较曲折的故事~~，过程比较离奇。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
+<p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
+<p><img src="/assets/blogImg/170916-jstl-1.png" alt="170916-jstl-1"></p>
+<a id="more"></a>
+<p>配置好依赖（jsp-api和servlet-api的依赖都配了），运行项目，报错：Failed to load or instantiate TagLibraryValidator class: org.apache.taglibs.standard.tlv.JstlCoreTLV。<br>不能加载<code>JstlCoreTLV</code>这个类，打开Libraries查看，类是存在的：</p>
+<p><img src="/assets/blogImg/170916-jstl-3.png" alt="170916-jstl-3"></p>
+<p>然后我就开始了各种Google，各种百度。网上大多是在讲依赖和jar包冲突的问题，仔细检查了一下，并没有这两种情况。<br>接着搜~~，然后搜到了有人说可能是，pom文件依赖只引入的接口标准，而并没有引入具体实现。是吗？好像不是！</p>
+<p><img src="/assets/blogImg/170916-jstl-4.png" alt="170916-jstl-4"></p>
+<p>唔~~~ 凌乱了。不知道怎么回事了。我只好试着换个其他版本看看。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- jstl --&gt;</span></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/javax.servlet/jstl --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>更换完成后，一运行，OK了 没问题了。<br>但是  为什么呢？？？？？打开这个版本的jar文件结构和刚才的没有什么区别啊？ 于是我决定看一下这两个jar文件具体有什么区别。<br>两个jar文件，管用的大小404KB，报错的400KB，看来是有点区别的,为什么一个大一个小？会不会是在下载的过程中jar包数据没有下载完整，于是决定手动下载试试，这个时候发现了本文开头说到的问题  <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 和 <a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a> 上面都没有该版本的jar文件。</p>
+<p><img src="/assets/blogImg/170916-jstl-7.png" alt="170916-jstl-7"></p>
+<p>那么我的jar文件是从哪里下载的呢？因为我使用的阿里云的maven仓库，肯定是从阿里云下载的了。随便打开了几个类，发现问题了……</p>
+<p><strong>400K的<code>javax.servlet.jsp.jstl.jstl</code>版本</strong></p>
+<p><img src="/assets/blogImg/170916-jstl-5.png" alt="170916-jstl-5"></p>
+<p><strong>404K的<code>javax.servlet.jstl</code>版本</strong></p>
+<p><img src="/assets/blogImg/170916-jstl-6.png" alt="170916-jstl-6"></p>
+<p>至此已经发现问题的根源所在了。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>我试着将mvn的远程仓库配置成 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 或 <a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a> jar文件是无法成功下载到本地仓库的，Eclipse都会直接提示找不到jar的错，编译就会报错，但是用阿里云的远程maven仓库就不会，仔细看了一下，原来阿里云的maven仓库中<code>javax.servlet.jsp.jstl.jstl</code>有三个仓库,默认的<code>Central</code>仓库中也是只有<code>sources</code>的jar的，但是另外两个仓库<code>HongKong Nexus</code> 和 <code>jcenter</code>中都有<code>jstl-1.2.jsr</code>估计那个400K的jar就是从这两个仓库中下载下来的，这样不大好。~不大好</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一个比较曲折的故事~~，过程比较离奇。&lt;br&gt;今天在项目中需要用到jstl，于是就上 &lt;a href=&quot;http://mvnrepository.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mvnrepository.com/&lt;/a&gt; 搜索，一搜出来一大片，关于jstl的实现乱七八糟。&lt;/p&gt;
+&lt;p&gt;一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/blogImg/170916-jstl-1.png&quot; alt=&quot;170916-jstl-1&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="jstl" scheme="maode.github.io/tags/jstl/"/>
+    
+  </entry>
   
   <entry>
     <title>对RESTful的一些理解</title>
@@ -268,19 +308,19 @@
   </entry>
   
   <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
-    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
+    <title>aliyun maven仓库</title>
+    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
+    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
+    <updated>2017-09-05T13:33:48.976Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>暂时就这些，后面没有了！(=^ ^=)</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
     
     </summary>
     
@@ -347,19 +387,19 @@
   </entry>
   
   <entry>
-    <title>aliyun maven仓库</title>
-    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
-    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
+    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:33:48.976Z</updated>
+    <updated>2017-09-05T13:28:23.481Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
 <p>暂时就这些，后面没有了！(=^ ^=)</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
     
     </summary>
     
@@ -470,9 +510,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     </summary>
     
     
-      <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
-    
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+      <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
     
   </entry>
   
@@ -509,9 +549,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     </summary>
     
     
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
       <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
   </entry>
   
