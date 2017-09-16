@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="maode.github.io">
   <title>JSTL的版本还有alyun maven的故事 | notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个比较曲折的故事~~，过程比较离奇。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
+  <meta name="description" content="这是一个比较曲折的故事~~，过程比较郁闷。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
 <meta name="keywords" content="jstl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSTL的版本还有alyun maven的故事">
 <meta property="og:url" content="maode.github.io/2017/09/17/170916-JSTL/index.html">
 <meta property="og:site_name" content="notepad">
-<meta property="og:description" content="这是一个比较曲折的故事~~，过程比较离奇。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
+<meta property="og:description" content="这是一个比较曲折的故事~~，过程比较郁闷。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
 <meta property="og:image" content="/assets/blogImg/170916-jstl-1.png">
 <meta property="og:image" content="/assets/blogImg/170916-jstl-3.png">
 <meta property="og:image" content="/assets/blogImg/170916-jstl-4.png">
 <meta property="og:image" content="/assets/blogImg/170916-jstl-7.png">
 <meta property="og:image" content="/assets/blogImg/170916-jstl-5.png">
 <meta property="og:image" content="/assets/blogImg/170916-jstl-6.png">
-<meta property="og:updated_time" content="2017-09-16T17:47:43.126Z">
+<meta property="og:updated_time" content="2017-09-16T17:51:36.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSTL的版本还有alyun maven的故事">
-<meta name="twitter:description" content="这是一个比较曲折的故事~~，过程比较离奇。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
+<meta name="twitter:description" content="这是一个比较曲折的故事~~，过程比较郁闷。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
 <meta name="twitter:image" content="/assets/blogImg/170916-jstl-1.png">
   
     <link rel="alternative" href="/atom.xml" title="notepad" type="application/atom+xml">
@@ -169,7 +169,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是一个比较曲折的故事~~，过程比较离奇。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
+        <p>这是一个比较曲折的故事~~，过程比较郁闷。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
 <p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
 <p><img src="/assets/blogImg/170916-jstl-1.png" alt="170916-jstl-1"></p>
 <a id="more"></a>
@@ -405,14 +405,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
@@ -421,7 +413,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">toString</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -437,19 +449,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hello</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">toString</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
             <div class="clearfix"></div>

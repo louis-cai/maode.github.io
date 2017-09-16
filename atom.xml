@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-16T17:47:43.126Z</updated>
+  <updated>2017-09-16T17:51:36.179Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="maode.github.io/2017/09/17/170916-JSTL/"/>
     <id>maode.github.io/2017/09/17/170916-JSTL/</id>
     <published>2017-09-17T07:32:41.000Z</published>
-    <updated>2017-09-16T17:47:43.126Z</updated>
+    <updated>2017-09-16T17:51:36.179Z</updated>
     
-    <content type="html"><![CDATA[<p>这是一个比较曲折的故事~~，过程比较离奇。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
+    <content type="html"><![CDATA[<p>这是一个比较曲折的故事~~，过程比较郁闷。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
 <p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
 <p><img src="/assets/blogImg/170916-jstl-1.png" alt="170916-jstl-1"></p>
 <a id="more"></a>
@@ -44,7 +44,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是一个比较曲折的故事~~，过程比较离奇。&lt;br&gt;今天在项目中需要用到jstl，于是就上 &lt;a href=&quot;http://mvnrepository.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mvnrepository.com/&lt;/a&gt; 搜索，一搜出来一大片，关于jstl的实现乱七八糟。&lt;/p&gt;
+      &lt;p&gt;这是一个比较曲折的故事~~，过程比较郁闷。&lt;br&gt;今天在项目中需要用到jstl，于是就上 &lt;a href=&quot;http://mvnrepository.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mvnrepository.com/&lt;/a&gt; 搜索，一搜出来一大片，关于jstl的实现乱七八糟。&lt;/p&gt;
 &lt;p&gt;一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/blogImg/170916-jstl-1.png&quot; alt=&quot;170916-jstl-1&quot;&gt;&lt;/p&gt;
     
@@ -308,50 +308,24 @@
   </entry>
   
   <entry>
-    <title>aliyun maven仓库</title>
-    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
-    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
+    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:33:48.976Z</updated>
+    <updated>2017-09-05T13:28:23.481Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
 <p>暂时就这些，后面没有了！(=^ ^=)</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
     
     </summary>
     
     
       <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitHub配置完后链接不上，报错</title>
-    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
-    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:26:24.286Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-<a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
   </entry>
   
@@ -383,28 +357,6 @@
     
     
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
-    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -443,6 +395,54 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
       <category term="SSH" scheme="maode.github.io/tags/SSH/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub配置完后链接不上，报错</title>
+    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
+    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:26:24.286Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
+<p>解决方法:</p>
+<a id="more"></a>
+<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
+<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>aliyun maven仓库</title>
+    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
+    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:33:48.976Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -549,9 +549,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     </summary>
     
     
-      <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
-    
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+      <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
     
   </entry>
   
