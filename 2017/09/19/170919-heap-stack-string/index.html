@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="maode.github.io">
-  <title>GitHub配置完后链接不上，报错 | Code0&#39;s notepad</title>
+  <title>Java 堆、栈、方法区、几种常量池，String | Code0&#39;s notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
-<meta name="keywords" content="GitHub">
+  <meta name="description" content="在JAVA中，数据的交互存在于以下地方： 寄存器（register）： 位于CPU。栈（stack）： 位于RAM。堆（heap）： 位于RAM。方法区（PermGen）： 位于RAM。非RAM存储： 如硬盘等其它存储空间。 就速度来说，从快到慢依次为： 寄存器 &amp;gt;栈 &amp;gt; 堆 &amp;gt; 其它。 JAVA的JVM的内存可分为3个区：栈(stack)、堆(heap)和方法区(PermGen">
+<meta name="keywords" content="heap、stack,堆、栈,常量池,String">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub配置完后链接不上，报错">
-<meta property="og:url" content="maode.github.io/2017/09/05/170905-GitHub-link-error/index.html">
+<meta property="og:title" content="Java 堆、栈、方法区、几种常量池，String">
+<meta property="og:url" content="maode.github.io/2017/09/19/170919-heap-stack-string/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
-<meta property="og:description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
-<meta property="og:updated_time" content="2017-09-05T13:26:24.286Z">
+<meta property="og:description" content="在JAVA中，数据的交互存在于以下地方： 寄存器（register）： 位于CPU。栈（stack）： 位于RAM。堆（heap）： 位于RAM。方法区（PermGen）： 位于RAM。非RAM存储： 如硬盘等其它存储空间。 就速度来说，从快到慢依次为： 寄存器 &amp;gt;栈 &amp;gt; 堆 &amp;gt; 其它。 JAVA的JVM的内存可分为3个区：栈(stack)、堆(heap)和方法区(PermGen">
+<meta property="og:updated_time" content="2017-09-22T17:07:27.453Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GitHub配置完后链接不上，报错">
-<meta name="twitter:description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
+<meta name="twitter:title" content="Java 堆、栈、方法区、几种常量池，String">
+<meta name="twitter:description" content="在JAVA中，数据的交互存在于以下地方： 寄存器（register）： 位于CPU。栈（stack）： 位于RAM。堆（heap）： 位于RAM。方法区（PermGen）： 位于RAM。非RAM存储： 如硬盘等其它存储空间。 就速度来说，从快到慢依次为： 寄存器 &amp;gt;栈 &amp;gt; 堆 &amp;gt; 其它。 JAVA的JVM的内存可分为3个区：栈(stack)、堆(heap)和方法区(PermGen">
   
     <link rel="alternative" href="/atom.xml" title="Code0&#39;s notepad" type="application/atom+xml">
   
@@ -142,31 +142,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-170905-GitHub-link-error" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-170919-heap-stack-string" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      GitHub配置完后链接不上，报错
+      Java 堆、栈、方法区、几种常量池，String
     </h1>
   
 
         
-        <a href="/2017/09/05/170905-GitHub-link-error/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
+        <a href="/2017/09/19/170919-heap-stack-string/" class="archive-article-date">
+  	<time datetime="2017-09-19T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
+        <p><strong>在JAVA中，数据的交互存在于以下地方：</strong></p>
+<p><strong>寄存器（register）：</strong> 位于CPU。<br><strong>栈（stack）：</strong> 位于RAM。<br><strong>堆（heap）：</strong> 位于RAM。<br><strong>方法区（PermGen）：</strong> 位于RAM。<br><strong>非RAM存储：</strong> 如硬盘等其它存储空间。</p>
+<p><strong>就速度来说，从快到慢依次为： 寄存器 &gt;栈 &gt; 堆 &gt; 其它。</strong></p>
+<p><strong>JAVA的JVM的内存可分为3个区：<code>栈(stack)</code>、<code>堆(heap)</code>和<code>方法区(PermGen)</code>也叫永久代。</strong></p>
 <a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+<h2 id="寄存器（register）"><a href="#寄存器（register）" class="headerlink" title="寄存器（register）"></a><strong>寄存器（register）</strong></h2><p> 这是最快的存储区，因为它位于不同于其他存储区的地方——处理器内部。但是寄存器的数量极其有限，所以寄存器由编译器根据需求进行分配。你不能直接控制，也不能在程序中感觉到寄存器存在的任何迹象。    </p>
+<ul>
+<li>最快的存储区, 由编译器根据需求进行分配,我们在程序中无法控制.</li>
+</ul>
+<h2 id="栈（stack）"><a href="#栈（stack）" class="headerlink" title="栈（stack）"></a><strong>栈（stack）</strong></h2><p>位于通用RAM中，但通过它的“栈指针”可以从处理器哪里获得支持。栈指针若向下移动，则分配新的内存；若向上移动，则释放那些 内存。这是一种快速有效的分配存储方法，仅次于寄存器。程序编译时，JAVA编译器必须知道存储在栈内所有数据的确切大小和生命周期，因为它必须生成相应的代码，以便上下移动栈指针。这一约束限制了程序的灵活性。    </p>
+<ul>
+<li><p><strong>每个线程包含一个栈区</strong>，栈中只存放<strong>局部变量</strong>[^1]（包含基本类型和引用类型）。因为基本类型变量的变量值存的是字面<a href="https://zh.wikipedia.org/wiki/%E5%80%BC_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8)" target="_blank" rel="external">值</a>，是 基本类型【原始类型|值类型】,所以大小可知。如<code>int a = 3;</code><a href="int有class但不是类,其它基本类型也是如此，int.class对应的Class对象是JVM合成出来的，并不是从Class文件加载出来的，在JVM初始化的时候就会把原始类型和void对应的Class对象创建出来。这些Class对象的创建不依赖任何外部信息，(例如说需要从Class文件加载的信息)，不需要经历类加载过程，而纯粹是JVM的实现细节。">^2</a> 这里的a是一个int类型的变量，指向<code>3</code>这个值。这些字面值的数据，由于大小可知，生存期可知【这些字面值固定定义在某个程序块里面，程序块退出后，字面值生存期就结束了】，出于追求速度的原因，就存在于栈中了，而对象由于大小不可知，所以栈中只存放了对象的引用。</p>
+</li>
+<li><p>每个栈中的数据都是私有的，其他栈不能访问。</p>
+</li>
+<li><p>栈中的<strong>基本类型</strong>变量值在该栈中是可以被共享的（共享性质有点<code>类似</code>字符串常量池，相同的值只会被创建一次）。如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a=<span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> b=<span class="number">3</span>;</div></pre></td></tr></table></figure>
+<p>编译器先处理<code>int a = 3；</code>首先它会在栈中创建一个 <a href="https://zh.wikipedia.org/wiki/%E5%8F%98%E9%87%8F_(%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)#.E5.9C.A8.E6.BA.90.E4.BB.A3.E7.A0.81.E4.B8.AD" target="_blank" rel="external">变量</a> a，然后查找栈中是否有3这个值，如果没找到，就在栈中开辟一块空间将3这个值存放进来，然后将a指向3的地址。接着处理<code>int b = 3；</code>在创建完b的变量后，因为在栈中已经有3这个值，便将b直接指向3的地址。这样，就出现了a与b同时均指向3的情况。 特 别注意的是，这种基本类型的变量与引用类型的变量不同。假定两个引用类型的变量同时指向一个对象，如果一个变量修改了这个对象的内部状态，那么另一个变量也即刻反映出这个变化。相反，如果是两个基本类型的变量，修改其中一个的值，不会导致另一个指向此字面值的变量也跟着改变的情况。如上例，我们定义完a与 b的值后，再令a=4；那么，b不会等于4，还是等于3。在编译器内部，遇到a=4；时，它就会重新搜索栈中是否有4的字面值，如果没有，重新开辟地址存放4的值；如果已经有了，则直接将a指向这个地址。因此a值的改变不会影响到b的值。</p>
+</li>
+</ul>
+<h2 id="堆（heap）"><a href="#堆（heap）" class="headerlink" title="堆（heap）"></a><strong>堆（heap）</strong></h2><p>一种通用性的内存池（也存在于RAM中），用于存放所有的JAVA对象，无论是成员变量，局部变量，还是类变量，它们指向的对象都存储在堆中。堆不同于栈的好处是：编译器不需要知道要从堆里分配多少存储区域，也不必知道存储的数据在堆里存活多长时间。因此，在堆里分配存储有很大的灵活性。当你需要创建一个对象的时候，只需要new写一行简单的代码，当执行这行代码时，会自动在堆里进行存储分配。当没有引用指向该对象时，垃圾回收机制会在恰当的时候将其回收掉。当然，为这种灵活性必须要付出相应的代价。用堆进行存储分配比用栈进行存储需要更多的时间。  </p>
+<ul>
+<li><strong>jvm只有一个堆区(heap)，该区域被所有线程共享。</strong> 存储的全部是对象实例。堆中不存放<code>基本类型</code>和<code>对象的引用</code>，只存放对象本身，[<strong>几乎</strong>]所有的 <code>对象实例</code> 和 <code>数组</code> 都在堆中分配。</li>
+</ul>
+<h2 id="方法区（PermGen）"><a href="#方法区（PermGen）" class="headerlink" title="方法区（PermGen）"></a><strong>方法区（PermGen）</strong></h2><p>又叫永久代，跟堆一样，<strong>被所有的线程共享</strong>。它用于存储已经被虚拟机加载的<code>类信息</code>、<code>常量</code>、<code>静态变量</code>、<code>即时编译器编译后的代码</code>等数据。</p>
+<ul>
+<li><p>JDK7之前 <code>运行时常量池</code> <code>字符串常量池</code> 还有很多<a href="#关于java的元数据">元数据</a>都在方法区。</p>
+</li>
+<li><p>JDK7开始执行 PermGen移除（去永久代）计划，JDK8彻底移除PermGen。</p>
+</li>
+<li><p>JDK8彻底移除PermGen后，原本方法区中的这些对象被挪到GC堆外的一块叫做Metaspace的空间里做特殊管理，仍然间接的受GC管理。</p>
+</li>
+</ul>
+<h2 id="非RAM存储"><a href="#非RAM存储" class="headerlink" title="非RAM存储"></a><strong>非RAM存储</strong></h2><p>如果数据完全存活于程序之外，那么它可以不受程序的任何控制，在程序没有运行时也可以存在。</p>
+<h1 id="几种常量池介绍"><a href="#几种常量池介绍" class="headerlink" title="几种常量池介绍"></a>几种常量池介绍</h1><h2 id="Class文件常量池"><a href="#Class文件常量池" class="headerlink" title="Class文件常量池"></a><strong>Class文件常量池</strong></h2><p>存在于java文件编译完成后的class文件中。<br>这里面主要存放两大类常量：</p>
+<p>字面量(Literal)：用双引号引起来的字符串等。</p>
+<p>符号引用(Symbolic References)：属于编译原理方面的概念，包含三类常量：</p>
+<ul>
+<li><p>类和接口的全限定名(Full Qualified Name)</p>
+</li>
+<li><p>字段的名称和描述符(Descriptor)</p>
+</li>
+<li><p>方法的名称和描述符</p>
+</li>
+</ul>
+<p>这个用<a href="170921-javap">javap</a>看一下就能明白，这里只涉及字符串就不谈其他的了。</p>
+<h2 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a><strong>运行时常量池</strong></h2><p>class文件常量池在类加载后的产物，class文件常量池中的数据 在类加载后进入运行时常量池。</p>
+<h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a><strong>字符串常量池</strong></h2><p>HotSpot VM里，记录interned string的一个全局表叫做StringTable，它本质上就是个HashSet<string>，是HotSpot VM里用来实现字符串驻留功能的全局数据结构。这是个纯运行时的结构，而且是惰性（lazy）维护的。注意它只存储对java.lang.String实例的引用，而不存储String对象的内容。 注意，它只存了引用，根据这个引用可以得到具体的String对象。</string></p>
+<p>一般我们说一个字符串进入了全局的字符串常量池其实是说在这个StringTable中保存了对它的引用，反之，如果说没有在其中就是说StringTable中没有对它的引用。</p>
+<p>JVM层面触发的字符串驻留（例如把Class文件里的CONSTANT_String类型常量转换为运行时对象），以及Java代码主动触发的字符串驻留（java.lang.String.intern()），两种请求都由StringTable来处理。</p>
+<p>单开 好好唠唠</p>
+<h2 id="关于-String"><a href="#关于-String" class="headerlink" title="关于 String"></a><strong>关于 String</strong></h2><p>单开 好好唠唠</p>
+<h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a><strong>附录：</strong></h2><h3 id="关于java的元数据"><a href="#关于java的元数据" class="headerlink" title="关于java的元数据"></a>关于java的元数据</h3><p>HotSpot VM里有一套对象专门用来存放元数据，它们包括： </p>
+<ul>
+<li>Klass系对象。元数据的最主要入口。用于描述类型的总体信息</li>
+<li>ConstantPool/ConstantPoolCache对象。每个InstanceKlass关联着一个ConstantPool，作为该类型的运行时常量池。这个常量池的结构跟Class文件里的常量池基本上是对应的。可以参考<a href="http://hllvm.group.iteye.com/group/topic/26412#post-187861" target="_blank" rel="external">R大以前的一个回帖</a>。ConstantPoolCache主要用于存储某些字节码指令所需的解析（resolve）好的常量项，例如给[get|put]static、[get|put]field、invoke[static|special|virtual|interface|dynamic]等指令对应的常量池项用。</li>
+<li>Method对象，用来描述Java方法的总体信息，像是方法入口地址、调用/循环计数器等等</li>
+<li>ConstMethod对象，记录着Java方法的不变的描述信息，包括方法名、方法的访问修饰符、<strong>字节码</strong>、行号表、局部变量表等等。注意了，字节码就嵌在这ConstMethod对象里面。</li>
+<li>Symbol对象，对应Class文件常量池里的JVM_CONSTANT_Utf8类型的常量。有一个VM全局的SymbolTable管理着所有Symbol。Symbol由所有Java类所共享。</li>
+<li>MethodData对象，记录着Java方法执行时的profile信息，例如某方法里的某个字节码之类是否从来没遇到过null，某个条件跳转是否总是走同一个分支，等等。这些信息在解释器（多层编译模式下也在低层的编译生成的代码里）收集，然后供给HotSpot Server Compiler用于做激进优化。</li>
+</ul>
+<p>在PermGen移除前，上述元数据对象都在PermGen里，直接被GC管理着。<br>JDK8彻底移除PermGen后，这些对象被挪到GC堆外的一块叫做Metaspace的空间里做特殊管理，仍然间接的受GC管理。</p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+<p>[^1]: 变量是变量，变量名是变量名，变量值是变量值，对象是对象，对象的引用是对象的引用。这个一定要搞清楚。变量 由: <strong><em>“一个包含部分已知或未知数值或资讯（即一个<a href="https://zh.wikipedia.org/wiki/%E5%80%BC_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8)" target="_blank" rel="external">值</a>）之<a href="https://zh.wikipedia.org/wiki/%E8%A8%98%E6%86%B6%E9%AB%94%E4%BD%8D%E5%9D%80" target="_blank" rel="external">储存位址</a>”</em></strong> —— 变量值，以及 <strong><em>“相对应之<a href="https://zh.wikipedia.org/wiki/%E7%AC%A6%E8%99%9F" target="_blank" rel="external">符号名称</a>（<a href="https://zh.wikipedia.org/wiki/%E6%A8%99%E8%AD%98%E7%AC%A6" target="_blank" rel="external">识别字</a>）”</em></strong> —— 变量名，组成。如：<code>int a = 1;</code>a变量 的变量名为符号 ‘a’ ，变量值为<a href="https://zh.wikipedia.org/wiki/%E5%80%BC_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8)" target="_blank" rel="external">值</a> ‘3’。<code>Test t = new Test();</code> t变量 的变量名为符号 ‘t’ ，变量值为一个Test对象在内存中的存储位置（即对象的引用）。</p>
 
       
 
@@ -180,7 +239,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">heap、stack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">堆、栈</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">常量池</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -236,7 +307,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/05/170905-GitHub-link-error/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/19/170919-heap-stack-string/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -250,18 +321,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/05/170905-maven-command/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          maven常用命令
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/05/170905-win-ssh-github/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">windows下通过SSH链接GitHub</div>
+    <a href="/2017/09/17/170916-JSTL/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JSTL的版本还有alyun maven的故事</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -288,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#寄存器（register）"><span class="toc-number">1.</span> <span class="toc-text">寄存器（register）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈（stack）"><span class="toc-number">2.</span> <span class="toc-text">栈（stack）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆（heap）"><span class="toc-number">3.</span> <span class="toc-text">堆（heap）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法区（PermGen）"><span class="toc-number">4.</span> <span class="toc-text">方法区（PermGen）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非RAM存储"><span class="toc-number">5.</span> <span class="toc-text">非RAM存储</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#几种常量池介绍"><span class="toc-number"></span> <span class="toc-text">几种常量池介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Class文件常量池"><span class="toc-number">1.</span> <span class="toc-text">Class文件常量池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行时常量池"><span class="toc-number">2.</span> <span class="toc-text">运行时常量池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串常量池"><span class="toc-number">3.</span> <span class="toc-text">字符串常量池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于-String"><span class="toc-number">4.</span> <span class="toc-text">关于 String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录："><span class="toc-number">5.</span> <span class="toc-text">附录：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于java的元数据"><span class="toc-number">5.1.</span> <span class="toc-text">关于java的元数据</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

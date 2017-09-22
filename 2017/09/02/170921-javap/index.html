@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="maode.github.io">
-  <title>GitHub配置完后链接不上，报错 | Code0&#39;s notepad</title>
+  <title>javap 命令详解 | Code0&#39;s notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
-<meta name="keywords" content="GitHub">
+  <meta name="description" content="D:\temp&amp;gt;javap -helpUsage: javap  where possible options include:    javap 参数 含义     -help  –help  -? 帮助   -version 版本   -v  -verbose 打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）   -l 输出行和变量的表   -public">
+<meta name="keywords" content="javap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub配置完后链接不上，报错">
-<meta property="og:url" content="maode.github.io/2017/09/05/170905-GitHub-link-error/index.html">
+<meta property="og:title" content="javap 命令详解">
+<meta property="og:url" content="maode.github.io/2017/09/02/170921-javap/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
-<meta property="og:description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
-<meta property="og:updated_time" content="2017-09-05T13:26:24.286Z">
+<meta property="og:description" content="D:\temp&amp;gt;javap -helpUsage: javap  where possible options include:    javap 参数 含义     -help  –help  -? 帮助   -version 版本   -v  -verbose 打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）   -l 输出行和变量的表   -public">
+<meta property="og:updated_time" content="2017-09-21T13:59:33.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GitHub配置完后链接不上，报错">
-<meta name="twitter:description" content="安装配置完Git后链接不上GitHub。用ssh -T git@github.com命令测试连接时,报错“ssh: connect to host github.com port 22: Connection timed out” 解决方法:">
+<meta name="twitter:title" content="javap 命令详解">
+<meta name="twitter:description" content="D:\temp&amp;gt;javap -helpUsage: javap  where possible options include:    javap 参数 含义     -help  –help  -? 帮助   -version 版本   -v  -verbose 打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）   -l 输出行和变量的表   -public">
   
     <link rel="alternative" href="/atom.xml" title="Code0&#39;s notepad" type="application/atom+xml">
   
@@ -142,31 +142,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-170905-GitHub-link-error" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-170921-javap" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      GitHub配置完后链接不上，报错
+      javap 命令详解
     </h1>
   
 
         
-        <a href="/2017/09/05/170905-GitHub-link-error/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
+        <a href="/2017/09/02/170921-javap/" class="archive-article-date">
+  	<time datetime="2017-09-02T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-<a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+        <p>D:\temp&gt;javap -help<br>Usage: javap <options> <classes><br>where possible options include:</classes></options></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">javap 参数</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-help  –help  -?</td>
+<td style="text-align:left">帮助</td>
+</tr>
+<tr>
+<td style="text-align:left">-version</td>
+<td style="text-align:left">版本</td>
+</tr>
+<tr>
+<td style="text-align:left">-v  -verbose</td>
+<td style="text-align:left">打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">输出行和变量的表</td>
+</tr>
+<tr>
+<td style="text-align:left">-public</td>
+<td style="text-align:left">只输出public方法和域</td>
+</tr>
+<tr>
+<td style="text-align:left">-protected</td>
+<td style="text-align:left">只输出public和protected类和成员</td>
+</tr>
+<tr>
+<td style="text-align:left">-package</td>
+<td style="text-align:left">只输出包，public和protected类和成员，(这是默认的)</td>
+</tr>
+<tr>
+<td style="text-align:left">-p  -private</td>
+<td style="text-align:left">输出所有类和成员</td>
+</tr>
+<tr>
+<td style="text-align:left">-c</td>
+<td style="text-align:left">输出反汇编后的代码（包含字节码指令）</td>
+</tr>
+<tr>
+<td style="text-align:left">-s</td>
+<td style="text-align:left">输出内部类型签名</td>
+</tr>
+<tr>
+<td style="text-align:left">-sysinfo</td>
+<td style="text-align:left">显示正在处理该类的系统信息(路径、大小、日期、MD5哈希)</td>
+</tr>
+<tr>
+<td style="text-align:left">-constants</td>
+<td style="text-align:left">显示静态常量</td>
+</tr>
+<tr>
+<td style="text-align:left">-classpath <path></path></td>
+<td style="text-align:left">指定类文件的路径</td>
+</tr>
+<tr>
+<td style="text-align:left">-bootclasspath <path></path></td>
+<td style="text-align:left">重写引导类文件的位置</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ javap -c HelloWorld &gt; D://hw-log.txt	<span class="comment">#将输出的内容保存到文件</span></div></pre></td></tr></table></figure>
+<p><strong>一般常用的命令参数 <code>-c</code> 和 <code>-v</code>。</strong></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
 
       
 
@@ -180,7 +245,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javap</a>
         		</li>
       		
 		</ul>
@@ -236,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/05/170905-GitHub-link-error/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/02/170921-javap/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -250,18 +315,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/05/170905-maven-command/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/03/170903-hexo-blog-course/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          maven常用命令
+          hexo搭建GitHub博客过程
         
       </div>
     </a>
   
   
-    <a href="/2017/09/05/170905-win-ssh-github/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">windows下通过SSH链接GitHub</div>
+    <a href="/2017/09/02/170905-eclipse-github/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Eclipse与GitHub之间的操作</div>
       <i class="icon-circle-right"></i>
     </a>
   
