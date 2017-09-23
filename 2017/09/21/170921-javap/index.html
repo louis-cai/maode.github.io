@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="maode.github.io">
-  <title>windows下通过SSH链接GitHub | Code0&#39;s notepad</title>
+  <title>javap 命令详解 | Code0&#39;s notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下载安装一款git工具，如 git for windows 打开 GitBash 命令窗口开始配置 12$ git config --global user.name &quot;要设置的用户名&quot;	#配置GitHub的name$ git config --global user.email &quot;要设置的邮箱&quot;	#配置GitHub的email 进入到当前登录用户的目录下$ cd ~查看当前用户目录下是否存在.s">
-<meta name="keywords" content="GitHub,SSH">
+  <meta name="description" content="D:\temp&amp;gt;javap -helpUsage: javap  where possible options include:    javap 参数 含义     -help  –help  -? 帮助   -version 版本   -v  -verbose 打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）   -l 输出行和变量的表   -public">
+<meta name="keywords" content="javap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows下通过SSH链接GitHub">
-<meta property="og:url" content="maode.github.io/2017/09/05/170905-win-ssh-github/index.html">
+<meta property="og:title" content="javap 命令详解">
+<meta property="og:url" content="maode.github.io/2017/09/21/170921-javap/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
-<meta property="og:description" content="下载安装一款git工具，如 git for windows 打开 GitBash 命令窗口开始配置 12$ git config --global user.name &quot;要设置的用户名&quot;	#配置GitHub的name$ git config --global user.email &quot;要设置的邮箱&quot;	#配置GitHub的email 进入到当前登录用户的目录下$ cd ~查看当前用户目录下是否存在.s">
-<meta property="og:updated_time" content="2017-09-05T14:22:52.855Z">
+<meta property="og:description" content="D:\temp&amp;gt;javap -helpUsage: javap  where possible options include:    javap 参数 含义     -help  –help  -? 帮助   -version 版本   -v  -verbose 打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）   -l 输出行和变量的表   -public">
+<meta property="og:updated_time" content="2017-09-23T16:51:40.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows下通过SSH链接GitHub">
-<meta name="twitter:description" content="下载安装一款git工具，如 git for windows 打开 GitBash 命令窗口开始配置 12$ git config --global user.name &quot;要设置的用户名&quot;	#配置GitHub的name$ git config --global user.email &quot;要设置的邮箱&quot;	#配置GitHub的email 进入到当前登录用户的目录下$ cd ~查看当前用户目录下是否存在.s">
+<meta name="twitter:title" content="javap 命令详解">
+<meta name="twitter:description" content="D:\temp&amp;gt;javap -helpUsage: javap  where possible options include:    javap 参数 含义     -help  –help  -? 帮助   -version 版本   -v  -verbose 打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）   -l 输出行和变量的表   -public">
   
     <link rel="alternative" href="/atom.xml" title="Code0&#39;s notepad" type="application/atom+xml">
   
@@ -142,39 +142,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-170905-win-ssh-github" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-170921-javap" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      windows下通过SSH链接GitHub
+      javap 命令详解
     </h1>
   
 
         
-        <a href="/2017/09/05/170905-win-ssh-github/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
+        <a href="/2017/09/21/170921-javap/" class="archive-article-date">
+  	<time datetime="2017-09-21T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>下载安装一款git工具，如 <a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a></p>
-<p>打开 GitBash 命令窗口开始配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"要设置的用户名"</span>	<span class="comment">#配置GitHub的name</span></div><div class="line">$ git config --global user.email <span class="string">"要设置的邮箱"</span>	<span class="comment">#配置GitHub的email</span></div></pre></td></tr></table></figure>
-<p>进入到当前登录用户的目录下<br><code>$ cd ~</code><br>查看当前用户目录下是否存在<code>.ssh</code>文件夹，若不存在，则创建一个<br><code>$ mkdir .ssh</code></p>
-<a id="more"></a>
-<p>使用命令生成<code>SSH Key</code><br><code>$ ssh-keygen -t rsa -C &quot;引号里内容是用来生成密钥的注释文字，可以用github的登录邮箱&quot;</code><br>连敲三次回车，生成密钥。三次回车分别是跳过<code>“自定义密钥文件名”、“设置SSH Key的管理密码”、“确认SSH Key的管理密码”</code>三个步骤。</p>
-<p>密钥文件生成在<code>~/.ssh</code>目录下。<code>id_rsa</code>是私钥<code>id_rsa.pub</code>是公钥。</p>
-<p>用编辑器打开公钥，全选-复制，然后登录GitHub在设置项中找到添加SSH Key的选项，把公钥粘贴上，标题可根据情况自定义。</p>
-<p>配置完成 输入以下命令进行测试。<br><code>$ ssh -T git@github.com</code><br>可能会看到类似以下的警告之一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.252.1)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</div><div class="line">Are you sure you want to continue connecting (yes/no)?</div><div class="line"></div><div class="line">The authenticity of host &apos;github.com (192.30.252.1)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</div><div class="line">Are you sure you want to continue connecting (yes/no)?</div></pre></td></tr></table></figure></p>
-<p>不用管这些警告，输入yes然后回车。</p>
-<p>如果成功了，会看到以下提示消息。<br><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not
-provide shell access.</code><br>如果报错，看这里：<a href="https://maode.github.io/2017/09/05/GitHub-link-error-170905/">链接GitHub报错</a></p>
-<p>官方文档：<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="external">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
+        <p>D:\temp&gt;javap -help<br>Usage: javap <options> <classes><br>where possible options include:</classes></options></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">javap 参数</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-help  –help  -?</td>
+<td style="text-align:left">帮助</td>
+</tr>
+<tr>
+<td style="text-align:left">-version</td>
+<td style="text-align:left">版本</td>
+</tr>
+<tr>
+<td style="text-align:left">-v  -verbose</td>
+<td style="text-align:left">打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">输出行和变量的表</td>
+</tr>
+<tr>
+<td style="text-align:left">-public</td>
+<td style="text-align:left">只输出public方法和域</td>
+</tr>
+<tr>
+<td style="text-align:left">-protected</td>
+<td style="text-align:left">只输出public和protected类和成员</td>
+</tr>
+<tr>
+<td style="text-align:left">-package</td>
+<td style="text-align:left">只输出包，public和protected类和成员，(这是默认的)</td>
+</tr>
+<tr>
+<td style="text-align:left">-p  -private</td>
+<td style="text-align:left">输出所有类和成员</td>
+</tr>
+<tr>
+<td style="text-align:left">-c</td>
+<td style="text-align:left">输出反汇编后的代码（包含字节码指令）</td>
+</tr>
+<tr>
+<td style="text-align:left">-s</td>
+<td style="text-align:left">输出内部类型签名</td>
+</tr>
+<tr>
+<td style="text-align:left">-sysinfo</td>
+<td style="text-align:left">显示正在处理该类的系统信息(路径、大小、日期、MD5哈希)</td>
+</tr>
+<tr>
+<td style="text-align:left">-constants</td>
+<td style="text-align:left">显示静态常量</td>
+</tr>
+<tr>
+<td style="text-align:left">-classpath <path></path></td>
+<td style="text-align:left">指定类文件的路径</td>
+</tr>
+<tr>
+<td style="text-align:left">-bootclasspath <path></path></td>
+<td style="text-align:left">重写引导类文件的位置</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ javap -c HelloWorld &gt; D://hw-log.txt	<span class="comment">#将输出的内容保存到文件</span></div></pre></td></tr></table></figure>
+<p><strong>一般常用的命令参数 <code>-c</code> 和 <code>-v</code>。</strong></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
 
       
 
@@ -188,11 +245,7 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSH</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javap</a>
         		</li>
       		
 		</ul>
@@ -248,7 +301,7 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/05/170905-win-ssh-github/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/21/170921-javap/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,18 +315,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   
 <nav id="article-nav">
   
-    <a href="/2017/09/05/170905-GitHub-link-error/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          GitHub配置完后链接不上，报错
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/05/170905-github-domain-name/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Github映射自定义域名</div>
+    <a href="/2017/09/19/170919-heap-stack-string/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 堆、栈、方法区、几种常量池，String</div>
       <i class="icon-circle-right"></i>
     </a>
   
