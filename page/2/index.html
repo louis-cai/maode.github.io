@@ -139,19 +139,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-170905-maven-command" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-170905-win-ssh-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/05/170905-maven-command/">maven常用命令</a>
+      <a class="article-title" href="/2017/09/05/170905-win-ssh-github/">windows下通过SSH链接GitHub</a>
     </h1>
   
 
         
-        <a href="/2017/09/05/170905-maven-command/" class="archive-article-date">
+        <a href="/2017/09/05/170905-win-ssh-github/" class="archive-article-date">
   	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
 </a>
         
@@ -159,9 +159,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-
+        <p>下载安装一款git工具，如 <a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a></p>
+<p>打开 GitBash 命令窗口开始配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"要设置的用户名"</span>	<span class="comment">#配置GitHub的name</span></div><div class="line">$ git config --global user.email <span class="string">"要设置的邮箱"</span>	<span class="comment">#配置GitHub的email</span></div></pre></td></tr></table></figure>
+<p>进入到当前登录用户的目录下<br><code>$ cd ~</code><br>查看当前用户目录下是否存在<code>.ssh</code>文件夹，若不存在，则创建一个<br><code>$ mkdir .ssh</code></p>
+        
+          <a class="article-more-a" href="/2017/09/05/170905-win-ssh-github/#more">more >></a>
+        
       
 
       
@@ -174,7 +178,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSH</a>
         		</li>
       		
 		</ul>
@@ -184,7 +192,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/05/170905-maven-command/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/05/170905-win-ssh-github/">展开全文 >></a>
         </p>
       
 
