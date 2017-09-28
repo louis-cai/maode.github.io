@@ -354,11 +354,11 @@
   </entry>
   
   <entry>
-    <title>\@RestController返回json和xml数据</title>
+    <title>RestController返回json和xml数据</title>
     <link href="maode.github.io/2017/09/14/170914-RestController-json-xml/"/>
     <id>maode.github.io/2017/09/14/170914-RestController-json-xml/</id>
     <published>2017-09-14T07:32:41.000Z</published>
-    <updated>2017-09-26T11:00:19.441Z</updated>
+    <updated>2017-09-28T06:32:00.675Z</updated>
     
     <content type="html"><![CDATA[<h2 id="实体类（POJO）"><a href="#实体类（POJO）" class="headerlink" title="实体类（POJO）"></a>实体类（POJO）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.model;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.model</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:15:16 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> name 要设置的 name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getText</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> text;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> text 要设置的 text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setText</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.text = text;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -634,33 +634,24 @@
   </entry>
   
   <entry>
-    <title>Github映射自定义域名</title>
-    <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
-    <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
+    <title>aliyun maven仓库</title>
+    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
+    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:31:42.921Z</updated>
+    <updated>2017-09-05T13:33:48.976Z</updated>
     
-    <content type="html"><![CDATA[<ol>
-<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
-</ol>
-<a id="more"></a>
-<ol>
-<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>用你自己的 Github 用户名替换 username</p>
+    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
-&lt;/ol&gt;
+      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
     
     </summary>
     
     
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -725,6 +716,37 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   </entry>
   
   <entry>
+    <title>Github映射自定义域名</title>
+    <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
+    <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:31:42.921Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用你自己的 Github 用户名替换 username</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GitHub配置完后链接不上，报错</title>
     <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
     <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
@@ -747,28 +769,6 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     
     
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>aliyun maven仓库</title>
-    <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
-    <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:33:48.976Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -836,37 +836,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     </summary>
     
     
-      <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
-    
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Yu Writer 编辑器下的空白模板</title>
-    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
-    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
-    <published>2017-09-02T07:32:41.000Z</published>
-    <updated>2017-09-25T12:22:04.466Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
-<p>参考资料的等级：    ★☆</p>
-<p>脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩</p>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-<a id="more"></a>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
-&lt;p&gt;参考资料的等级：    ★☆&lt;/p&gt;
-&lt;p&gt;脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩&lt;/p&gt;
-&lt;p&gt;暂时就这些，后面没有了！(=^ ^=)&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="temp" scheme="maode.github.io/tags/temp/"/>
+      <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
     
   </entry>
   
@@ -875,7 +847,7 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     <link href="maode.github.io/2017/09/02/170905-eclipse-github/"/>
     <id>maode.github.io/2017/09/02/170905-eclipse-github/</id>
     <published>2017-09-02T07:32:41.000Z</published>
-    <updated>2017-09-28T03:33:41.526Z</updated>
+    <updated>2017-09-28T03:39:39.743Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Eclipse生SSH-Key添加到GitHub"><a href="#Eclipse生SSH-Key添加到GitHub" class="headerlink" title="Eclipse生SSH Key添加到GitHub"></a>Eclipse生SSH Key添加到GitHub</h2><p>window → preference → general → network connection → SSH2 → Key Management → generate RSA Key… → ave private key…【默认保存在“~/.ssh/”目录下】→apply.</p>
 <p>点击Export Via SFTP,在弹出窗口填入 <code>git@github.com</code>，然后会在ssh目录中生成一个<code>known_hosts</code>文件，该文件用来保存当前密钥对应的已知远程主机列表，如果没有该文件会报错。连不上Github。<br>若出现： <code>Failed to export ssh key to remote server</code> 的警告，不需理会。</p>
@@ -919,6 +891,34 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
       <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Yu Writer 编辑器下的空白模板</title>
+    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
+    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
+    <published>2017-09-02T07:32:41.000Z</published>
+    <updated>2017-09-25T12:22:04.466Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
+<p>参考资料的等级：    ★☆</p>
+<p>脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩</p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
+&lt;p&gt;参考资料的等级：    ★☆&lt;/p&gt;
+&lt;p&gt;脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩&lt;/p&gt;
+&lt;p&gt;暂时就这些，后面没有了！(=^ ^=)&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="temp" scheme="maode.github.io/tags/temp/"/>
     
   </entry>
   
