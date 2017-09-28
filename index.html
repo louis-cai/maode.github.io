@@ -139,6 +139,170 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-170926-nodejs-debug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/170926-nodejs-debug/">Debugging Node.js with DevTools</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/26/170926-nodejs-debug/" class="archive-article-date">
+  	<time datetime="2017-09-26T14:37:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>devtool 已经并入node.js v6.3.0以上版本的核心包，所以不用再installe。可以直接开整。如下：</p>
+<p>调试 <code>mrd.js</code> 并在该文件第一句断点。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node --inspect --debug-brk mrd.js <span class="comment"># debug mrd.js 并在该文件第一句断点</span></div></pre></td></tr></table></figure></p>
+<p>打开Chrome在地址栏输入：chrome://inspect </p>
+<p>OK！现在可以开始调试了。就是如此简单。</p>
+<p><strong>如果想让某次的debug过程重新走，在devtool中随便改行代码，然后保存，就可以重头再走一遍了。</strong></p>
+<p>v7+ 版本还可以把以上命令简化为：<code>$ node --inspect-brk mrd.js( v7+)</code><br>我的版本低，没试！</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" target="_blank" rel="external">https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27</a></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DevTools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/26/170926-nodejs-debug/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-170926-CLI-mrd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/170926-CLI-mrd/">命令行（CLI）mrd开发记录</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/26/170926-CLI-mrd/" class="archive-article-date">
+  	<time datetime="2017-09-26T14:28:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先确保安装配置好node.js的环境。官网：<a href="https://nodejs.org" target="_blank" rel="external">https://nodejs.org</a></p>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><p>创建一个文件夹用来放mrd项目，如 D:\temp\mrd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">D:\&gt; mkdir D:\temp\mrd</div><div class="line"></div><div class="line">D:\&gt; <span class="built_in">cd</span> temp\mrd</div></pre></td></tr></table></figure>
+<p>初始化：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D:\temp\mrd&gt; npm init -y</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/09/26/170926-CLI-mrd/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CLI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/26/170926-CLI-mrd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-170921-javap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -380,7 +544,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/17/170916-JSTL/">JSTL的版本还有alyun maven的故事</a>
+      <a class="article-title" href="/2017/09/17/170916-JSTL/">JSTL的版本还有aliyun maven的故事</a>
     </h1>
   
 
@@ -422,6 +586,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/17/170916-JSTL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-170914-RestController-json-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/14/170914-RestController-json-xml/">\@RestController返回json和xml数据</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/14/170914-RestController-json-xml/" class="archive-article-date">
+  	<time datetime="2017-09-14T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实体类（POJO）"><a href="#实体类（POJO）" class="headerlink" title="实体类（POJO）"></a>实体类（POJO）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.model;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.model</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:15:16 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> name 要设置的 name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getText</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> text;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> text 要设置的 text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setText</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.text = text;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/09/14/170914-RestController-json-xml/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springMVC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/14/170914-RestController-json-xml/">展开全文 >></a>
         </p>
       
 
@@ -635,7 +875,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#告诉Github，你要使用的用户名</span></div><div class="line">$ git config --global user.name <span class="string">"Your Name Here"</span></div><div class="line"><span class="comment">#设置邮箱 </span></div><div class="line">$ git config --global user.email <span class="string">"your_email@example.com"</span></div><div class="line"><span class="comment">#查看用户名和邮箱</span></div><div class="line">$ git config user.name[user.email]</div><div class="line"><span class="comment">#查看所有配置项</span></div><div class="line">$ git config -l[--list]</div></pre></td></tr></table></figure>
+        <h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 告诉Github，你要使用的用户名</span></div><div class="line">$ git config --global user.name <span class="string">"Your Name Here"</span></div><div class="line"><span class="comment"># 设置邮箱 </span></div><div class="line">$ git config --global user.email <span class="string">"your_email@example.com"</span></div><div class="line"><span class="comment"># 查看用户名和邮箱</span></div><div class="line">$ git config user.name[user.email]</div><div class="line"><span class="comment"># 查看所有配置项</span></div><div class="line">$ git config -l[--list]</div></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2017/09/05/170905-git-command/#more">more >></a>
         
@@ -662,166 +902,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/05/170905-git-command/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170905-GitHub-link-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/05/170905-GitHub-link-error/">GitHub配置完后链接不上，报错</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/05/170905-GitHub-link-error/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-        
-          <a class="article-more-a" href="/2017/09/05/170905-GitHub-link-error/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/05/170905-GitHub-link-error/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170905-win-ssh-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/05/170905-win-ssh-github/">windows下通过SSH链接GitHub</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/05/170905-win-ssh-github/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>下载安装一款git工具，如 <a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a></p>
-<p>打开 GitBash 命令窗口开始配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"要设置的用户名"</span>	<span class="comment">#配置GitHub的name</span></div><div class="line">$ git config --global user.email <span class="string">"要设置的邮箱"</span>	<span class="comment">#配置GitHub的email</span></div></pre></td></tr></table></figure>
-<p>进入到当前登录用户的目录下<br><code>$ cd ~</code><br>查看当前用户目录下是否存在<code>.ssh</code>文件夹，若不存在，则创建一个<br><code>$ mkdir .ssh</code></p>
-        
-          <a class="article-more-a" href="/2017/09/05/170905-win-ssh-github/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSH</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/05/170905-win-ssh-github/">展开全文 >></a>
         </p>
       
 
@@ -900,81 +980,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/05/170905-github-domain-name/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170905-aliyun-maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/05/170905-aliyun-maven/">aliyun maven仓库</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/05/170905-aliyun-maven/" class="archive-article-date">
-  	<time datetime="2017-09-05T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- aliyun maven镜像</span></div><div class="line"><span class="comment">	放在.m2文件夹下 settings.xml下</span></div><div class="line"><span class="comment">--&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/05/170905-aliyun-maven/">展开全文 >></a>
         </p>
       
 
@@ -1105,11 +1110,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1162,6 +1167,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hello</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">中文1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">中文2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">中，文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CLI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
               </li>
             
             <div class="clearfix"></div>

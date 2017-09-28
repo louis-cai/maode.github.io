@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-24T09:41:17.252Z</updated>
+  <updated>2017-09-28T06:22:48.224Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Debugging Node.js with DevTools</title>
+    <link href="maode.github.io/2017/09/26/170926-nodejs-debug/"/>
+    <id>maode.github.io/2017/09/26/170926-nodejs-debug/</id>
+    <published>2017-09-26T14:37:45.000Z</published>
+    <updated>2017-09-28T06:22:48.224Z</updated>
+    
+    <content type="html"><![CDATA[<p>devtool 已经并入node.js v6.3.0以上版本的核心包，所以不用再installe。可以直接开整。如下：</p>
+<p>调试 <code>mrd.js</code> 并在该文件第一句断点。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node --inspect --debug-brk mrd.js <span class="comment"># debug mrd.js 并在该文件第一句断点</span></div></pre></td></tr></table></figure></p>
+<p>打开Chrome在地址栏输入：chrome://inspect </p>
+<p>OK！现在可以开始调试了。就是如此简单。</p>
+<p><strong>如果想让某次的debug过程重新走，在devtool中随便改行代码，然后保存，就可以重头再走一遍了。</strong></p>
+<p>v7+ 版本还可以把以上命令简化为：<code>$ node --inspect-brk mrd.js( v7+)</code><br>我的版本低，没试！</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" target="_blank" rel="external">https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27</a></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;devtool 已经并入node.js v6.3.0以上版本的核心包，所以不用再installe。可以直接开整。如下：&lt;/p&gt;
+&lt;p&gt;调试 &lt;code&gt;mrd.js&lt;/code&gt; 并在该文件第一句断点。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;
+    
+    </summary>
+    
+    
+      <category term="Node.js" scheme="maode.github.io/tags/Node-js/"/>
+    
+      <category term="DevTools" scheme="maode.github.io/tags/DevTools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>命令行（CLI）mrd开发记录</title>
+    <link href="maode.github.io/2017/09/26/170926-CLI-mrd/"/>
+    <id>maode.github.io/2017/09/26/170926-CLI-mrd/</id>
+    <published>2017-09-26T14:28:32.000Z</published>
+    <updated>2017-09-28T06:18:51.983Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先确保安装配置好node.js的环境。官网：<a href="https://nodejs.org" target="_blank" rel="external">https://nodejs.org</a></p>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><p>创建一个文件夹用来放mrd项目，如 D:\temp\mrd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">D:\&gt; mkdir D:\temp\mrd</div><div class="line"></div><div class="line">D:\&gt; <span class="built_in">cd</span> temp\mrd</div></pre></td></tr></table></figure>
+<p>初始化：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D:\temp\mrd&gt; npm init -y</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>执行完 init 命令会生成 package.json 包信息文件，修改文件内容如下：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"mrd"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">"根据模板生成github博客文件"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"bin/mrd"</span>,</div><div class="line">  <span class="attr">"bin"</span>: &#123;</div><div class="line">    <span class="attr">"mrd"</span>: <span class="string">"bin/mrd"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">"Code0"</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="attr">"repository"</span>: &#123;</div><div class="line">        <span class="attr">"type"</span>: <span class="string">"git"</span>,</div><div class="line">        <span class="attr">"url"</span>: <span class="string">"https://github.com/maode/mrd.git"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建包信息中的对应的路径和文件。创建完成后目录结构如下：</p>
+<p><img src="/assets/blogImg/170926-CLI-1.png" alt=""></p>
+<h2 id="mrd-js"><a href="#mrd-js" class="headerlink" title="mrd.js"></a>mrd.js</h2><p>如果依赖的模块没有安装过，要先安装依赖。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env node</span></div><div class="line"></div><div class="line"><span class="comment">//引入用到的模块</span></div><div class="line"><span class="keyword">var</span> shell = <span class="built_in">require</span>(<span class="string">"shelljs"</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> nunjucks = <span class="built_in">require</span>(<span class="string">'nunjucks'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> dateFormat = <span class="built_in">require</span>(<span class="string">'dateformat'</span>); </div><div class="line"><span class="comment">//定义变量</span></div><div class="line"><span class="keyword">var</span> tpl_path = <span class="string">'D:/GitHubRepo/Blog/post_tpl/A-mrd-temp.md'</span>;</div><div class="line"><span class="keyword">var</span> gen_path = <span class="string">'D:/GitHubRepo/Blog/source/_posts'</span>;</div><div class="line"><span class="keyword">var</span> fname;</div><div class="line"><span class="keyword">var</span> title=<span class="string">"temp"</span>;</div><div class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="keyword">var</span> dtime=dateFormat(now);<span class="comment">//使用挺好看的默认格式</span></div><div class="line"><span class="keyword">var</span> fnamePre=dateFormat(now,<span class="string">"yymmdd"</span>);<span class="comment">//生成文件名前缀</span></div><div class="line"><span class="keyword">var</span> tags;</div><div class="line"></div><div class="line"><span class="comment">//逻辑部分</span></div><div class="line"><span class="keyword">var</span> argv = <span class="built_in">require</span>(<span class="string">'yargs'</span>)</div><div class="line">	.option(<span class="string">'f'</span>,&#123;</div><div class="line">		alias: <span class="string">'from'</span>,</div><div class="line">		demand: <span class="literal">false</span>,</div><div class="line">		<span class="keyword">default</span>: tpl_path,</div><div class="line">		describe: <span class="string">'template path'</span>,</div><div class="line">		type: <span class="string">'string'</span></div><div class="line">	&#125;)</div><div class="line">	.option(<span class="string">'t'</span>,&#123;</div><div class="line">		alias: <span class="string">'to'</span>,</div><div class="line">		demand: <span class="literal">false</span>,</div><div class="line">		<span class="keyword">default</span>: gen_path,</div><div class="line">		describe: <span class="string">'generate path'</span>,</div><div class="line">		type: <span class="string">'string'</span></div><div class="line">	&#125;)</div><div class="line">	.usage(<span class="string">'Usage: mrd &lt;fileName&gt; [title] [tag1 tag2 ……]'</span>)</div><div class="line">	.example(<span class="string">'$ mrd test'</span>, <span class="string">'根据默认模板在默认路径下创建test.md'</span>)</div><div class="line">	.help(<span class="string">'h'</span>)</div><div class="line">	.alias(<span class="string">'h'</span>, <span class="string">'help'</span>)</div><div class="line">	.epilog(<span class="string">'copyright 2017'</span>)</div><div class="line">	.argv;</div><div class="line"></div><div class="line"><span class="comment">// fileName 如果没有任何命令和参数则打印帮助</span></div><div class="line"><span class="keyword">if</span>(argv._[<span class="number">0</span>])&#123;</div><div class="line">	fname=fnamePre+<span class="string">"-"</span>+argv._[<span class="number">0</span>];</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	<span class="comment">//shell.exec("node mrd.js -h");//开发环境</span></div><div class="line">	shell.exec(<span class="string">"mrd -h"</span>);<span class="comment">//生产环境</span></div><div class="line">	process.exit(<span class="number">0</span>);</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="comment">// title</span></div><div class="line"><span class="keyword">if</span>(argv._[<span class="number">1</span>])&#123;</div><div class="line">	title = argv._[<span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"><span class="comment">//tags</span></div><div class="line"><span class="keyword">if</span>(argv._[<span class="number">2</span>])&#123;</div><div class="line">	tags=argv._.slice(<span class="number">2</span>);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//路径规范化</span></div><div class="line">argv.f=path.normalize(argv.f);</div><div class="line">argv.t=path.normalize(argv.t);</div><div class="line"><span class="comment">//判断生成文件的路径是否存在</span></div><div class="line"><span class="keyword">if</span>(!fs.existsSync(argv.t))&#123;</div><div class="line">	fs.mkdirSync(argv.t);</div><div class="line">&#125;</div><div class="line"><span class="comment">//读取模板文件</span></div><div class="line"><span class="keyword">var</span> tpl = fs.readFileSync(argv.f).toString();</div><div class="line"><span class="comment">//填充模板数据</span></div><div class="line"><span class="keyword">var</span> compiledData = nunjucks.renderString(tpl,&#123;<span class="attr">title</span>:title,<span class="attr">dtime</span>:dtime,<span class="attr">tags</span>:tags&#125;);</div><div class="line"><span class="keyword">var</span> fpath= path.join(argv.t,fname+<span class="string">'.md'</span>);<span class="comment">//合成生成文件的路径</span></div><div class="line"><span class="comment">//根据模板生成文件</span></div><div class="line">fs.writeFileSync(fpath, compiledData);</div><div class="line"><span class="comment">//用默认程序打开新生成的文件</span></div><div class="line">shell.exec(fpath);</div></pre></td></tr></table></figure></p>
+<h2 id="bin-mrd"><a href="#bin-mrd" class="headerlink" title="bin/mrd"></a>bin/mrd</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env node</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'../mrd.js'</span>);</div></pre></td></tr></table></figure>
+<h2 id="安装到全局环境"><a href="#安装到全局环境" class="headerlink" title="安装到全局环境"></a>安装到全局环境</h2><p>在mrd目录下执行：<code>D:\temp\mrd&gt; npm install -g .</code><br>或<br>在mrd目录外执行：<code>D:\temp&gt; npm install -g mrd</code></p>
+<h2 id="从全局环境卸载"><a href="#从全局环境卸载" class="headerlink" title="从全局环境卸载"></a>从全局环境卸载</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm uninstall -g mrd</div></pre></td></tr></table></figure>
+<h2 id="本地调试"><a href="#本地调试" class="headerlink" title="本地调试"></a>本地调试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">D:\temp\mrd&gt;node mrd.js -h</div><div class="line">Usage: mrd &lt;fileName&gt; [title] [tag1 tag2 ……]</div><div class="line"></div><div class="line">Options:</div><div class="line">  -f, --from  template path</div><div class="line">                 [string] [default: <span class="string">"D:/GitHubRepo/Blog/post_tpl/A-mrd-temp.md"</span>]</div><div class="line"></div><div class="line">  -t, --to    generate path</div><div class="line">                          [string] [default: <span class="string">"D:/GitHubRepo/Blog/source/_posts"</span>]</div><div class="line"></div><div class="line">  -h, --<span class="built_in">help</span>  Show <span class="built_in">help</span>                                                [boolean]</div><div class="line"></div><div class="line"></div><div class="line">Examples:</div><div class="line">  mrd <span class="built_in">test</span>  根据默认模板在默认路径下创建test.md</div><div class="line"></div><div class="line">copyright 2017</div></pre></td></tr></table></figure>
+<h2 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h2><p><a href="https://maode.github.io/2017/09/26/170926-nodejs-debug/">https://maode.github.io/2017/09/26/170926-nodejs-debug/</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.ruanyifeng.com/blog/2015/05/command-line-with-node.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/05/command-line-with-node.html</a></p>
+<p><a href="http://seejs.me/2016/08/02/commandline/" target="_blank" rel="external">http://seejs.me/2016/08/02/commandline/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先确保安装配置好node.js的环境。官网：&lt;a href=&quot;https://nodejs.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nodejs.org&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;开发过程&quot;&gt;&lt;a href=&quot;#开发过程&quot; class=&quot;headerlink&quot; title=&quot;开发过程&quot;&gt;&lt;/a&gt;开发过程&lt;/h2&gt;&lt;p&gt;创建一个文件夹用来放mrd项目，如 D:\temp\mrd&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;D:\&amp;gt; mkdir D:\temp\mrd&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;D:\&amp;gt; &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; temp\mrd&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;初始化：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;D:\temp\mrd&amp;gt; npm init -y&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CLI" scheme="maode.github.io/tags/CLI/"/>
+    
+  </entry>
   
   <entry>
     <title>javap 命令详解</title>
@@ -244,11 +314,11 @@
   </entry>
   
   <entry>
-    <title>JSTL的版本还有alyun maven的故事</title>
+    <title>JSTL的版本还有aliyun maven的故事</title>
     <link href="maode.github.io/2017/09/17/170916-JSTL/"/>
     <id>maode.github.io/2017/09/17/170916-JSTL/</id>
     <published>2017-09-17T07:32:41.000Z</published>
-    <updated>2017-09-16T17:51:36.179Z</updated>
+    <updated>2017-09-28T03:56:35.598Z</updated>
     
     <content type="html"><![CDATA[<p>这是一个比较曲折的故事~~，过程比较郁闷。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
 <p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
@@ -280,6 +350,34 @@
     
     
       <category term="jstl" scheme="maode.github.io/tags/jstl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>\@RestController返回json和xml数据</title>
+    <link href="maode.github.io/2017/09/14/170914-RestController-json-xml/"/>
+    <id>maode.github.io/2017/09/14/170914-RestController-json-xml/</id>
+    <published>2017-09-14T07:32:41.000Z</published>
+    <updated>2017-09-26T11:00:19.441Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="实体类（POJO）"><a href="#实体类（POJO）" class="headerlink" title="实体类（POJO）"></a>实体类（POJO）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.model;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.model</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:15:16 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> name 要设置的 name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getText</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> text;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> text 要设置的 text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setText</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.text = text;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.controller;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.code0.restController.model.Message;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: TestRestController.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.controller</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: TestRestController.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:13:59 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRestController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/testRestController/&#123;text&#125;"</span>)</div><div class="line">	<span class="meta">@ResponseBody</span></div><div class="line">	<span class="function"><span class="keyword">public</span>  Message <span class="title">message</span><span class="params">(@PathVariable String text)</span></span>&#123;</div><div class="line">		</div><div class="line">		Message msg=<span class="keyword">new</span> Message();</div><div class="line">		msg.setName(<span class="string">"jhon"</span>);</div><div class="line">		msg.setText(text);</div><div class="line">		<span class="keyword">return</span> msg;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="返回json"><a href="#返回json" class="headerlink" title="返回json"></a>返回json</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- jackson, RestController返回json格式数据依赖 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>访问： <a href="http://localhost:8080/testRestController/参数" target="_blank" rel="external">http://localhost:8080/testRestController/参数</a> 或 <a href="http://localhost:8080/testRestController/参数.json" target="_blank" rel="external">http://localhost:8080/testRestController/参数.json</a><br>返回： {“name”:”jhon”,”text”:”参数”}</p>
+<h2 id="返回xml"><a href="#返回xml" class="headerlink" title="返回xml"></a>返回xml</h2><p><strong>不需要额外增加第三方依赖，只需在实体类上添加<code>@XmlRootElement</code>注解即可。</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@XmlRootElement</span><span class="comment">//该注解设置请求返回xml</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line">		…………</div><div class="line">		…………</div></pre></td></tr></table></figure></p>
+<p>访问：<a href="http://localhost:8080/testRestController/xxx" target="_blank" rel="external">http://localhost:8080/testRestController/xxx</a> 或 <a href="http://localhost:8080/testRestController/xxx.xml" target="_blank" rel="external">http://localhost:8080/testRestController/xxx.xml</a><br>返回：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">message</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>jhon<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">message</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>实体类上添加<code>@XmlRootElement</code>注解后，默认返回<code>xml</code>格式了，如果要返回<code>json</code>，url就要加上<code>.json</code>的后缀了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;实体类（POJO）&quot;&gt;&lt;a href=&quot;#实体类（POJO）&quot; class=&quot;headerlink&quot; title=&quot;实体类（POJO）&quot;&gt;&lt;/a&gt;实体类（POJO）&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; org.code0.restController.model;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.xml.bind.annotation.XmlRootElement;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@Title&lt;/span&gt;: Message.java&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@Package&lt;/span&gt; org.code0.restController.model&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@Description&lt;/span&gt;: Message.java&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@author&lt;/span&gt; Code0   &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@date&lt;/span&gt; 2017年9月14日 上午11:15:16 &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Message&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; name */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; name 要设置的 name */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String name)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name = name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; text */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;getText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; text 要设置的 text */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String text)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.text = text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="springMVC" scheme="maode.github.io/tags/springMVC/"/>
     
   </entry>
   
@@ -514,19 +612,19 @@
     <link href="maode.github.io/2017/09/05/170905-git-command/"/>
     <id>maode.github.io/2017/09/05/170905-git-command/</id>
     <published>2017-09-05T08:32:41.000Z</published>
-    <updated>2017-09-05T13:22:56.907Z</updated>
+    <updated>2017-09-28T03:08:39.254Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#告诉Github，你要使用的用户名</span></div><div class="line">$ git config --global user.name <span class="string">"Your Name Here"</span></div><div class="line"><span class="comment">#设置邮箱 </span></div><div class="line">$ git config --global user.email <span class="string">"your_email@example.com"</span></div><div class="line"><span class="comment">#查看用户名和邮箱</span></div><div class="line">$ git config user.name[user.email]</div><div class="line"><span class="comment">#查看所有配置项</span></div><div class="line">$ git config -l[--list]</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 告诉Github，你要使用的用户名</span></div><div class="line">$ git config --global user.name <span class="string">"Your Name Here"</span></div><div class="line"><span class="comment"># 设置邮箱 </span></div><div class="line">$ git config --global user.email <span class="string">"your_email@example.com"</span></div><div class="line"><span class="comment"># 查看用户名和邮箱</span></div><div class="line">$ git config user.name[user.email]</div><div class="line"><span class="comment"># 查看所有配置项</span></div><div class="line">$ git config -l[--list]</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#克隆项目到本地[将项目拉到本地]</span></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/gavincook/test.git</div><div class="line"><span class="comment">#将所有的改动加入缓存区</span></div><div class="line">$ git add .</div><div class="line"><span class="comment">#将改动提交到本地仓库[提交时添加-a可省略前一步加入缓存区的操作]</span></div><div class="line">$ git commit [-a] -m <span class="string">"备注信息"</span></div><div class="line"><span class="comment">#更新远程版本库关联分支的变化至本地当前所在的分支</span></div><div class="line">$ git pull [remote] [branch]</div></pre></td></tr></table></figure>
-<h3 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#设置远程版本库地址</span></div><div class="line">$ git remote add origin https://github.com/maode/workInfo.git</div><div class="line"></div><div class="line"><span class="comment">#将本地的master分支推送到origin主机的master分支。此处省略了origin主机的分支名，如果远程分支不存在，则会被新建。</span></div><div class="line">$ git push origin master</div><div class="line"></div><div class="line"><span class="comment">#如果当前分支与远程分支存在追踪关系，则可以省略来源地分支名和目的地分支名都可以省略。如下：</span></div><div class="line">$ git push origin</div><div class="line"></div><div class="line"><span class="comment">#如果当前分支只和一个远程主机有追踪分支，那么主机名也可以省略。如下：</span></div><div class="line">$ git push</div><div class="line"></div><div class="line"><span class="comment">#如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，设置完成后就可以不加任何参数使用git push进行远程推送了。如下：</span></div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
-<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>创建一个新的[本地]资源库,并推送到<a href="https://github.com/maode/workInfo.git" target="_blank" rel="external">https://github.com/maode/workInfo.git</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1.在本地创建"README.md"文件</span></div><div class="line">$ touch README.md</div><div class="line"><span class="comment">#2.初始化资源库【初始化一个本地未加入版本控制的现有的项目】</span></div><div class="line">$ git init</div><div class="line"><span class="comment">#3.添加文件到版本库</span></div><div class="line">$ git add README.md</div><div class="line"><span class="comment">#4.提交更改到本地版本库</span></div><div class="line">$ git commit -m <span class="string">"first commit"</span></div><div class="line"><span class="comment">#5.设置远程版本库地址</span></div><div class="line">$ git remote add origin https://github.com/maode/workInfo.git</div><div class="line"><span class="comment">#6.推送到远程版本库</span></div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure></p>
-<p>比较详细的介绍可以参考这里：<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a></p>
+<h3 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 克隆项目到本地[将项目拉到本地]</span></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/gavincook/test.git</div><div class="line"><span class="comment"># 将所有的改动加入缓存区</span></div><div class="line">$ git add .</div><div class="line"><span class="comment"># 将改动提交到本地仓库[提交时添加-a可省略前一步加入缓存区的操作]</span></div><div class="line">$ git commit [-a] -m <span class="string">"备注信息"</span></div><div class="line"><span class="comment"># 更新【拉取远程仓库变化并与本地分支合并】</span></div><div class="line">$ git pull [remote] [branch]</div></pre></td></tr></table></figure>
+<h3 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置远程版本库地址</span></div><div class="line">$ git remote add origin https://github.com/maode/workInfo.git</div><div class="line"></div><div class="line"><span class="comment"># 将本地的master分支推送到origin主机的master分支。此处省略了origin主机的分支名，如果远程分支不存在，则会被新建。</span></div><div class="line">$ git push origin master</div><div class="line"></div><div class="line"><span class="comment"># 如果当前分支与远程分支存在追踪关系，则可以省略来源地分支名和目的地分支名都可以省略。如下：</span></div><div class="line">$ git push origin</div><div class="line"></div><div class="line"><span class="comment"># 如果当前分支只和一个远程主机有追踪分支，那么主机名也可以省略。如下：</span></div><div class="line">$ git push</div><div class="line"></div><div class="line"><span class="comment"># 如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，设置完成后就可以不加任何参数使用git push进行远程推送了。如下：</span></div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>创建一个新的[本地]资源库,并推送到<a href="https://github.com/maode/workInfo.git" target="_blank" rel="external">https://github.com/maode/workInfo.git</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1.在本地创建"README.md"文件</span></div><div class="line">$ touch README.md</div><div class="line"><span class="comment"># 2.初始化资源库【初始化一个本地未加入版本控制的现有的项目】</span></div><div class="line">$ git init</div><div class="line"><span class="comment"># 3.添加文件到版本库</span></div><div class="line">$ git add README.md</div><div class="line"><span class="comment"># 4.提交更改到本地版本库</span></div><div class="line">$ git commit -m <span class="string">"first commit"</span></div><div class="line"><span class="comment"># 5.设置远程版本库地址</span></div><div class="line">$ git remote add origin https://github.com/maode/workInfo.git</div><div class="line"><span class="comment"># 6.推送到远程版本库</span></div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>比较详细的介绍可以参考<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">官方文档</a><br>或者参考这里：<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a><br>或者参考下面这张图（图片来源于网络）：<br><img src="https://raw.githubusercontent.com/maode/docs/master/git%E5%91%BD%E4%BB%A4%E6%8B%93%E6%99%AE%E5%9B%BE.png" alt="git命令拓普图"></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;设置&quot;&gt;&lt;a href=&quot;#设置&quot; class=&quot;headerlink&quot; title=&quot;设置&quot;&gt;&lt;/a&gt;设置&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#告诉Github，你要使用的用户名&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;Your Name Here&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#设置邮箱 &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.email &lt;span class=&quot;string&quot;&gt;&quot;your_email@example.com&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#查看用户名和邮箱&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config user.name[user.email]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#查看所有配置项&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config -l[--list]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;h3 id=&quot;设置&quot;&gt;&lt;a href=&quot;#设置&quot; class=&quot;headerlink&quot; title=&quot;设置&quot;&gt;&lt;/a&gt;设置&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 告诉Github，你要使用的用户名&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;Your Name Here&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 设置邮箱 &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config --global user.email &lt;span class=&quot;string&quot;&gt;&quot;your_email@example.com&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看用户名和邮箱&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config user.name[user.email]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看所有配置项&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git config -l[--list]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -536,28 +634,55 @@
   </entry>
   
   <entry>
-    <title>GitHub配置完后链接不上，报错</title>
-    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
-    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
+    <title>Github映射自定义域名</title>
+    <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
+    <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:26:24.286Z</updated>
+    <updated>2017-09-05T13:31:42.921Z</updated>
     
-    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
+    <content type="html"><![CDATA[<ol>
+<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
+</ol>
 <a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+<ol>
+<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用你自己的 Github 用户名替换 username</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;/p&gt;
+      &lt;ol&gt;
+&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
     
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
+    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:28:23.481Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
     
   </entry>
   
@@ -600,28 +725,23 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   </entry>
   
   <entry>
-    <title>Github映射自定义域名</title>
-    <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
-    <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
+    <title>GitHub配置完后链接不上，报错</title>
+    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
+    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
     <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:31:42.921Z</updated>
+    <updated>2017-09-05T13:26:24.286Z</updated>
     
-    <content type="html"><![CDATA[<ol>
-<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
-</ol>
+    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
+<p>解决方法:</p>
 <a id="more"></a>
-<ol>
-<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>用你自己的 Github 用户名替换 username</p>
+<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
+<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
-&lt;/ol&gt;
+      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法:&lt;/p&gt;
     
     </summary>
     
@@ -644,28 +764,6 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     <summary type="html">
     
       &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
-    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
     
     </summary>
     
@@ -745,11 +843,39 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   </entry>
   
   <entry>
+    <title>Yu Writer 编辑器下的空白模板</title>
+    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
+    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
+    <published>2017-09-02T07:32:41.000Z</published>
+    <updated>2017-09-25T12:22:04.466Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
+<p>参考资料的等级：    ★☆</p>
+<p>脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩</p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
+&lt;p&gt;参考资料的等级：    ★☆&lt;/p&gt;
+&lt;p&gt;脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩&lt;/p&gt;
+&lt;p&gt;暂时就这些，后面没有了！(=^ ^=)&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="temp" scheme="maode.github.io/tags/temp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Eclipse与GitHub之间的操作</title>
     <link href="maode.github.io/2017/09/02/170905-eclipse-github/"/>
     <id>maode.github.io/2017/09/02/170905-eclipse-github/</id>
     <published>2017-09-02T07:32:41.000Z</published>
-    <updated>2017-09-05T12:45:05.151Z</updated>
+    <updated>2017-09-28T03:33:41.526Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Eclipse生SSH-Key添加到GitHub"><a href="#Eclipse生SSH-Key添加到GitHub" class="headerlink" title="Eclipse生SSH Key添加到GitHub"></a>Eclipse生SSH Key添加到GitHub</h2><p>window → preference → general → network connection → SSH2 → Key Management → generate RSA Key… → ave private key…【默认保存在“~/.ssh/”目录下】→apply.</p>
 <p>点击Export Via SFTP,在弹出窗口填入 <code>git@github.com</code>，然后会在ssh目录中生成一个<code>known_hosts</code>文件，该文件用来保存当前密钥对应的已知远程主机列表，如果没有该文件会报错。连不上Github。<br>若出现： <code>Failed to export ssh key to remote server</code> 的警告，不需理会。</p>
@@ -765,6 +891,19 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
 <p>在项目上单击右键Team》commit【输入commit msg、author、committer】》Commit或Commit and Push.</p>
 <p>在项目上单击右键Team》Remote》Push》在URI中输入GitHub项目的URL、用户名、密码》Next》Source ref:选择master[branch]，会自动填充Source ref:和Destination ref:为“refs/heads/master”》点击 Add all Branch Spec》Finish。</p>
 <p>在Crete repository前会有一个“Creation of repositories in the Eclipse workspace is not recommended”提示，不建议在Eclipse的工作空间中创建本地repository，【因为可能引发一连串的问题，或影响性能】可选在其它路径下创建，随意，放在工作空间中比较方便管理，目前还没发现什么问题，有问题再说吧！</p>
+<hr>
+<h2 id="常用操作："><a href="#常用操作：" class="headerlink" title="常用操作："></a>常用操作：</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><strong>Remote：</strong> 远程仓库，可在此处配置多个不同的远程仓库。</p>
+<p>【push…】  可以将项目push到指定的远程仓库地址。</p>
+<p>【Fetch From…】  可从指定的远程仓库地址抓取项目到本地。</p>
+<p>【Configure Push to Upstream…】配置推送的远程仓库。</p>
+<p>【Configure Fetch from Upstream…】配置抓取的远程仓库。</p>
+<p><img src="/assets/blogImg/170905-eclipse-github-1.png" alt=""></p>
+<h3 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h3><p>【Pull】    更新远程仓库的变更信息至本地仓库，比较常用，每次远程版本库有变更都需要先Pull一下。</p>
+<p>【commit…】  提交，提交至本地仓库。</p>
+<p>【Push to Upstream】  将本地仓库推送至当前默认远程仓库的默认分支。</p>
+<p>【Fetch from Upstream】  从当前默认远程仓库的默认分支抓取项目到本地仓库。</p>
+<p>【Push Branch…】  将本地仓库推送至指定远程仓库的指定分支。</p>
+<p><img src="/assets/blogImg/170905-eclipse-github-2.png" alt=""></p>
 ]]></content>
     
     <summary type="html">
@@ -780,31 +919,6 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
       <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
       <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Yu Writer 编辑器下的空白模板</title>
-    <link href="maode.github.io/2017/09/02/A-empty-temp-yuwi/"/>
-    <id>maode.github.io/2017/09/02/A-empty-temp-yuwi/</id>
-    <published>2017-09-02T07:32:41.000Z</published>
-    <updated>2017-09-24T07:05:46.028Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是自定义的Yu Writer 编辑器下的空白模板。</p>
-<a id="more"></a>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-<p>参考资料的等级：    ★☆</p>
-<p>脚注：    ①②③④⑤⑥⑦⑧⑨⑩    ↩</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是自定义的Yu Writer 编辑器下的空白模板。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="temp" scheme="maode.github.io/tags/temp/"/>
     
   </entry>
   
