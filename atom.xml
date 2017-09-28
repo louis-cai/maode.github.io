@@ -86,99 +86,6 @@
   </entry>
   
   <entry>
-    <title>javap 命令详解</title>
-    <link href="maode.github.io/2017/09/21/170921-javap/"/>
-    <id>maode.github.io/2017/09/21/170921-javap/</id>
-    <published>2017-09-21T07:32:41.000Z</published>
-    <updated>2017-09-24T09:41:17.252Z</updated>
-    
-    <content type="html"><![CDATA[<p>D:\temp&gt;javap -help<br>Usage: javap <options> <classes><br>where possible options include:</classes></options></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">javap 参数</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-help  –help  -?</td>
-<td style="text-align:left">帮助</td>
-</tr>
-<tr>
-<td style="text-align:left">-version</td>
-<td style="text-align:left">版本</td>
-</tr>
-<tr>
-<td style="text-align:left">-v  -verbose</td>
-<td style="text-align:left">打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）</td>
-</tr>
-<tr>
-<td style="text-align:left">-l</td>
-<td style="text-align:left">输出行和变量的表</td>
-</tr>
-<tr>
-<td style="text-align:left">-public</td>
-<td style="text-align:left">只输出public方法和域</td>
-</tr>
-<tr>
-<td style="text-align:left">-protected</td>
-<td style="text-align:left">只输出public和protected类和成员</td>
-</tr>
-<tr>
-<td style="text-align:left">-package</td>
-<td style="text-align:left">只输出包，public和protected类和成员，(这是默认的)</td>
-</tr>
-<tr>
-<td style="text-align:left">-p  -private</td>
-<td style="text-align:left">输出所有类和成员</td>
-</tr>
-<tr>
-<td style="text-align:left">-c</td>
-<td style="text-align:left">输出反汇编后的代码（包含字节码指令）</td>
-</tr>
-<tr>
-<td style="text-align:left">-s</td>
-<td style="text-align:left">输出内部类型签名</td>
-</tr>
-<tr>
-<td style="text-align:left">-sysinfo</td>
-<td style="text-align:left">显示正在处理该类的系统信息(路径、大小、日期、MD5哈希)</td>
-</tr>
-<tr>
-<td style="text-align:left">-constants</td>
-<td style="text-align:left">显示静态常量</td>
-</tr>
-<tr>
-<td style="text-align:left">-classpath <path></path></td>
-<td style="text-align:left">指定类文件的路径</td>
-</tr>
-<tr>
-<td style="text-align:left">-bootclasspath <path></path></td>
-<td style="text-align:left">重写引导类文件的位置</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ javap -c HelloWorld &gt; D://hw-log.txt	<span class="comment">#将输出的内容保存到文件</span></div></pre></td></tr></table></figure>
-<p><strong>一般常用的命令参数 <code>-c</code> 和 <code>-v</code>。</strong></p>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;D:\temp&amp;gt;javap -help&lt;br&gt;Usage: javap &lt;options&gt; &lt;classes&gt;&lt;br&gt;where possible options include:&lt;/classes&gt;&lt;/options&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr
-    
-    </summary>
-    
-    
-      <category term="javap" scheme="maode.github.io/tags/javap/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Java 堆、栈、方法区、几种常量池，String</title>
     <link href="maode.github.io/2017/09/19/170919-heap-stack-string/"/>
     <id>maode.github.io/2017/09/19/170919-heap-stack-string/</id>
@@ -310,6 +217,583 @@
       <category term="常量池" scheme="maode.github.io/tags/%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
     
       <category term="String" scheme="maode.github.io/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【转载】Java字节码指令</title>
+    <link href="maode.github.io/2017/09/18/170918-java-bytecode/"/>
+    <id>maode.github.io/2017/09/18/170918-java-bytecode/</id>
+    <published>2017-09-18T13:27:21.000Z</published>
+    <updated>2017-09-28T13:54:36.626Z</updated>
+    
+    <content type="html"><![CDATA[<p>介绍java虚拟机的指令功能，至少能阅读java代码生成的字节码指令含义</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Java虚拟机采用基于栈的架构，其指令由操作码和操作数组成。</p>
+<ul>
+<li>操作码：一个字节长度(0~255)，意味着指令集的操作码个数不能操作256条。</li>
+<li>操作数：一条指令可以有零或者多个操作数，且操作数可以是1个或者多个字节。编译后的代码没有采用操作数长度对齐方式，比如16位无符号整数需使用两个字节储存(假设为byte1和byte2)，那么真实值是 <code>(byte1 &lt;&lt; 8) | byte2</code>。</li>
+</ul>
+<p>放弃操作数对齐操作数对齐方案：</p>
+<ul>
+<li>优势：可以省略很多填充和间隔符号，从而减少数据量，具有更高的传输效率；Java起初就是为了面向网络、智能家具而设计的，故更加注重传输效率。</li>
+<li>劣势：运行时从字节码里构建出具体数据结构，需要花费部分CPU时间，从而导致解释执行字节码会损失部分性能。</li>
+</ul>
+<a id="more"></a>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>大多数指令包含了其操作所对应的数据类型信息，比如iload，表示从局部变量表中加载int型的数据到操作数栈；而fload表示加载float型数据到操作数栈。由于操作码长度只有1Byte，因此Java虚拟机的指令集对于特定操作只提供有限的类型相关指令，并非为每一种数据类型都有相应的操作指令。必要时，有些指令可用于将不支持的类型转换为可被支持的类型。</p>
+<p>对于byte,short,char,boolean类型，往往没有单独的操作码，通过编译器在编译期或者运行期将其扩展。对于byte,short采用带符号扩展，chart,boolean采用零位扩展。相应的数组也是采用类似的扩展方式转换为int类型的字节码来处理。 下面分门别类来介绍Java虚拟机指令，都以int类型的数据操作为例。</p>
+<p>栈是指操作数栈</p>
+<h3 id="栈操作相关"><a href="#栈操作相关" class="headerlink" title="栈操作相关"></a>栈操作相关</h3><ul>
+<li><p>load和store</p>
+<ul>
+<li>load 命令：用于将局部变量表的指定位置的相应类型变量加载到栈顶；</li>
+<li>store命令：用于将栈顶的相应类型数据保入局部变量表的指定位置；</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>变量进栈</th>
+<th>含义</th>
+<th>变量保存</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iload</td>
+<td>第1个int型变量进栈</td>
+<td>istore</td>
+<td>栈顶nt数值存入第1局部变量</td>
+</tr>
+<tr>
+<td>iload_0</td>
+<td>第1个int型变量进栈</td>
+<td>istore_0</td>
+<td>栈顶int数值存入第1局部变量</td>
+</tr>
+<tr>
+<td>iload_1</td>
+<td>第2个int型变量进栈</td>
+<td>istore_1</td>
+<td>栈顶int数值存入第2局部变量</td>
+</tr>
+<tr>
+<td>iload_2</td>
+<td>第3个int型变量进栈</td>
+<td>istore_2</td>
+<td>栈顶int数值存入第3局部变量</td>
+</tr>
+<tr>
+<td>iload_3</td>
+<td>第4个int型变量进栈</td>
+<td>istore_3</td>
+<td>栈顶int数值存入第4局部变量</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lload</td>
+<td>第1个long型变量进栈</td>
+<td>lstore</td>
+<td>栈顶long数值存入第1局部变量</td>
+</tr>
+<tr>
+<td>fload</td>
+<td>第1个float型变量进栈</td>
+<td>fstore</td>
+<td>栈顶float数值存入第1局部变量</td>
+</tr>
+<tr>
+<td>dload</td>
+<td>第1个double型变量进栈</td>
+<td>dstore</td>
+<td>栈顶double数值存入第1局部变量</td>
+</tr>
+<tr>
+<td>aload</td>
+<td>第1个ref型变量进栈</td>
+<td>astore</td>
+<td>栈顶ref对象存入第1局部变量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>const、push和ldc</p>
+<ul>
+<li>const、push：将相应类型的常量放入栈顶</li>
+<li>ldc:则是从常量池中将常量</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>常量进栈</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aconst_null</td>
+<td>null进栈</td>
+</tr>
+<tr>
+<td>iconst_m1</td>
+<td>int型常量-1进栈</td>
+</tr>
+<tr>
+<td>iconst_0</td>
+<td>int型常量0进栈</td>
+</tr>
+<tr>
+<td>iconst_1</td>
+<td>int型常量1进栈</td>
+</tr>
+<tr>
+<td>iconst_2</td>
+<td>int型常量2进栈</td>
+</tr>
+<tr>
+<td>iconst_3</td>
+<td>int型常量3进栈</td>
+</tr>
+<tr>
+<td>iconst_4</td>
+<td>int型常量4进栈</td>
+</tr>
+<tr>
+<td>iconst_5</td>
+<td>int型常量5进栈</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lconst_0</td>
+<td>long型常量0进栈</td>
+</tr>
+<tr>
+<td>fconst_0</td>
+<td>float型常量0进栈</td>
+</tr>
+<tr>
+<td>dconst_0</td>
+<td>double型常量0进栈</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bipush</td>
+<td>byte型常量进栈</td>
+</tr>
+<tr>
+<td>sipush</td>
+<td>short型常量进栈</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常量池操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ldc</td>
+<td>int、float或String型常量从常量池推送至栈顶</td>
+</tr>
+<tr>
+<td>ldc_w</td>
+<td>int、float或String型常量从常量池推送至栈顶（宽索引）</td>
+</tr>
+<tr>
+<td>ldc2_w</td>
+<td>long或double型常量从常量池推送至栈顶（宽索引）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>pop和dup</p>
+<ul>
+<li>pop用于栈顶数值出栈操作；</li>
+<li>dup用于赋值栈顶的指定个数的数值，并将其压入栈顶指定次数；</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>栈顶操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pop</td>
+<td>栈顶数值出栈(不能是long/double)</td>
+</tr>
+<tr>
+<td>pop2</td>
+<td>栈顶数值出栈(long/double型1个，其他2个)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dup</td>
+<td>复制栈顶数值，并压入栈顶</td>
+</tr>
+<tr>
+<td>dup_x1</td>
+<td>复制栈顶数值，并压入栈顶2次</td>
+</tr>
+<tr>
+<td>dup_x2</td>
+<td>复制栈顶数值，并压入栈顶3次</td>
+</tr>
+<tr>
+<td>dup2</td>
+<td>复制栈顶2个数值，并压入栈顶</td>
+</tr>
+<tr>
+<td>dup2_x1</td>
+<td>复制栈顶2个数值，并压入栈顶2次</td>
+</tr>
+<tr>
+<td>dup2_x2</td>
+<td>复制栈顶2个数值，并压入栈顶3次</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>swap</td>
+<td>栈顶的两个数值互换，且不能是long/double</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：dup2</strong>对于long、double类型的数据就是一个，对于其他类型的数据，才是真正的两个，这个的2代表的是2个slot的数据。</p>
+<h3 id="对象相关"><a href="#对象相关" class="headerlink" title="对象相关"></a>对象相关</h3><ul>
+<li>字段调用</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字段调用</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getstatic</td>
+<td>获取类的静态字段，将其值压入栈顶</td>
+</tr>
+<tr>
+<td>putstatic</td>
+<td>给类的静态字段赋值</td>
+</tr>
+<tr>
+<td>getfield</td>
+<td>获取对象的字段，将其值压入栈顶</td>
+</tr>
+<tr>
+<td>putfield</td>
+<td>给对象的字段赋值</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方法调用</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法调用</th>
+<th>作用</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invokevirtual</td>
+<td>调用实例方法</td>
+<td>虚方法分派</td>
+</tr>
+<tr>
+<td>invokestatic</td>
+<td>调用类方法</td>
+<td>static方法</td>
+</tr>
+<tr>
+<td>invokeinterface</td>
+<td>调用接口方法</td>
+<td>运行时搜索合适方法调用</td>
+</tr>
+<tr>
+<td>invokespecial</td>
+<td>调用特殊实例方法</td>
+<td>包括实例初始化方法、父类方法</td>
+</tr>
+<tr>
+<td>invokedynamic</td>
+<td>由用户引导方法决定</td>
+<td>运行时动态解析出调用点限定符所引用方法</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>方法返回</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法返回</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ireturn</td>
+<td>当前方法返回int</td>
+</tr>
+<tr>
+<td>lreturn</td>
+<td>当前方法返回long</td>
+</tr>
+<tr>
+<td>freturn</td>
+<td>当前方法返回float</td>
+</tr>
+<tr>
+<td>dreturn</td>
+<td>当前方法返回double</td>
+</tr>
+<tr>
+<td>areturn</td>
+<td>当前方法返回ref</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>对象和数组</li>
+</ul>
+<ul>
+<li>创建类实例： new</li>
+<li>创建数组：newarray、anewarray、multianewarray</li>
+<li>数组元素 加载到 操作数栈：xaload (x可为b,c,s,i,l,f,d,a)</li>
+<li>操作数栈的值 存储到数组元素： xastore (x可为b,c,s,i,l,f,d,a)</li>
+<li>数组长度：arraylength</li>
+<li>类实例类型：instanceof、checkcast</li>
+</ul>
+<h3 id="运算指令"><a href="#运算指令" class="headerlink" title="运算指令"></a>运算指令</h3><p>运算指令是用于对操作数栈上的两个数值进行某种运算，并把结果重新存入到操作栈顶。Java虚拟机只支持整型和浮点型两类数据的运算指令，所有指令如下：</p>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加法</td>
+<td>iadd</td>
+<td>ladd</td>
+<td>fadd</td>
+<td>dadd</td>
+</tr>
+<tr>
+<td>减法</td>
+<td>isub</td>
+<td>lsub</td>
+<td>fsub</td>
+<td>dsub</td>
+</tr>
+<tr>
+<td>乘法</td>
+<td>imul</td>
+<td>lmul</td>
+<td>fmul</td>
+<td>dmul</td>
+</tr>
+<tr>
+<td>除法</td>
+<td>idiv</td>
+<td>ldiv</td>
+<td>fdiv</td>
+<td>ddiv</td>
+</tr>
+<tr>
+<td>求余</td>
+<td>irem</td>
+<td>lrem</td>
+<td>frem</td>
+<td>drem</td>
+</tr>
+<tr>
+<td>取反</td>
+<td>ineg</td>
+<td>lneg</td>
+<td>fneg</td>
+<td>dneg</td>
+</tr>
+</tbody>
+</table>
+<p><strong>其他运算：</strong></p>
+<ul>
+<li>位移：ishl,ishr,iushr,lshl,lshr,lushr</li>
+<li>按位或： ior,lor</li>
+<li>按位与： iand, land</li>
+<li>按位异或： ixor, lxor</li>
+<li>自增：iin</li>
+<li>比较：dcmpg,dcmpl,fcmpg,fcmpl,lcmp</li>
+</ul>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>类型转换用于将两种不同类型的数值进行转换。</p>
+<p>(1) 对于宽化类型转换(小范围向大范围转换)，无需显式的转换指令，并且是安全的操作。各种范围从小到大依次排序： int, long, float, double。</p>
+<p>(2)对于窄化类型转换，必须显式地调用类型转换指令，并且该过程很可能导致精度丢失。转换规则中需要特别注意的是当浮点值为NaN, 则转换结果为int或long的0。虽然窄化运算可能会发生上/下限溢出和精度丢失等情况，但虚拟机规范明确规定窄化转换U不可能导致虚拟机抛出异常。</p>
+<p>类型转换指令：<code>i2b, i2c,f2i</code>等等。</p>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>控制指令是指有条件或无条件地修改PC寄存器的值，从而达到控制流程的目标</p>
+<ul>
+<li>条件分支：ifeq、iflt、ifnull、ifnonnull等</li>
+<li>复合分支：tableswitch、lookupswitch</li>
+<li>无条件分支：goto、goto_w、jsr、jsr_w、ret</li>
+</ul>
+<h3 id="同步与异常"><a href="#同步与异常" class="headerlink" title="同步与异常"></a>同步与异常</h3><p><strong>异常：</strong></p>
+<p>Java程序显式抛出异常： athrow指令。在Java虚拟机中，处理异常(catch语句)不是由字节码指令来实现，而是采用异常表来完成。</p>
+<p><strong>同步：</strong></p>
+<p>方法级的同步和方法内部分代码的同步，都是依靠管程(Monitor)来实现的。</p>
+<p>Java语言使用synchronized语句块，那么Java虚拟机的指令集中通过monitorenter和monitorexit两条指令来完成synchronized的功能。为了保证monitorenter和monitorexit指令一定能成对的调用（不管方法正常结束还是异常结束），编译器会自动生成一个异常处理器，该异常处理器的主要目的是用于执行monitorexit指令。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>在基于堆栈的的虚拟机中，指令的主战场便是操作数栈，除了load是从局部变量表加载数据到操作数栈以及store储存数据到局部变量表，其余指令基本都是用于操作数栈的。</p>
+<p>本文转载自：<a href="http://gityuan.com/2015/10/24/jvm-bytecode-grammar/" target="_blank" rel="external">http://gityuan.com/2015/10/24/jvm-bytecode-grammar/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;介绍java虚拟机的指令功能，至少能阅读java代码生成的字节码指令含义&lt;/p&gt;
+&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;Java虚拟机采用基于栈的架构，其指令由操作码和操作数组成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;操作码：一个字节长度(0~255)，意味着指令集的操作码个数不能操作256条。&lt;/li&gt;
+&lt;li&gt;操作数：一条指令可以有零或者多个操作数，且操作数可以是1个或者多个字节。编译后的代码没有采用操作数长度对齐方式，比如16位无符号整数需使用两个字节储存(假设为byte1和byte2)，那么真实值是 &lt;code&gt;(byte1 &amp;lt;&amp;lt; 8) | byte2&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;放弃操作数对齐操作数对齐方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优势：可以省略很多填充和间隔符号，从而减少数据量，具有更高的传输效率；Java起初就是为了面向网络、智能家具而设计的，故更加注重传输效率。&lt;/li&gt;
+&lt;li&gt;劣势：运行时从字节码里构建出具体数据结构，需要花费部分CPU时间，从而导致解释执行字节码会损失部分性能。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="bytecode" scheme="maode.github.io/tags/bytecode/"/>
+    
+      <category term="jvm" scheme="maode.github.io/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javap 命令详解</title>
+    <link href="maode.github.io/2017/09/18/170918-javap/"/>
+    <id>maode.github.io/2017/09/18/170918-javap/</id>
+    <published>2017-09-18T07:32:41.000Z</published>
+    <updated>2017-09-28T13:53:59.078Z</updated>
+    
+    <content type="html"><![CDATA[<p>D:\temp&gt;javap -help<br>Usage: javap <options> <classes><br>where possible options include:</classes></options></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">javap 参数</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-help  –help  -?</td>
+<td style="text-align:left">帮助</td>
+</tr>
+<tr>
+<td style="text-align:left">-version</td>
+<td style="text-align:left">版本</td>
+</tr>
+<tr>
+<td style="text-align:left">-v  -verbose</td>
+<td style="text-align:left">打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">输出行和变量的表</td>
+</tr>
+<tr>
+<td style="text-align:left">-public</td>
+<td style="text-align:left">只输出public方法和域</td>
+</tr>
+<tr>
+<td style="text-align:left">-protected</td>
+<td style="text-align:left">只输出public和protected类和成员</td>
+</tr>
+<tr>
+<td style="text-align:left">-package</td>
+<td style="text-align:left">只输出包，public和protected类和成员，(这是默认的)</td>
+</tr>
+<tr>
+<td style="text-align:left">-p  -private</td>
+<td style="text-align:left">输出所有类和成员</td>
+</tr>
+<tr>
+<td style="text-align:left">-c</td>
+<td style="text-align:left">输出反汇编后的代码（包含字节码指令）</td>
+</tr>
+<tr>
+<td style="text-align:left">-s</td>
+<td style="text-align:left">输出内部类型签名</td>
+</tr>
+<tr>
+<td style="text-align:left">-sysinfo</td>
+<td style="text-align:left">显示正在处理该类的系统信息(路径、大小、日期、MD5哈希)</td>
+</tr>
+<tr>
+<td style="text-align:left">-constants</td>
+<td style="text-align:left">显示静态常量</td>
+</tr>
+<tr>
+<td style="text-align:left">-classpath <path></path></td>
+<td style="text-align:left">指定类文件的路径</td>
+</tr>
+<tr>
+<td style="text-align:left">-bootclasspath <path></path></td>
+<td style="text-align:left">重写引导类文件的位置</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ javap -c HelloWorld &gt; D://hw-log.txt	<span class="comment">#将输出的内容保存到文件</span></div></pre></td></tr></table></figure>
+<p><strong>一般常用的命令参数 <code>-c</code> 和 <code>-v</code>。</strong></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;D:\temp&amp;gt;javap -help&lt;br&gt;Usage: javap &lt;options&gt; &lt;classes&gt;&lt;br&gt;where possible options include:&lt;/classes&gt;&lt;/options&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr
+    
+    </summary>
+    
+    
+      <category term="javap" scheme="maode.github.io/tags/javap/"/>
     
   </entry>
   
@@ -634,6 +1118,32 @@
   </entry>
   
   <entry>
+    <title>GitHub配置完后链接不上，报错</title>
+    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
+    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:26:24.286Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
+<p>解决方法:</p>
+<a id="more"></a>
+<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
+<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
     <title>aliyun maven仓库</title>
     <link href="maode.github.io/2017/09/05/170905-aliyun-maven/"/>
     <id>maode.github.io/2017/09/05/170905-aliyun-maven/</id>
@@ -647,28 +1157,6 @@
     <summary type="html">
     
       &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
-    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
     
     </summary>
     
@@ -716,6 +1204,28 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
   </entry>
   
   <entry>
+    <title>maven常用命令</title>
+    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
+    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:28:23.481Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="maode.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Github映射自定义域名</title>
     <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
     <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
@@ -738,32 +1248,6 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
       &lt;ol&gt;
 &lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
 &lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitHub配置完后链接不上，报错</title>
-    <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
-    <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:26:24.286Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装配置完Git后链接不上GitHub。<br>用<code>ssh -T git@github.com</code>命令测试连接时,报错<code>“ssh: connect to host github.com port 22: Connection timed out”</code></p>
-<p>解决方法:</p>
-<a id="more"></a>
-<p>找到Git安装目录下的<code>/etc/ssh/ssh_config</code>文件，打开该文件在文件底部添加如下信息并保存。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line"></div><div class="line">User git</div><div class="line"></div><div class="line">Hostname ssh.github.com</div><div class="line"></div><div class="line">PreferredAuthentications publickey</div><div class="line"></div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line"></div><div class="line">Port 443</div></pre></td></tr></table></figure></p>
-<p>KO，搞定！添加完成后再次测试链接会在<code>~/.ssh/</code>目录下自动生成一个<code>known_hosts</code>文件【已知主机列表】，关于该文件的说明可以参考该文章：<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;解决方法:&lt;/p&gt;
     
     </summary>
     
@@ -836,9 +1320,9 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     </summary>
     
     
-      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
-    
       <category term="hexo" scheme="maode.github.io/tags/hexo/"/>
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
     
   </entry>
   
