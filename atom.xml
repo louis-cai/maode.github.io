@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2017-09-28T06:22:48.224Z</updated>
+  <updated>2017-12-10T11:55:52.354Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Eclipse  tomcat mvn plugin</title>
+    <link href="maode.github.io/2017/12/10/171210-mvnplugin-tomcat/"/>
+    <id>maode.github.io/2017/12/10/171210-mvnplugin-tomcat/</id>
+    <published>2017-12-10T11:08:45.000Z</published>
+    <updated>2017-12-10T11:55:52.354Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/assets/blogImg/171210-tomcat-mvn-plugin.png" alt=""></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/assets/blogImg/171210-tomcat-mvn-plugin.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;暂时就这些，后面没有了！(=^ ^=)&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Eclipse plugin RunJettyRun</title>
+    <link href="maode.github.io/2017/11/10/171110-runjettyrun/"/>
+    <id>maode.github.io/2017/11/10/171110-runjettyrun/</id>
+    <published>2017-11-10T04:08:45.000Z</published>
+    <updated>2017-11-10T04:14:01.452Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/assets/blogImg/171110-jetty-plugin.png" alt=""></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/assets/blogImg/171110-jetty-plugin.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;暂时就这些，后面没有了！(=^ ^=)&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="Eclipse" scheme="maode.github.io/tags/Eclipse/"/>
+    
+  </entry>
   
   <entry>
     <title>Debugging Node.js with DevTools</title>
@@ -90,7 +138,7 @@
     <link href="maode.github.io/2017/09/19/170919-heap-stack-string/"/>
     <id>maode.github.io/2017/09/19/170919-heap-stack-string/</id>
     <published>2017-09-19T07:32:41.000Z</published>
-    <updated>2017-09-24T10:44:44.942Z</updated>
+    <updated>2017-09-28T13:58:01.138Z</updated>
     
     <content type="html"><![CDATA[<p><strong>在JAVA中，数据的交互存在于以下地方：</strong></p>
 <p><strong>寄存器（register）：</strong> 位于CPU。<br><strong>栈（stack）：</strong> 位于RAM。<br><strong>堆（heap）：</strong> 位于RAM。<br><strong>方法区（PermGen）：</strong> 位于RAM。<br><strong>非RAM存储：</strong> 如硬盘等其它存储空间。</p>
@@ -142,7 +190,7 @@
 </ul>
 </li>
 </ul>
-<p>这些可以用<a href="https://maode.github.io/2017/09/02/170921-javap/">javap</a>命令进行查看。</p>
+<p>这些可以用<a href="https://maode.github.io/2017/09/18/170918-javap/">javap</a>命令进行查看。</p>
 <h2 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a><strong>运行时常量池</strong></h2><p>方法区的一部分。类加载后由 Class文件 衍生的产物，Class文件常量池中的数据 在类加载后进入运行时常量池。</p>
 <p><a href="http://wiki.jikexueyuan.com/project/java-vm/class-loading-mechanism.html" target="_blank" rel="external">类在加载时</a>的 解析（resolve）阶段 虚拟机会将 Class文件常量池 内的数据加载到 运行时常量池 中（符号引用会替换为直接引用）。但String类型的字面量有点特殊，Class文件常量池中 String字面量牵扯到两个常量池项的类型 <code>CONSTANT_Utf8</code> 和 <code>CONSTANT_String</code>  后者是String常量的类型，但它并不直接持有String常量的内容，而是只持有一个index，这个index所指定的另一个常量池项必须是一个CONSTANT_Utf8类型的常量，而CONSTANT_Utf8才真正指向持有字符串内容的对象。<br>CONSTANT_Utf8会在类加载的过程中就全部创建出来，而CONSTANT_String则是lazy resolve的，它会在<strong>第一次引用该项的【地方】ldc指令被第一次执行到的时候</strong>才会resolve。在尚未resolve的时候，HotSpot VM<a id="i3" href="#3">^3</a>把它的类型叫做JVM_CONSTANT_UnresolvedString，内容跟Class文件里一样只是一个index；等到resolve过后这个项的常量类型就会变成最终的JVM_CONSTANT_String，而内容则变成实际的那个字符串对象引用。<br><strong>总结：</strong><br>CONSTANT_Utf8 会在类加载时 resolve 阶段进入运行时常量池。<br>CONSTANT_String 是lazy resolve 的，此时不会进入运行时常量池。</p>
 <p>最直接的<strong>体现</strong>或者可以说：该字符串字面量对象的引用 进入了运行时常量池，但 该字符串字面量对象的引用 未进入字符串常量池。</p>
@@ -1403,37 +1451,6 @@ provide shell access.</code><br>如果报错，看这里：<a href="https://maod
     
     
       <category term="temp" scheme="maode.github.io/tags/temp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="maode.github.io/2017/09/01/hello-world/"/>
-    <id>maode.github.io/2017/09/01/hello-world/</id>
-    <published>2017-09-01T10:25:03.122Z</published>
-    <updated>2017-09-04T15:04:16.261Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="hello" scheme="maode.github.io/tags/hello/"/>
     
   </entry>
   
