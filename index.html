@@ -139,6 +139,465 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-180217-lombok-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/17/180217-lombok-install/">lombok配置过程</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/17/180217-lombok-install/" class="archive-article-date">
+  	<time datetime="2018-02-17T12:30:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="配置Eclipse："><a href="#配置Eclipse：" class="headerlink" title="配置Eclipse："></a>配置Eclipse：</h2><ul>
+<li>下载 <code>lombok.jar</code>：<a href="https://projectlombok.org/download" target="_blank" rel="external">https://projectlombok.org/download</a></li>
+<li>将下载的<code>lombok.jar</code>复制到<code>eclipse.exe</code>同级目录中。</li>
+<li><p>修改<code>eclipse.ini</code>文件，在文件中添加以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-javaagent:lombok.jar</div><div class="line">-Xbootclasspath/a:lombok.jar</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启Eclipse（如果Eclipse是开启状态）。</p>
+</li>
+</ul>
+<p>配置完成后打开Eclipse的 Help-》About Eclipse,在版权内容的末尾如果显示 lombok 的版本号等相关信息，代表配置成功了。如图：</p>
+<p><img src="/assets/blogImg/180217-lombok-install.png" alt="eclipse-about"></p>
+<h2 id="配置项目："><a href="#配置项目：" class="headerlink" title="配置项目："></a>配置项目：</h2><p>在项目的<code>pom.xml</code>文件中添加 lombok 依赖。<strong>注意：项目中依赖的jar版本要和Eclipse中配置的jar版本一致。</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>lombok官网：<a href="https://projectlombok.org" target="_blank" rel="external">https://projectlombok.org</a></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">getter-setter</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">lombok</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/17/180217-lombok-install/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180209-English-lang" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/09/180209-English-lang/">英语词性及句子成分</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/09/180209-English-lang/" class="archive-article-date">
+  	<time datetime="2018-02-08T17:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="词性缩写"><a href="#词性缩写" class="headerlink" title="词性缩写"></a>词性缩写</h2><p>prep = 介系词；前置词，preposition的缩写<br>pron = 代名词，pronoun的缩写<br>n = 名词，noun的缩写<br>v = 动词，兼指及物动词和不及物动词，verb的缩写<br>conj = 连接词 ，conjunction的缩写<br>s = 主词<br>sc = 主词补语<br>o = 受词<br>oc = 受词补语<br>vi = 不及物动词，intransitive verb的缩写<br>vt = 及物动词，transitive verb的缩写<br>aux.v = 助动词 ，auxiliary的缩写<br>a = 形容词，adjective的缩写<br>ad = 副词，adverb的缩写<br>art = 冠词，article的缩写<br>num = 数词，numeral的缩写<br>int = 感叹词，interjection的缩写<br>u = 不可数名词，uncountable noun的缩写<br>c = 可数名词，countable noun的缩写<br>pl = 复数，plural的缩写。</p>
+        
+          <a class="article-more-a" href="/2018/02/09/180209-English-lang/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/09/180209-English-lang/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180208-jquery-RESTful-plugin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/08/180208-jquery-RESTful-plugin/">【转】jQuery的RESTful插件</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/08/180208-jquery-RESTful-plugin/" class="archive-article-date">
+  	<time datetime="2018-02-08T09:50:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>转自：</strong> <a href="https://qtdebug.com/fe-rest/" target="_blank" rel="external">https://qtdebug.com/fe-rest/</a></p>
+<p>使用 REST 风格提交请求时，Content-Type 标准的来说应该用 <strong>application/json</strong>，但是服务器端获取请求的参数时必须从 Request Body 中获取，而且有些框架对从 Request Body 中获取数据支持不好，需要我们自己实现，SpringMVC 中使用注解 <strong>@RequestBody</strong>从 Request Body 中获取数据，但不能使用 Filter 进行 XSS 过滤。</p>
+<p>这里主要使用 SpringMVC 来作为后端进行介绍，SpringMVC 提供了一个 Filter <strong>HiddenHttpMethodFilter</strong>，把 Content-Type 为 <strong>application/x-www-form-urlencoded</strong> 的 POST 请求，参数中 <strong>_method</strong> 值为 <strong>PUT</strong> 的请求分发为 PUT 请求，为 <strong>DELETE</strong> 请求分发为 DELETE 请求，实现了普通表单的 REST 风格提交，这样就可以使用 <strong>@RequestParam</strong> 获取参数的值了。</p>
+<p>下面结合 SpringMVC 来介绍:</p>
+<ul>
+<li>Content-Type 为 application/x-www-form-urlencoded + HiddenHttpMethodFilter<ul>
+<li>优点: 服务器端 GET, PUT, POST, DELETE 时直接参数映射为对象，或则都使用 @RequestParam 获取参数，使用形式一致、简洁</li>
+<li>缺点:<ul>
+<li>不是标准的 REST 规范</li>
+<li>参数是按照 key/value 的形式发送的，和普通表单的参数形式一样，有兴趣的可以在 Chrome 的 Network 中查看请求的 Headers</li>
+<li>不能传递复杂对象，例如 value 又是一个 Json 对象，只能传递简单的 key/value，也就是作为参数的 Json 对象只能有一层 key/value，不过非特殊情况也够用了，普通表单能做的它都能做</li>
+<li>PUT 时参数中需要带上 _method=”PUT”，DELETE 时参数中需要带上 _method=”DELETE”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Content-Type 为 application/json<ul>
+<li>优点: 标准的 REST 规范，GET 处理和上面的一样，但是 POST, PUT, DELETE 的参数是序列化后的 JSON 字符串，能够传递复杂的对象</li>
+<li>缺点:<ul>
+<li>服务器端直接参数映射为对象，或则 GET 时使用 @RequestParam 获取参数，POST, PUT, DELETE 使用 @RequestBody 获取参数到 Map 中，然后再从 Map 中获取一个一个的参数，非常繁琐</li>
+<li>GET 和 POST, PUT, DELETE 获取参数的形式不统一，一个用 @RequestParam，其他的用 @RequestBody，需要脑子转换一下</li>
+<li>还有就是浏览器端 PUT, POST, DELETE 传递的 JSON 对象需要序列化后才能传给服务器端，可以使用 JSON.stringify(jsonObject) 进行序列化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>总结下来，在 SpringMVC 中推荐使用 <code>application/x-www-form-urlencoded + HiddenHttpMethodFilter</code> 的方式实现 REST 的请求，就是为了获取参数时比较统一，当需要传递复杂的参数时，例如属性是多层嵌套的对象，Json 对象的数组，这时再使用 application/json 的方式。</p>
+<p>为了简化 Rest Ajax 的访问，下面对 jQuery 的 Ajax 进行了简单的封装，例如更新用户名原始实现大致如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    url        : <span class="string">'/users/1/username'</span>,</div><div class="line">    data       : <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;),</div><div class="line">    type       : <span class="string">'PUT'</span>,</div><div class="line">    dataType   : <span class="string">'json'</span>,</div><div class="line">    contentType: <span class="string">'application/json'</span></div><div class="line">&#125;)</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(result);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>如果每个 REST 的请求都像上面这样写一遍: <code>PUT</code>, <code>POST</code>, <code>DELETE</code> 时需要 <code>JSON.stringify(data)</code>, 请求不同时 type 也不同，dataType 和 contentType 是固定的，这么多限制，很容易出错。使用下面实现的 rest 插件后，简化如下，只需要关心参数和回调，不需要处理其他额外信息，而且 $.rest.update 名字也更有语义化，一看就知道是更新操作:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.rest.update(&#123;</div><div class="line">    url    : <span class="string">'/users/1/username'</span>, </div><div class="line">    data   : &#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;, </div><div class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(result);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/02/08/180208-jquery-RESTful-plugin/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RESTful</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/08/180208-jquery-RESTful-plugin/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180208-java-pojo-status" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/08/180208-java-pojo-status/">【摘】java的几种对象PO,VO,DAO,BO,POJO,DTO</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/08/180208-java-pojo-status/" class="archive-article-date">
+  	<time datetime="2018-02-08T09:28:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="PO："><a href="#PO：" class="headerlink" title="PO："></a>PO：</h2><p>persistant object持久对象</p>
+<p>最形象的理解就是一个PO就是数据库中的一条记录。<br>好处是可以把一条记录作为一个对象处理，可以方便的转为其它对象。</p>
+<h2 id="BO："><a href="#BO：" class="headerlink" title="BO："></a>BO：</h2><p>business object业务对象</p>
+<p>主要作用是把业务逻辑封装为一个对象。这个对象可以包括一个或多个其它的对象。<br>比如一个简历，有教育经历、工作经历、社会关系等等。<br>我们可以把教育经历对应一个PO，工作经历对应一个PO，社会关系对应一个PO。<br>建立一个对应简历的BO对象处理简历，每个BO包含这些PO。<br>这样处理业务逻辑时，我们就可以针对BO去处理。 </p>
+<h2 id="VO-："><a href="#VO-：" class="headerlink" title="VO ："></a>VO ：</h2><p>value object值对象<br>ViewObject表现层对象 主要对应界面显示的数据对象。对于一个WEB页面，或者SWT、SWING的一个界面，用一个VO对象对应整个界面的值。</p>
+        
+          <a class="article-more-a" href="/2018/02/08/180208-java-pojo-status/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">VO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DAO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">POJO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DTO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/08/180208-java-pojo-status/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180208-Hibernate-saveOrUpdate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/08/180208-Hibernate-saveOrUpdate/">【摘】Hibernate的saveOrUpdate方法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/08/180208-Hibernate-saveOrUpdate/" class="archive-article-date">
+  	<time datetime="2018-02-08T07:35:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Hibernate中，最核心的概念就是对PO的状态管理。一个PO有三种状态： </p>
+<p>1、未被持久化的VO<br>此时就是一个内存对象VO，由JVM管理生命周期 </p>
+<p>2、已被持久化的PO，并且在Session生命周期内<br>此时映射数据库数据，由数据库管理生命周期 </p>
+<p>3、曾被持久化过，但现在和Session已经detached了，以VO的身份在运行<br>这种和Session已经detached的PO还能够进入另一个Session，继续进行PO状态管理，此时它就成为PO的第二种状态了。<strong>这种PO实际上是跨了Session进行了状态维护的。 </strong></p>
+<p>在传统的JDO1.x中，PO只有前面两种状态，一个PO一旦脱离PM，就丧失了状态了，不再和数据库数据关联，成为一个纯粹的内存VO，它即使进入一个新的PM，也不能恢复它的状态了。 </p>
+<p>Hibernate强的地方就在于，一个PO脱离Session之后，还能保持状态，再进入一个新的Session之后，就恢复状态管理的能力，但此时状态管理需要使用session.update或者session.saveOrUpdate，这就是Hibernate Reference中提到的“requires a slightly different programming model ” </p>
+<p>现在正式进入本话题：<br>
+        
+          <a class="article-more-a" href="/2018/02/08/180208-Hibernate-saveOrUpdate/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/08/180208-Hibernate-saveOrUpdate/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-171212-Shadowsocks4-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -146,7 +605,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/12/171212-Shadowsocks4-1/">【转载】Shadowsocks一键安装脚本（四合一）</a>
+      <a class="article-title" href="/2017/12/12/171212-Shadowsocks4-1/">【转】Shadowsocks一键安装脚本（四合一）</a>
     </h1>
   
 
@@ -159,7 +618,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>原文：</strong> <a href="https://teddysun.com/" target="_blank" rel="external">秋水逸冰</a> » <a href="https://teddysun.com/486.html" target="_blank" rel="external">Shadowsocks 一键安装脚本（四合一）</a></p>
+        <p><strong>转自：</strong> <a href="https://teddysun.com/" target="_blank" rel="external">秋水逸冰</a> » <a href="https://teddysun.com/486.html" target="_blank" rel="external">Shadowsocks 一键安装脚本（四合一）</a></p>
 <h2 id="本脚本适用环境"><a href="#本脚本适用环境" class="headerlink" title="本脚本适用环境"></a>本脚本适用环境</h2><p>系统支持：CentOS 6+，Debian 7+，Ubuntu 12+<br>内存要求：≥128M<br>日期　　：2017 年 11 月 25 日</p>
 <h3 id="关于本脚本"><a href="#关于本脚本" class="headerlink" title="关于本脚本"></a>关于本脚本</h3><p>1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端；<br>2、各版本的启动脚本及配置文件名不再重合；<br>3、每次运行可安装一种版本；<br>4、支持以多次运行来安装多个版本，且各个版本可以共存（注意端口号需设成不同）；<br>5、若已安装多个版本，则卸载时也需多次运行（每次卸载一种）；<br>6、Shadowsocks-Python 和 ShadowsocksR 安装后不可同时启动（因为本质上都属 Python 版）。</p>
 <p><strong>友情提示：</strong> 如果你有问题，请先阅读这篇《<a href="https://teddysun.com/399.html" target="_blank" rel="external">Shadowsocks Troubleshooting</a>》之后再询问。<br>
@@ -532,484 +991,6 @@
 
 
   
-    <article id="post-170919-heap-stack-string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/19/170919-heap-stack-string/">Java 堆、栈、方法区、几种常量池，String</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/19/170919-heap-stack-string/" class="archive-article-date">
-  	<time datetime="2017-09-19T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>在JAVA中，数据的交互存在于以下地方：</strong></p>
-<p><strong>寄存器（register）：</strong> 位于CPU。<br><strong>栈（stack）：</strong> 位于RAM。<br><strong>堆（heap）：</strong> 位于RAM。<br><strong>方法区（PermGen）：</strong> 位于RAM。<br><strong>非RAM存储：</strong> 如硬盘等其它存储空间。</p>
-<p><strong>就速度来说，从快到慢依次为： 寄存器 &gt; 栈 &gt; 堆 &gt; 方法区 &gt; 非RAM存储。</strong></p>
-<p><strong>JAVA的JVM的内存可分为3个区：<code>栈(stack)</code>、<code>堆(heap)</code>和<code>方法区(PermGen)</code>也叫永久代。</strong></p>
-        
-          <a class="article-more-a" href="/2017/09/19/170919-heap-stack-string/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">heap、stack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">堆、栈</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">常量池</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/19/170919-heap-stack-string/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170918-java-bytecode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/18/170918-java-bytecode/">【转载】Java字节码指令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/18/170918-java-bytecode/" class="archive-article-date">
-  	<time datetime="2017-09-18T13:27:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>介绍java虚拟机的指令功能，至少能阅读java代码生成的字节码指令含义</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Java虚拟机采用基于栈的架构，其指令由操作码和操作数组成。</p>
-<ul>
-<li>操作码：一个字节长度(0~255)，意味着指令集的操作码个数不能操作256条。</li>
-<li>操作数：一条指令可以有零或者多个操作数，且操作数可以是1个或者多个字节。编译后的代码没有采用操作数长度对齐方式，比如16位无符号整数需使用两个字节储存(假设为byte1和byte2)，那么真实值是 <code>(byte1 &lt;&lt; 8) | byte2</code>。</li>
-</ul>
-<p>放弃操作数对齐操作数对齐方案：</p>
-<ul>
-<li>优势：可以省略很多填充和间隔符号，从而减少数据量，具有更高的传输效率；Java起初就是为了面向网络、智能家具而设计的，故更加注重传输效率。</li>
-<li>劣势：运行时从字节码里构建出具体数据结构，需要花费部分CPU时间，从而导致解释执行字节码会损失部分性能。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/09/18/170918-java-bytecode/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bytecode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/18/170918-java-bytecode/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170918-javap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/18/170918-javap/">javap 命令详解</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/18/170918-javap/" class="archive-article-date">
-  	<time datetime="2017-09-18T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>D:\temp&gt;javap -help<br>Usage: javap <options> <classes><br>where possible options include:</classes></options></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">javap 参数</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-help  –help  -?</td>
-<td style="text-align:left">帮助</td>
-</tr>
-<tr>
-<td style="text-align:left">-version</td>
-<td style="text-align:left">版本</td>
-</tr>
-<tr>
-<td style="text-align:left">-v  -verbose</td>
-<td style="text-align:left">打印附加信息（类常量池信息 字节码指令 等等很多…… 基本上需要的信息都会打印）</td>
-</tr>
-<tr>
-<td style="text-align:left">-l</td>
-<td style="text-align:left">输出行和变量的表</td>
-</tr>
-<tr>
-<td style="text-align:left">-public</td>
-<td style="text-align:left">只输出public方法和域</td>
-</tr>
-<tr>
-<td style="text-align:left">-protected</td>
-<td style="text-align:left">只输出public和protected类和成员</td>
-</tr>
-<tr>
-<td style="text-align:left">-package</td>
-<td style="text-align:left">只输出包，public和protected类和成员，(这是默认的)</td>
-</tr>
-<tr>
-<td style="text-align:left">-p  -private</td>
-<td style="text-align:left">输出所有类和成员</td>
-</tr>
-<tr>
-<td style="text-align:left">-c</td>
-<td style="text-align:left">输出反汇编后的代码（包含字节码指令）</td>
-</tr>
-<tr>
-<td style="text-align:left">-s</td>
-<td style="text-align:left">输出内部类型签名</td>
-</tr>
-<tr>
-<td style="text-align:left">-sysinfo</td>
-<td style="text-align:left">显示正在处理该类的系统信息(路径、大小、日期、MD5哈希)</td>
-</tr>
-<tr>
-<td style="text-align:left">-constants</td>
-<td style="text-align:left">显示静态常量</td>
-</tr>
-<tr>
-<td style="text-align:left">-classpath <path></path></td>
-<td style="text-align:left">指定类文件的路径</td>
-</tr>
-<tr>
-<td style="text-align:left">-bootclasspath <path></path></td>
-<td style="text-align:left">重写引导类文件的位置</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ javap -c HelloWorld &gt; D://hw-log.txt	<span class="comment">#将输出的内容保存到文件</span></div></pre></td></tr></table></figure>
-<p><strong>一般常用的命令参数 <code>-c</code> 和 <code>-v</code>。</strong></p>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javap</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/18/170918-javap/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170916-JSTL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/17/170916-JSTL/">JSTL的版本还有aliyun maven的故事</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/17/170916-JSTL/" class="archive-article-date">
-  	<time datetime="2017-09-17T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这是一个比较曲折的故事~~，过程比较郁闷。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
-<p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
-<p><img src="/assets/blogImg/170916-jstl-1.png" alt="170916-jstl-1"></p>
-        
-          <a class="article-more-a" href="/2017/09/17/170916-JSTL/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jstl</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/17/170916-JSTL/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170914-RestController-json-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/14/170914-RestController-json-xml/">RestController返回json和xml数据</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/14/170914-RestController-json-xml/" class="archive-article-date">
-  	<time datetime="2017-09-14T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实体类（POJO）"><a href="#实体类（POJO）" class="headerlink" title="实体类（POJO）"></a>实体类（POJO）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.model;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.model</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:15:16 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> name 要设置的 name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getText</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> text;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> text 要设置的 text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setText</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.text = text;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/09/14/170914-RestController-json-xml/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springMVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/14/170914-RestController-json-xml/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1024,7 +1005,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Code0
+    		&copy; 2018 Code0
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1119,10 +1100,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
@@ -1135,11 +1112,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,6 +1156,46 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">VO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DAO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">BO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">POJO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DTO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -1187,15 +1204,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">getter-setter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">lombok</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">temp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hello</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
             
             <div class="clearfix"></div>
