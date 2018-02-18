@@ -1529,28 +1529,6 @@
   </entry>
   
   <entry>
-    <title>maven常用命令</title>
-    <link href="maode.github.io/2017/09/05/170905-maven-command/"/>
-    <id>maode.github.io/2017/09/05/170905-maven-command/</id>
-    <published>2017-09-05T07:32:41.000Z</published>
-    <updated>2017-09-05T13:28:23.481Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-settings	</div><div class="line"><span class="comment">#查看当前生效的settings.xml，可用于判断某个settings配置是否生效</span></div><div class="line">mvn <span class="built_in">help</span>:effective-pom	</div><div class="line"><span class="comment">#用于查看当前生效的POM内容，指合并了所有父POM（包括Super POM）后的XML，所以可用于检测POM中某个配置是否生效 </span></div><div class="line">mvn -X	</div><div class="line"><span class="comment">#debug，可查看settings.xml文件的读取顺序</span></div><div class="line">mvn <span class="built_in">help</span>:system	</div><div class="line"><span class="comment">#打印所有可用的环境变量和Java系统属性</span></div></pre></td></tr></table></figure>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
-    
-    </summary>
-    
-    
-      <category term="maven" scheme="maode.github.io/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
     <title>GitHub配置完后链接不上，报错</title>
     <link href="maode.github.io/2017/09/05/170905-GitHub-link-error/"/>
     <id>maode.github.io/2017/09/05/170905-GitHub-link-error/</id>
@@ -1568,6 +1546,37 @@
     
       &lt;p&gt;安装配置完Git后链接不上GitHub。&lt;br&gt;用&lt;code&gt;ssh -T git@github.com&lt;/code&gt;命令测试连接时,报错&lt;code&gt;“ssh: connect to host github.com port 22: Connection timed out”&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;解决方法:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="GitHub" scheme="maode.github.io/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github映射自定义域名</title>
+    <link href="maode.github.io/2017/09/05/170905-github-domain-name/"/>
+    <id>maode.github.io/2017/09/05/170905-github-domain-name/</id>
+    <published>2017-09-05T07:32:41.000Z</published>
+    <updated>2017-09-05T13:31:42.921Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要<strong>大写</strong>)。<br>文件中只能包含一个顶级域名，像这样<code>example.com</code>。<br>如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令<code>$ hexo g</code>和部署命令<code>$ hexo d</code>后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li>向你的 DNS 配置中添加 3 条记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@     		A             192.30.252.153</div><div class="line">@     		A             192.30.252.154</div><div class="line">www		CNAME         username.github.io</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用你自己的 Github 用户名替换 username</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;向你的 Github Pages 仓库添加一个CNAME文件(文件名一定要&lt;strong&gt;大写&lt;/strong&gt;)。&lt;br&gt;文件中只能包含一个顶级域名，像这样&lt;code&gt;example.com&lt;/code&gt;。&lt;br&gt;如果你是用 hexo 框架搭建博客并部署到 Github Pages 上，每次执行生成命令&lt;code&gt;$ hexo g&lt;/code&gt;和部署命令&lt;code&gt;$ hexo d&lt;/code&gt;后，会将博客所在目录下 public 文件夹里的东西都推到 Github Pages 仓库上，并且把 CNAME 文件覆盖掉，解决这个问题可以直接把 CNAME 文件添加到 source 文件夹里，这样每次推的时候就不用担心仓库里的 CNAME 文件被覆盖掉了。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
