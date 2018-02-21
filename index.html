@@ -139,6 +139,467 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-180221-nodejs-modules-Path" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/21/180221-nodejs-modules-Path/">nodejs安装的modules的环境变量配置</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/21/180221-nodejs-modules-Path/" class="archive-article-date">
+  	<time datetime="2018-02-21T03:29:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天不小心把环境变量给覆写了，凭印象补充了一些，今天发现 nodejs下安装的所有module的 CLI命令 都失效了。寻思了好一会才想到应该怎么配置回来，记录一下。</p>
+<p>nodejs通过npm命令全局安装的所有 modules 的 CLI命令 默认应该全都是被注册到了<code>C:\Users\code0\AppData\Roaming\npm</code>这个目录中，把这个目录加到环境变量的<code>Path</code>中，所有的 CLI命令 就都复活了。</p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodejs</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境变量</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/21/180221-nodejs-modules-Path/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180220-gradle-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/20/180220-gradle-install/">gradle安装配置</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/20/180220-gradle-install/" class="archive-article-date">
+  	<time datetime="2018-02-20T08:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>官网下载压缩包解压安装：<a href="https://gradle.org/releases/" target="_blank" rel="external">https://gradle.org/releases/</a></p>
+<p>其它安装方式见：<a href="https://gradle.org/install/" target="_blank" rel="external">https://gradle.org/install/</a></p>
+<h3 id="配置环境变量："><a href="#配置环境变量：" class="headerlink" title="配置环境变量："></a>配置环境变量：</h3><ul>
+<li><p>在环境变量中添加一个变量<code>GRADLE_HOME</code>指向gradle的根目录。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setx GRADLE_HOME "C:\software\gradle-<span class="number">4</span>.<span class="number">5</span>.<span class="number">1</span>"</div></pre></td></tr></table></figure>
+</li>
+<li><p>将gradle的可执行文件路径追加至Path。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setx <span class="built_in">Path</span> "<span class="variable">%Path%</span>;<span class="variable">%GRADLE_HOME%</span>\bin"</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="自定义gradle本地仓库"><a href="#自定义gradle本地仓库" class="headerlink" title="自定义gradle本地仓库"></a>自定义gradle本地仓库</h3><p>有几种不同的方式，大多采用配置环境变量的方式。<br>设置一个名称为<code>GRADLE_USER_HOME</code>的环境变量指向自定义的仓库目录。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setx GRADLE_USER_HOME "D:\repos\gradle"</div></pre></td></tr></table></figure></p>
+<p>或使用以下命令：<code>gradle -g 目录路径</code>,例如<code>gradle -g D:\Gradle\.gradle</code></p>
+<h3 id="复用maven本地仓库"><a href="#复用maven本地仓库" class="headerlink" title="复用maven本地仓库"></a>复用maven本地仓库</h3><p><strong>前提：</strong><br>gradle复用maven本地仓库，是通过maven的<code>settings.xml</code>配置文件来搜索maven本地仓库路径的，<br>gradle默认会按以下顺序去查找本地的仓库：<br>USER_HOME/.m2/settings.xml &gt;&gt; M2_HOME/conf/settings.xml &gt;&gt; USER_HOME/.m2/repository所以要保证C盘用户目录存在<code>settings.xml</code>或者设置了<code>M2_HOME</code>环境变量。</p>
+<p>确认具备以上条件后。在项目的<code>build.gradle</code>文件中调用<code>mavenLocal</code>方法即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">  mavenLocal()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="修改全局默认仓库"><a href="#修改全局默认仓库" class="headerlink" title="修改全局默认仓库"></a>修改全局默认仓库</h3><p>进入Gradle安装目录下的<code>init.d</code>文件夹,新建<code>init.gradle</code>文件,并在文件中加入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">allprojects&#123;</div><div class="line">    repositories &#123;</div><div class="line">        def ALIYUN_REPOSITORY_URL = &apos;http://maven.aliyun.com/nexus/content/groups/public&apos;</div><div class="line">        def ALIYUN_JCENTER_URL = &apos;http://maven.aliyun.com/nexus/content/repositories/jcenter&apos;</div><div class="line">        all &#123; ArtifactRepository repo -&gt;</div><div class="line">            if(repo instanceof MavenArtifactRepository)&#123;</div><div class="line">                def url = repo.url.toString()</div><div class="line">                if (url.startsWith(&apos;https://repo1.maven.org/maven2&apos;)) &#123;</div><div class="line">                    project.logger.lifecycle &quot;Repository $&#123;repo.url&#125; replaced by $ALIYUN_REPOSITORY_URL.&quot;</div><div class="line">                    remove repo</div><div class="line">                &#125;</div><div class="line">                if (url.startsWith(&apos;https://jcenter.bintray.com/&apos;)) &#123;</div><div class="line">                    project.logger.lifecycle &quot;Repository $&#123;repo.url&#125; replaced by $ALIYUN_JCENTER_URL.&quot;</div><div class="line">                    remove repo</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        maven &#123;</div><div class="line">        	url ALIYUN_REPOSITORY_URL</div><div class="line">            url ALIYUN_JCENTER_URL</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="提升编译速度"><a href="#提升编译速度" class="headerlink" title="提升编译速度"></a>提升编译速度</h3><p>开启守护进程和并行编译：<br>在 <code>用户目录\.gradle</code> 或 <code>GRADLE_USER_HOME</code> 路径下创建一个 <code>gradle.properties</code> 并填入以下内容：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">##开启守护进程</span></div><div class="line">org.gradle.daemon=true</div><div class="line"><span class="comment">##使用并行编译</span></div><div class="line">org.gradle.parallel=true</div></pre></td></tr></table></figure></p>
+<p>不同系统下的用户目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">C:\Users\&lt;username&gt; (Windows Vista &amp; 7+)</div><div class="line">/Users/&lt;username&gt; (Mac OS X)</div><div class="line">/home/&lt;username&gt; (Linux)</div></pre></td></tr></table></figure></p>
+<p>参考资料：<br><a href="http://blog.csdn.net/x_iya/article/details/75040806" target="_blank" rel="external">gradle本地、远程仓库配置</a><br><a href="http://blog.csdn.net/kl28978113/article/details/53018225" target="_blank" rel="external">Gradle 修改本地仓库的位置</a><br><a href="https://tvzr.com/change-the-mirror-of-gradle-to-aliyun.html" target="_blank" rel="external">配置Gradle的镜像为阿里云镜像</a><br><a href="https://benweizhu.gitbooks.io/gradle-best-practice/content/the-gradle-daemon.html" target="_blank" rel="external">Gradle守护进程</a><br><a href="http://tiki.cat/2016/05/26/android-studio-gradle-build-run-faster/" target="_blank" rel="external">知道Android 中Gradle 的这些技巧，提升编译构建速度</a></p>
+<p>详细了解可参考：<a href="https://www.gitbook.com/book/benweizhu/gradle-best-practice/details" target="_blank" rel="external">Gradle最佳实践</a></p>
+<p>（完）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">gradle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/20/180220-gradle-install/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180219-Git-sparsecheckout" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/19/180219-Git-sparsecheckout/">【转】Git只获取部分目录的内容（稀疏检出）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/19/180219-Git-sparsecheckout/" class="archive-article-date">
+  	<time datetime="2018-02-19T13:28:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>转自：</strong> <a href="https://zhgcao.github.io/2016/05/11/git-sparse-checkout/" target="_blank" rel="external">Git只获取部分目录的内容（稀疏检出）</a></p>
+<hr>
+<p>公司的开发从SVN切换到Git，在SVN下，可以很方便的只获取版本库中一个或多个目录的内容，但是Git的克隆，默认是直接拉取整个远程仓库，如果项目比较大，大量和自己无关的内容也会拉到本地，占用很多硬盘空间。</p>
+<p>在网上搜了一下，Git在1.7版本后，已经支持只Checkout部分内容，这个功能叫做 sparse checkout（稀疏检出）。</p>
+<h3 id="打开-sparse-checkout-功能"><a href="#打开-sparse-checkout-功能" class="headerlink" title="打开 sparse checkout 功能"></a>打开 sparse checkout 功能</h3><p>如果本地还没有建版本库，要用这个功能，先进入要放版本库的目录，在命令行执行几条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git init &lt;project&gt;</div><div class="line">$ <span class="built_in">cd</span> &lt;project&gt;</div><div class="line">$ git remote add origin ssh://&lt;user&gt;@&lt;repository<span class="string">'s url&gt;</span></div><div class="line"><span class="string">$ git config core.sparsecheckout true</span></div><div class="line"><span class="string">$ echo "path1/" &gt;&gt; .git/info/sparse-checkout</span></div><div class="line"><span class="string">$ echo "path2/" &gt;&gt; .git/info/sparse-checkout</span></div><div class="line"><span class="string">$ git pull origin master</span></div></pre></td></tr></table></figure>
+<p>第一条命令<code>git init &lt;project&gt;</code>，先建立一个空的版本库，用实际的目录名替代。<br>第二条命令<code>cd &lt;project&gt;</code>，进入创建的新的版本库的目录。<br>第三条命令<code>git remote add origin ssh://&lt;user&gt;@&lt;repository&#39;s url&gt;</code>，添加远程库的地址。<br>第四条命令<code>git config core.sparsecheckout true</code>，打开sparse checkout功能。<br>第五第六条命令<code>echo &quot;path1/&quot; &gt;&gt; .git/info/sparse-checkout</code>，添加2个目录到checkout的列表。路径是版本库下的相对路径，也可以用文本编辑器编辑这个文件。<br>第七条命令<code>git pull origin master</code>，拉取远程的 master 分支，也可以拉其他分支。</p>
+<p>如果只拉取最近一次的变更，忽略以前的变更记录，在拉取时可以加参数depth，如<code>git pull --depth=1 origin master</code> （浅克隆）</p>
+<p>如果以后修改了 .git/info/sparse-checkout，增加或删除部分目录，可以执行如下命令重新Checkout</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div></pre></td></tr></table></figure>
+<p>或执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">read</span>-tree -mu HEAD</div></pre></td></tr></table></figure>
+<p>如果本地已经建了版本库，要使用这个功能，可以进入版本库的目录，执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config core.sparsecheckout <span class="literal">true</span></div><div class="line">$ <span class="built_in">echo</span> <span class="string">"path1/"</span> &gt;&gt; .git/info/sparse-checkout</div><div class="line">$ <span class="built_in">echo</span> <span class="string">"path2/"</span> &gt;&gt; .git/info/sparse-checkout</div><div class="line">$ git checkout master</div></pre></td></tr></table></figure>
+<p>要关闭 sparse checkout功 能，仅仅修改设置，将core.sparsecheckout设为false是不生效的，需要修改 .git/info/sparse-checkout 文件，用一个<code>*</code>号替代其中的内容，然后执行 checkout 或 read-tree 命令。</p>
+<h3 id="sparse-checkout-文件设置"><a href="#sparse-checkout-文件设置" class="headerlink" title="sparse-checkout 文件设置"></a>sparse-checkout 文件设置</h3><p>子目录的匹配<br>在 sparse-checkout 文件中，如果目录名称前带斜杠，如<code>/docs/</code>，将只匹配项目根目录下的docs目录，如果目录名称前不带斜杠，如<code>docs/</code>，其他目录下如果也有这个名称的目录，如<code>test/docs/</code>也能被匹配。<br>而如果写了多级目录，如<code>docs/05/</code>，则不管前面是否带有斜杠，都只匹配项目根目录下的目录，如<code>test/docs/05/</code>不能被匹配。</p>
+<p>通配符 <code>*</code> (星号)<br>在 sparse-checkout 文件中，支持通配符 <code>*</code>，如可以写成以下格式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">*docs/</div><div class="line">index.*</div><div class="line">*.gif</div></pre></td></tr></table></figure>
+<p>排除项 <code>!</code> (感叹号)<br>在 sparse-checkout 文件中，也支持排除项 <code>!</code>，如只想排除排除项目下的 <code>docs</code> 目录，可以按如下格式写：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">!/docs/</div></pre></td></tr></table></figure>
+<p>要注意一点：如果要关闭sparsecheckout功能，全取整个项目库，可以写一个<code>*</code>号，但如果有排除项，必须写<code>/*</code>，同时排除项要写在通配符后面。</p>
+<p>(完)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/19/180219-Git-sparsecheckout/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180219-Spring-cache" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/19/180219-Spring-cache/">缓存以及Spring cache介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/19/180219-Spring-cache/" class="archive-article-date">
+  	<time datetime="2018-02-19T11:46:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="缓存简介"><a href="#缓存简介" class="headerlink" title="缓存简介"></a>缓存简介</h2><p>缓存，我的理解是：让数据更接近于使用者；工作机制是：先从缓存中读取数据，如果没有再从慢速设备上读取实际数据（数据也会存入缓存）；缓存什么：那些经常读取且不经常修改的数据/那些昂贵（CPU/IO）的且对于相同的请求有相同的计算结果的数据。如CPU–L1/L2–内存–磁盘就是一个典型的例子，CPU需要数据时先从L1/L2中读取，如果没有到内存中找，如果还没有会到磁盘上找。还有如用过Maven的朋友都应该知道，我们找依赖的时候，先从本机仓库找，再从本地服务器仓库找，最后到远程仓库服务器找；还有如京东的物流为什么那么快？他们在各个地都有分仓库，如果该仓库有货物那么送货的速度是非常快的。</p>
+<h2 id="缓存命中率"><a href="#缓存命中率" class="headerlink" title="缓存命中率"></a>缓存命中率</h2><p>即从缓存中读取数据的次数 与 总读取次数的比率，命中率越高越好：</p>
+<p>命中率 = 从缓存中读取次数 / (总读取次数[从缓存中读取次数 + 从慢速设备上读取的次数])</p>
+<p>Miss率 = 没有从缓存中读取的次数 / (总读取次数[从缓存中读取次数 + 从慢速设备上读取的次数])</p>
+<p>这是一个非常重要的监控指标，如果做缓存一定要健康这个指标来看缓存是否工作良好；</p>
+<h2 id="缓存策略"><a href="#缓存策略" class="headerlink" title="缓存策略"></a>缓存策略</h2><h3 id="Eviction-policy"><a href="#Eviction-policy" class="headerlink" title="Eviction policy"></a>Eviction policy</h3><p>移除策略，即如果缓存满了，从缓存中移除数据的策略；常见的有LFU、LRU、FIFO：</p>
+<p>FIFO（First In First Out）：先进先出算法，即先放入缓存的先被移除；</p>
+<p>LRU（Least Recently Used）：最久未使用算法，使用时间距离现在最久的那个被移除；</p>
+<p>LFU（Least Frequently Used）：最近最少使用算法，一定时间段内使用次数（频率）最少的那个被移除；</p>
+<h3 id="TTL（Time-To-Live-）"><a href="#TTL（Time-To-Live-）" class="headerlink" title="TTL（Time To Live ）"></a>TTL（Time To Live ）</h3><p>存活期，即从缓存中创建时间点开始直到它到期的一个时间段（不管在这个时间段内有没有访问都将过期）</p>
+<h3 id="TTI（Time-To-Idle）"><a href="#TTI（Time-To-Idle）" class="headerlink" title="TTI（Time To Idle）"></a>TTI（Time To Idle）</h3><p>空闲期，即一个数据多久没被访问将从缓存中移除的时间。</p>
+<h2 id="Spring-cache简介"><a href="#Spring-cache简介" class="headerlink" title="Spring cache简介"></a>Spring cache简介</h2><p>Spring 3.1 引入了激动人心的基于注释（annotation）的缓存（cache）技术，它本质上不是一个具体的缓存实现方案（例如 EHCache 或者 OSCache），而是一个对缓存使用的抽象，通过在既有代码中添加少量它定义的各种 annotation，即能够达到缓存方法的返回对象的效果。</p>
+<p>Spring 的缓存技术还具备相当的灵活性，不仅能够使用 SpEL（Spring Expression Language）来定义缓存的 key 和各种 condition，还提供开箱即用的缓存临时存储方案，也支持和主流的专业缓存例如 EHCache 集成。</p>
+<p>其特点总结如下：</p>
+<ul>
+<li>通过少量的配置 annotation 注释即可使得既有代码支持缓存</li>
+<li>支持开箱即用 Out-Of-The-Box，即不用安装和部署额外第三方组件即可使用缓存</li>
+<li>支持 Spring Express Language，能使用对象的任何属性或者方法来定义缓存的 key 和 condition</li>
+<li>支持 AspectJ，并通过其实现任何方法的缓存支持</li>
+<li>支持自定义 key 和自定义缓存管理者，具有相当的灵活性和扩展性</li>
+</ul>
+<p>本文将针对上述特点对 Spring cache 进行详细的介绍，主要通过一个简单的例子和原理介绍展开，然后我们将一起看一个比较实际的缓存例子，最后会介绍 spring cache 的使用限制和注意事项。OK，Let ’ s begin!</p>
+        
+          <a class="article-more-a" href="/2018/02/19/180219-Spring-cache/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cache</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">缓存</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/19/180219-Spring-cache/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-180218-BAT-tutorial" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/18/180218-BAT-tutorial/">【转】BAT批处理脚本教程</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/18/180218-BAT-tutorial/" class="archive-article-date">
+  	<time datetime="2018-02-18T10:36:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>转自：</strong> <a href="http://xiangkg.blog.163.com/blog" target="_blank" rel="external">http://xiangkg.blog.163.com/blog</a></p>
+<p><a href="#前言">前言</a></p>
+<h2 id="第一章-批处理基础"><a href="#第一章-批处理基础" class="headerlink" title="第一章 批处理基础"></a>第一章 批处理基础</h2><p>批处理定义：顾名思义，批处理文件是将一系列命令按一定的顺序集合为一个可执行的文本文件，其扩展名为BAT或者CMD。这些命令统称批处理命令。</p>
+<p>小知识：可以在键盘上按下Ctrl+C组合键来强行终止一个批处理的执行过程。</p>
+<p>了解了大概意思后,我们正式开始学习.先看一个简单的例子!<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@<span class="built_in">echo</span> off</div><div class="line"><span class="built_in">echo</span> "欢迎来到非常BAT!"</div><div class="line"><span class="built_in">pause</span></div></pre></td></tr></table></figure></p>
+<p>把上面的3条命令保存为文件test.bat或者test.cmd然后执行,<br>他就会在屏幕上显示以下二行话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">欢迎来到非常BAT!</div><div class="line">请按任意键继续. . .</div></pre></td></tr></table></figure></p>
+<p>这就是一个简单批处理文件了，这个批处理文件一共就用了2条命令 “echo” 和”pause” 还有一个特殊符号”@”</p>
+<p>从上面这个简单的批处理中,我们可以发现其实批处理就是运用一些含有特殊意义的符号和一些完成指定功能的命令组合而成,那么在批处理中有多少这样的特殊符号和功能命令呢？我们现在就来仔细了解一下一些最常用的!</p>
+<p>(以下内容来源网络,请各位仔细阅读,好进入下节的实例说明)</p>
+        
+          <a class="article-more-a" href="/2018/02/18/180218-BAT-tutorial/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BAT</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">批处理</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CMD</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/18/180218-BAT-tutorial/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-180217-lombok-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -598,402 +1059,9 @@
 
 
   
-    <article id="post-171212-Shadowsocks4-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/12/171212-Shadowsocks4-1/">【转】Shadowsocks一键安装脚本（四合一）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/12/171212-Shadowsocks4-1/" class="archive-article-date">
-  	<time datetime="2017-12-12T10:46:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>转自：</strong> <a href="https://teddysun.com/" target="_blank" rel="external">秋水逸冰</a> » <a href="https://teddysun.com/486.html" target="_blank" rel="external">Shadowsocks 一键安装脚本（四合一）</a></p>
-<h2 id="本脚本适用环境"><a href="#本脚本适用环境" class="headerlink" title="本脚本适用环境"></a>本脚本适用环境</h2><p>系统支持：CentOS 6+，Debian 7+，Ubuntu 12+<br>内存要求：≥128M<br>日期　　：2017 年 11 月 25 日</p>
-<h3 id="关于本脚本"><a href="#关于本脚本" class="headerlink" title="关于本脚本"></a>关于本脚本</h3><p>1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端；<br>2、各版本的启动脚本及配置文件名不再重合；<br>3、每次运行可安装一种版本；<br>4、支持以多次运行来安装多个版本，且各个版本可以共存（注意端口号需设成不同）；<br>5、若已安装多个版本，则卸载时也需多次运行（每次卸载一种）；<br>6、Shadowsocks-Python 和 ShadowsocksR 安装后不可同时启动（因为本质上都属 Python 版）。</p>
-<p><strong>友情提示：</strong> 如果你有问题，请先阅读这篇《<a href="https://teddysun.com/399.html" target="_blank" rel="external">Shadowsocks Troubleshooting</a>》之后再询问。<br>
-        
-          <a class="article-more-a" href="/2017/12/12/171212-Shadowsocks4-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Shadowsocks</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/12/171212-Shadowsocks4-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-171210-mvnplugin-tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/10/171210-mvnplugin-tomcat/">Eclipse  tomcat mvn plugin</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/10/171210-mvnplugin-tomcat/" class="archive-article-date">
-  	<time datetime="2017-12-10T11:08:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/171210-tomcat-mvn-plugin.png" alt=""></p>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/10/171210-mvnplugin-tomcat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-171110-runjettyrun" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/10/171110-runjettyrun/">Eclipse plugin RunJettyRun</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/10/171110-runjettyrun/" class="archive-article-date">
-  	<time datetime="2017-11-10T04:08:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/171110-jetty-plugin.png" alt=""></p>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/10/171110-runjettyrun/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170926-nodejs-debug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/26/170926-nodejs-debug/">Debugging Node.js with DevTools</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/26/170926-nodejs-debug/" class="archive-article-date">
-  	<time datetime="2017-09-26T14:37:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>devtool 已经并入node.js v6.3.0以上版本的核心包，所以不用再installe。可以直接开整。如下：</p>
-<p>调试 <code>mrd.js</code> 并在该文件第一句断点。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node --inspect --debug-brk mrd.js <span class="comment"># debug mrd.js 并在该文件第一句断点</span></div></pre></td></tr></table></figure></p>
-<p>打开Chrome在地址栏输入：chrome://inspect </p>
-<p>OK！现在可以开始调试了。就是如此简单。</p>
-<p><strong>如果想让某次的debug过程重新走，在devtool中随便改行代码，然后保存，就可以重头再走一遍了。</strong></p>
-<p>v7+ 版本还可以把以上命令简化为：<code>$ node --inspect-brk mrd.js( v7+)</code><br>我的版本低，没试！</p>
-<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" target="_blank" rel="external">https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27</a></p>
-<p>暂时就这些，后面没有了！(=^ ^=)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DevTools</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/26/170926-nodejs-debug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-170926-CLI-mrd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/26/170926-CLI-mrd/">命令行（CLI）mrd开发记录</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/26/170926-CLI-mrd/" class="archive-article-date">
-  	<time datetime="2017-09-26T14:28:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先确保安装配置好node.js的环境。官网：<a href="https://nodejs.org" target="_blank" rel="external">https://nodejs.org</a></p>
-<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><p>创建一个文件夹用来放mrd项目，如 D:\temp\mrd</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">D:\&gt; mkdir D:\temp\mrd</div><div class="line"></div><div class="line">D:\&gt; <span class="built_in">cd</span> temp\mrd</div></pre></td></tr></table></figure>
-<p>初始化：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">D:\temp\mrd&gt; npm init -y</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/09/26/170926-CLI-mrd/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CLI</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/26/170926-CLI-mrd/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1116,15 +1184,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+                <a href="javascript:void(0)" class="js-tag color1">javap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1136,7 +1204,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javap</a>
+                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1157,18 +1233,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1200,15 +1264,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1221,6 +1285,42 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hello</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BAT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">批处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CMD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境变量</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1271,7 +1371,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">我的记事本</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">&lt;p style=&#34;text-align:left;padding-left:50px&#34;&gt;好记性不如烂笔头。&lt;br/&gt;古人诚不我欺也！！&lt;br/&gt;&lt;br/&gt;随着时间的流逝，发现有很多知识点都遗忘了。本博客的诞生，是为了方便日后自己查找一些遗忘的知识点。内容包含：自己写的、网上的摘抄和转载。&lt;/p&gt;</div>
   	  	
     	</section>
     
