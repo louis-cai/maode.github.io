@@ -139,6 +139,131 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-180222-IDEA-settings" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/22/180222-IDEA-settings/">【转】IDEA配置优化</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/22/180222-IDEA-settings/" class="archive-article-date">
+  	<time datetime="2018-02-22T14:55:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>转自：</strong> # <a href="http://www.cnblogs.com/playcode/p/5588707.html" target="_blank" rel="external">Intellij IDEA配置优化</a></p>
+<p><strong>1. 优化JVM参数</strong></p>
+<p>　　修改 IntelliJ IDEA 2016.1.2/bin/idea.exe.vmoptions【记得备份】文件，如果是x64系统，修改idea64.exe.vmoptions文件中的参数，具体参数如下：</p>
+<p>-Xms512m<br>-Xmx750m<br>-Xmn264m<br>-XX:MaxPermSize=350m<br>-XX:PermSize=128m<br>-XX:ReservedCodeCacheSize=240m<br>-Xverify:none<br>-Xnoclassgc<br>-XX:+UseParNewGC<br>-XX:+UseConcMarkSweepGC<br>-XX:SoftRefLRUPolicyMSPerMB=50<br>-ea<br>-server<br>-Dsun.io.useCanonCaches=false<br>-Dsun.awt.keepWorkingSetOnMinimize=true<br>-Djava.net.preferIPv4Stack=true<br>-XX:+HeapDumpOnOutOfMemoryError<br>-XX:-OmitStackTraceInFastThrow</p>
+<p>　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度</p>
+<p>　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能</p>
+<p>　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的而启动的过程中无需装入类，缩短了启动时间</p>
+<p>　　　　-XX:+UseParNewGC 使用并行收集算法</p>
+<p>　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集</p>
+<p>　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，当你重新回到IDEA，能够被快速显示，而不是由灰白的界面逐渐显现整个界面，加快回复到原界面的速度。</p>
+<p><strong>2. 基本常用设置</strong></p>
+<p><strong>设置外观字体：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; Appearance -&gt; 勾选 Override default fonts by (not Recommended)</p>
+<p>　　　　　　　　　　　　　设置 Name：微软雅黑、Size：12、Presentation Mode：24</p>
+<p>　　　　　　　　　　　　　去掉 Animate windows，勾选 Show tool window bars</p>
+<p><strong>启动时不打开工程：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Startup/Shutdown 标签项 -&gt; 去掉 Reopen last project on startup</p>
+<p><strong>关闭确认退出选项：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Startup/Shutdown 标签项 -&gt; 去掉 Confirm application exit</p>
+<p><strong>在同一窗口打开工程：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Project Opening 标签项 -&gt; 勾选 Open project in ths same window</p>
+<p><strong>设置自动保存：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Synchronization 标签项 -&gt; </p>
+<p>　　　　　　　　　　　　　 全部勾选包括 Save files automatically..  然后设置30 sec.</p>
+<p><strong>关闭自动检测新版本更新：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Updates -&gt; 去掉 Automatically check updates for…</p>
+<p><strong>关闭IDEA的使用习惯统计：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Usage Statistics -&gt; 去掉 Allow sending…</p>
+<p>=======================================================================================================</p>
+<p><strong>通过 Ctrl + 鼠标调整字体：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Mouse 标签项 -&gt; 勾选 Change font size (Zoom) with Ctrl + Mouse Wheel</p>
+<p><strong>让光标不随意定位：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Virtual Space 标签项 -&gt; 去掉 Allow placement of caret after end of line</p>
+<p><strong>显示虚拟空间：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Virtual Space 标签项 -&gt; 勾选 Show virtual space at file bottom</p>
+<p><strong>去除每行多余空格：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Other 标签项 -&gt; 设置 Srip trailing spaces on Save，下拉选择 All</p>
+<p><strong>去除光滑滚动：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Scrolling 标签项 -&gt; 去掉 Smooth scrolling</p>
+<p><strong>自动 import 包：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Auto Import -&gt; 勾选 Optimize imports on the fly、Add unambiguous imports on the fly</p>
+<p><strong>显示行号：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Appearance -&gt; 勾选 Show line numbers</p>
+<p><strong>显示空白符：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Appearance -&gt; 勾选 Show whitespaces</p>
+<p><strong>代码自动补齐(针对小写)：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Completion -&gt; Code Completion 标签项 -&gt; 设置 Case sensitive completion：none</p>
+<p>　　　　　　　　　　　勾选 Autopopup documentation in (ms) ： 200，勾选 Parameter in (ms) ：200</p>
+<p><strong>代码折叠：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Folding -&gt; 去掉 One-line methods</p>
+<p><strong>用*标识编辑过的文件：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Editor Tabs -&gt; Tab Appearance 标签项 -&gt; 勾选 Mark modified tabs with asterisk</p>
+<p><strong>限制 Tab 标签页数量：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Editor Tabs -&gt; Tab Closing Policy 标签项 -&gt; 设置 Tab limit ：20</p>
+<p><strong>输入“右}”时，不要格式化代码块：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Smart Keys -&gt; 去掉 Reformat block on typing ‘}’</p>
+<p>　　　　　　　　　　　设置 Reformat on paste ：None</p>
+<p><strong>代码字体风格：</strong> File -&gt; Settings -&gt; Editor -&gt; Colors &amp; Fonts -&gt; Font -&gt; 选择 Darcula 设计，点击 Save As备份一套然后编辑</p>
+<p>　　　　　　　　　　　修改 Primary font 的字体，勾选 Show only monospaced fonts，只显示等宽字体</p>
+<p><strong>设置光标所在行的背景：</strong> File -&gt; Settings -&gt; Editor -&gt; Colors &amp; Fonts -&gt; General -&gt; Editor -&gt; Caret row -&gt; Background</p>
+<p><strong>取消代码拼写检查：</strong> File -&gt; Settings -&gt; Editor -&gt; Inspections -&gt; Spelling -&gt; Typo -&gt; 去掉 Process code、Process literals、Process comments</p>
+<p><strong>统一编码格式：</strong> File -&gt; Settings -&gt; Editor -&gt; File Encodings -&gt; 设置 IDE Encoding、Project Encoding、Defalut encoding for properties files</p>
+<p>　　　　　　　　　　　勾选 Transparent native -to-ascii conversion</p>
+<p><strong>过滤的文件类型及目录：</strong> File -&gt; Settings -&gt; Editor -&gt; File Types -&gt; Ignore files and folders -&gt; 添加 <code>*.iml;*.idea;*.classpath;*.project;*.settings;target;</code></p>
+<p>=======================================================================================================</p>
+<p><strong>禁用插件：</strong> File -&gt; Settings -&gt; Plugins -&gt; 如：ASP、Cloud Foundry integration、CloudBees integration、CVS Integration、Flash/Flex Support、</p>
+<p>　　　　　　　　　　　TFS Integration、Google App Engine Integration</p>
+<p>======================================================================================================= </p>
+<p><strong>备份个性化设置：</strong> File -&gt; Export Settings</p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+        
+          <a class="article-more-a" href="/2018/02/22/180222-IDEA-settings/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IDEA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/22/180222-IDEA-settings/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-180221-nodejs-modules-Path" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -977,88 +1102,6 @@
 
 
   
-    <article id="post-180208-Hibernate-saveOrUpdate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/180208-Hibernate-saveOrUpdate/">【摘】Hibernate的saveOrUpdate方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/08/180208-Hibernate-saveOrUpdate/" class="archive-article-date">
-  	<time datetime="2018-02-08T07:35:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Hibernate中，最核心的概念就是对PO的状态管理。一个PO有三种状态： </p>
-<p>1、未被持久化的VO<br>此时就是一个内存对象VO，由JVM管理生命周期 </p>
-<p>2、已被持久化的PO，并且在Session生命周期内<br>此时映射数据库数据，由数据库管理生命周期 </p>
-<p>3、曾被持久化过，但现在和Session已经detached了，以VO的身份在运行<br>这种和Session已经detached的PO还能够进入另一个Session，继续进行PO状态管理，此时它就成为PO的第二种状态了。<strong>这种PO实际上是跨了Session进行了状态维护的。 </strong></p>
-<p>在传统的JDO1.x中，PO只有前面两种状态，一个PO一旦脱离PM，就丧失了状态了，不再和数据库数据关联，成为一个纯粹的内存VO，它即使进入一个新的PM，也不能恢复它的状态了。 </p>
-<p>Hibernate强的地方就在于，一个PO脱离Session之后，还能保持状态，再进入一个新的Session之后，就恢复状态管理的能力，但此时状态管理需要使用session.update或者session.saveOrUpdate，这就是Hibernate Reference中提到的“requires a slightly different programming model ” </p>
-<p>现在正式进入本话题：<br>
-        
-          <a class="article-more-a" href="/2018/02/08/180208-Hibernate-saveOrUpdate/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/08/180208-Hibernate-saveOrUpdate/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1152,6 +1195,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1160,19 +1207,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1184,23 +1219,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bytecode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1208,15 +1235,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CLI</a>
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1233,10 +1252,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1264,15 +1279,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1284,11 +1295,59 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello</a>
+                <a href="javascript:void(0)" class="js-tag color4">CLI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">bytecode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">temp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境变量</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1304,23 +1363,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境变量</a>
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
             
             <div class="clearfix"></div>

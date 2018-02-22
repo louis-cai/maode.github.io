@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2018-02-21T03:48:53.289Z</updated>
+  <updated>2018-02-22T15:05:21.476Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -14,6 +14,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【转】IDEA配置优化</title>
+    <link href="maode.github.io/2018/02/22/180222-IDEA-settings/"/>
+    <id>maode.github.io/2018/02/22/180222-IDEA-settings/</id>
+    <published>2018-02-22T14:55:24.000Z</published>
+    <updated>2018-02-22T15:05:21.476Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>转自：</strong> # <a href="http://www.cnblogs.com/playcode/p/5588707.html" target="_blank" rel="external">Intellij IDEA配置优化</a></p>
+<p><strong>1. 优化JVM参数</strong></p>
+<p>　　修改 IntelliJ IDEA 2016.1.2/bin/idea.exe.vmoptions【记得备份】文件，如果是x64系统，修改idea64.exe.vmoptions文件中的参数，具体参数如下：</p>
+<p>-Xms512m<br>-Xmx750m<br>-Xmn264m<br>-XX:MaxPermSize=350m<br>-XX:PermSize=128m<br>-XX:ReservedCodeCacheSize=240m<br>-Xverify:none<br>-Xnoclassgc<br>-XX:+UseParNewGC<br>-XX:+UseConcMarkSweepGC<br>-XX:SoftRefLRUPolicyMSPerMB=50<br>-ea<br>-server<br>-Dsun.io.useCanonCaches=false<br>-Dsun.awt.keepWorkingSetOnMinimize=true<br>-Djava.net.preferIPv4Stack=true<br>-XX:+HeapDumpOnOutOfMemoryError<br>-XX:-OmitStackTraceInFastThrow</p>
+<p>　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度</p>
+<p>　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能</p>
+<p>　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的而启动的过程中无需装入类，缩短了启动时间</p>
+<p>　　　　-XX:+UseParNewGC 使用并行收集算法</p>
+<p>　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集</p>
+<p>　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，当你重新回到IDEA，能够被快速显示，而不是由灰白的界面逐渐显现整个界面，加快回复到原界面的速度。</p>
+<p><strong>2. 基本常用设置</strong></p>
+<p><strong>设置外观字体：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; Appearance -&gt; 勾选 Override default fonts by (not Recommended)</p>
+<p>　　　　　　　　　　　　　设置 Name：微软雅黑、Size：12、Presentation Mode：24</p>
+<p>　　　　　　　　　　　　　去掉 Animate windows，勾选 Show tool window bars</p>
+<p><strong>启动时不打开工程：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Startup/Shutdown 标签项 -&gt; 去掉 Reopen last project on startup</p>
+<p><strong>关闭确认退出选项：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Startup/Shutdown 标签项 -&gt; 去掉 Confirm application exit</p>
+<p><strong>在同一窗口打开工程：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Project Opening 标签项 -&gt; 勾选 Open project in ths same window</p>
+<p><strong>设置自动保存：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Synchronization 标签项 -&gt; </p>
+<p>　　　　　　　　　　　　　 全部勾选包括 Save files automatically..  然后设置30 sec.</p>
+<p><strong>关闭自动检测新版本更新：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Updates -&gt; 去掉 Automatically check updates for…</p>
+<p><strong>关闭IDEA的使用习惯统计：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Usage Statistics -&gt; 去掉 Allow sending…</p>
+<p>=======================================================================================================</p>
+<p><strong>通过 Ctrl + 鼠标调整字体：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Mouse 标签项 -&gt; 勾选 Change font size (Zoom) with Ctrl + Mouse Wheel</p>
+<p><strong>让光标不随意定位：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Virtual Space 标签项 -&gt; 去掉 Allow placement of caret after end of line</p>
+<p><strong>显示虚拟空间：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Virtual Space 标签项 -&gt; 勾选 Show virtual space at file bottom</p>
+<p><strong>去除每行多余空格：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Other 标签项 -&gt; 设置 Srip trailing spaces on Save，下拉选择 All</p>
+<p><strong>去除光滑滚动：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Scrolling 标签项 -&gt; 去掉 Smooth scrolling</p>
+<p><strong>自动 import 包：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Auto Import -&gt; 勾选 Optimize imports on the fly、Add unambiguous imports on the fly</p>
+<p><strong>显示行号：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Appearance -&gt; 勾选 Show line numbers</p>
+<p><strong>显示空白符：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Appearance -&gt; 勾选 Show whitespaces</p>
+<p><strong>代码自动补齐(针对小写)：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Completion -&gt; Code Completion 标签项 -&gt; 设置 Case sensitive completion：none</p>
+<p>　　　　　　　　　　　勾选 Autopopup documentation in (ms) ： 200，勾选 Parameter in (ms) ：200</p>
+<p><strong>代码折叠：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Folding -&gt; 去掉 One-line methods</p>
+<p><strong>用*标识编辑过的文件：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Editor Tabs -&gt; Tab Appearance 标签项 -&gt; 勾选 Mark modified tabs with asterisk</p>
+<p><strong>限制 Tab 标签页数量：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Editor Tabs -&gt; Tab Closing Policy 标签项 -&gt; 设置 Tab limit ：20</p>
+<p><strong>输入“右}”时，不要格式化代码块：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Smart Keys -&gt; 去掉 Reformat block on typing ‘}’</p>
+<p>　　　　　　　　　　　设置 Reformat on paste ：None</p>
+<p><strong>代码字体风格：</strong> File -&gt; Settings -&gt; Editor -&gt; Colors &amp; Fonts -&gt; Font -&gt; 选择 Darcula 设计，点击 Save As备份一套然后编辑</p>
+<p>　　　　　　　　　　　修改 Primary font 的字体，勾选 Show only monospaced fonts，只显示等宽字体</p>
+<p><strong>设置光标所在行的背景：</strong> File -&gt; Settings -&gt; Editor -&gt; Colors &amp; Fonts -&gt; General -&gt; Editor -&gt; Caret row -&gt; Background</p>
+<p><strong>取消代码拼写检查：</strong> File -&gt; Settings -&gt; Editor -&gt; Inspections -&gt; Spelling -&gt; Typo -&gt; 去掉 Process code、Process literals、Process comments</p>
+<p><strong>统一编码格式：</strong> File -&gt; Settings -&gt; Editor -&gt; File Encodings -&gt; 设置 IDE Encoding、Project Encoding、Defalut encoding for properties files</p>
+<p>　　　　　　　　　　　勾选 Transparent native -to-ascii conversion</p>
+<p><strong>过滤的文件类型及目录：</strong> File -&gt; Settings -&gt; Editor -&gt; File Types -&gt; Ignore files and folders -&gt; 添加 <code>*.iml;*.idea;*.classpath;*.project;*.settings;target;</code></p>
+<p>=======================================================================================================</p>
+<p><strong>禁用插件：</strong> File -&gt; Settings -&gt; Plugins -&gt; 如：ASP、Cloud Foundry integration、CloudBees integration、CVS Integration、Flash/Flex Support、</p>
+<p>　　　　　　　　　　　TFS Integration、Google App Engine Integration</p>
+<p>======================================================================================================= </p>
+<p><strong>备份个性化设置：</strong> File -&gt; Export Settings</p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;转自：&lt;/strong&gt; # &lt;a href=&quot;http://www.cnblogs.com/playcode/p/5588707.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Intellij IDEA配置优化&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 优化JVM参数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;　　修改 IntelliJ IDEA 2016.1.2/bin/idea.exe.vmoptions【记得备份】文件，如果是x64系统，修改idea64.exe.vmoptions文件中的参数，具体参数如下：&lt;/p&gt;
+&lt;p&gt;-Xms512m&lt;br&gt;-Xmx750m&lt;br&gt;-Xmn264m&lt;br&gt;-XX:MaxPermSize=350m&lt;br&gt;-XX:PermSize=128m&lt;br&gt;-XX:ReservedCodeCacheSize=240m&lt;br&gt;-Xverify:none&lt;br&gt;-Xnoclassgc&lt;br&gt;-XX:+UseParNewGC&lt;br&gt;-XX:+UseConcMarkSweepGC&lt;br&gt;-XX:SoftRefLRUPolicyMSPerMB=50&lt;br&gt;-ea&lt;br&gt;-server&lt;br&gt;-Dsun.io.useCanonCaches=false&lt;br&gt;-Dsun.awt.keepWorkingSetOnMinimize=true&lt;br&gt;-Djava.net.preferIPv4Stack=true&lt;br&gt;-XX:+HeapDumpOnOutOfMemoryError&lt;br&gt;-XX:-OmitStackTraceInFastThrow&lt;/p&gt;
+&lt;p&gt;　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度&lt;/p&gt;
+&lt;p&gt;　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能&lt;/p&gt;
+&lt;p&gt;　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的而启动的过程中无需装入类，缩短了启动时间&lt;/p&gt;
+&lt;p&gt;　　　　-XX:+UseParNewGC 使用并行收集算法&lt;/p&gt;
+&lt;p&gt;　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集&lt;/p&gt;
+&lt;p&gt;　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，当你重新回到IDEA，能够被快速显示，而不是由灰白的界面逐渐显现整个界面，加快回复到原界面的速度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 基本常用设置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置外观字体：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; Appearance -&amp;gt; 勾选 Override default fonts by (not Recommended)&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　　　设置 Name：微软雅黑、Size：12、Presentation Mode：24&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　　　去掉 Animate windows，勾选 Show tool window bars&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;启动时不打开工程：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; System Settings -&amp;gt; Startup/Shutdown 标签项 -&amp;gt; 去掉 Reopen last project on startup&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关闭确认退出选项：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; System Settings -&amp;gt; Startup/Shutdown 标签项 -&amp;gt; 去掉 Confirm application exit&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在同一窗口打开工程：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; System Settings -&amp;gt; Project Opening 标签项 -&amp;gt; 勾选 Open project in ths same window&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置自动保存：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; System Settings -&amp;gt; Synchronization 标签项 -&amp;gt; &lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　　　 全部勾选包括 Save files automatically..  然后设置30 sec.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关闭自动检测新版本更新：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; System Settings -&amp;gt; Updates -&amp;gt; 去掉 Automatically check updates for…&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关闭IDEA的使用习惯统计：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Appearance &amp;amp; Behavior -&amp;gt; System Settings -&amp;gt; Usage Statistics -&amp;gt; 去掉 Allow sending…&lt;/p&gt;
+&lt;p&gt;=======================================================================================================&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通过 Ctrl + 鼠标调整字体：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Mouse 标签项 -&amp;gt; 勾选 Change font size (Zoom) with Ctrl + Mouse Wheel&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;让光标不随意定位：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Virtual Space 标签项 -&amp;gt; 去掉 Allow placement of caret after end of line&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;显示虚拟空间：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Virtual Space 标签项 -&amp;gt; 勾选 Show virtual space at file bottom&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;去除每行多余空格：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Other 标签项 -&amp;gt; 设置 Srip trailing spaces on Save，下拉选择 All&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;去除光滑滚动：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Scrolling 标签项 -&amp;gt; 去掉 Smooth scrolling&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;自动 import 包：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Auto Import -&amp;gt; 勾选 Optimize imports on the fly、Add unambiguous imports on the fly&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;显示行号：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Appearance -&amp;gt; 勾选 Show line numbers&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;显示空白符：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Appearance -&amp;gt; 勾选 Show whitespaces&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码自动补齐(针对小写)：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Code Completion -&amp;gt; Code Completion 标签项 -&amp;gt; 设置 Case sensitive completion：none&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　勾选 Autopopup documentation in (ms) ： 200，勾选 Parameter in (ms) ：200&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码折叠：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Code Folding -&amp;gt; 去掉 One-line methods&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用*标识编辑过的文件：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Editor Tabs -&amp;gt; Tab Appearance 标签项 -&amp;gt; 勾选 Mark modified tabs with asterisk&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;限制 Tab 标签页数量：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Editor Tabs -&amp;gt; Tab Closing Policy 标签项 -&amp;gt; 设置 Tab limit ：20&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入“右}”时，不要格式化代码块：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; General -&amp;gt; Smart Keys -&amp;gt; 去掉 Reformat block on typing ‘}’&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　设置 Reformat on paste ：None&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码字体风格：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; Colors &amp;amp; Fonts -&amp;gt; Font -&amp;gt; 选择 Darcula 设计，点击 Save As备份一套然后编辑&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　修改 Primary font 的字体，勾选 Show only monospaced fonts，只显示等宽字体&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设置光标所在行的背景：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; Colors &amp;amp; Fonts -&amp;gt; General -&amp;gt; Editor -&amp;gt; Caret row -&amp;gt; Background&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;取消代码拼写检查：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; Inspections -&amp;gt; Spelling -&amp;gt; Typo -&amp;gt; 去掉 Process code、Process literals、Process comments&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;统一编码格式：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; File Encodings -&amp;gt; 设置 IDE Encoding、Project Encoding、Defalut encoding for properties files&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　勾选 Transparent native -to-ascii conversion&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;过滤的文件类型及目录：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Editor -&amp;gt; File Types -&amp;gt; Ignore files and folders -&amp;gt; 添加 &lt;code&gt;*.iml;*.idea;*.classpath;*.project;*.settings;target;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;=======================================================================================================&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;禁用插件：&lt;/strong&gt; File -&amp;gt; Settings -&amp;gt; Plugins -&amp;gt; 如：ASP、Cloud Foundry integration、CloudBees integration、CVS Integration、Flash/Flex Support、&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　TFS Integration、Google App Engine Integration&lt;/p&gt;
+&lt;p&gt;======================================================================================================= &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;备份个性化设置：&lt;/strong&gt; File -&amp;gt; Export Settings&lt;/p&gt;
+&lt;p&gt;暂时就这些，后面没有了！(=^ ^=)&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="IDEA" scheme="maode.github.io/tags/IDEA/"/>
+    
+  </entry>
   
   <entry>
     <title>nodejs安装的modules的环境变量配置</title>
@@ -2341,34 +2461,6 @@ GEQ - 大于或等于
     
     
       <category term="jstl" scheme="maode.github.io/tags/jstl/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RestController返回json和xml数据</title>
-    <link href="maode.github.io/2017/09/14/170914-RestController-json-xml/"/>
-    <id>maode.github.io/2017/09/14/170914-RestController-json-xml/</id>
-    <published>2017-09-14T07:32:41.000Z</published>
-    <updated>2017-09-28T06:32:00.675Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="实体类（POJO）"><a href="#实体类（POJO）" class="headerlink" title="实体类（POJO）"></a>实体类（POJO）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.model;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.model</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: Message.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:15:16 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> name 要设置的 name */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@return</span> text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getText</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> text;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/** <span class="doctag">@param</span> text 要设置的 text */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setText</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.text = text;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.code0.restController.controller;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.code0.restController.model.Message;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</div><div class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**  </span></div><div class="line"><span class="comment"> * <span class="doctag">@Title</span>: TestRestController.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@Package</span> org.code0.restController.controller</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span>: TestRestController.java</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Code0   </span></div><div class="line"><span class="comment"> * <span class="doctag">@date</span> 2017年9月14日 上午11:13:59 </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRestController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/testRestController/&#123;text&#125;"</span>)</div><div class="line">	<span class="meta">@ResponseBody</span></div><div class="line">	<span class="function"><span class="keyword">public</span>  Message <span class="title">message</span><span class="params">(@PathVariable String text)</span></span>&#123;</div><div class="line">		</div><div class="line">		Message msg=<span class="keyword">new</span> Message();</div><div class="line">		msg.setName(<span class="string">"jhon"</span>);</div><div class="line">		msg.setText(text);</div><div class="line">		<span class="keyword">return</span> msg;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="返回json"><a href="#返回json" class="headerlink" title="返回json"></a>返回json</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- jackson, RestController返回json格式数据依赖 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>访问： <a href="http://localhost:8080/testRestController/参数" target="_blank" rel="external">http://localhost:8080/testRestController/参数</a> 或 <a href="http://localhost:8080/testRestController/参数.json" target="_blank" rel="external">http://localhost:8080/testRestController/参数.json</a><br>返回： {“name”:”jhon”,”text”:”参数”}</p>
-<h2 id="返回xml"><a href="#返回xml" class="headerlink" title="返回xml"></a>返回xml</h2><p><strong>不需要额外增加第三方依赖，只需在实体类上添加<code>@XmlRootElement</code>注解即可。</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@XmlRootElement</span><span class="comment">//该注解设置请求返回xml</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String text;</div><div class="line">		…………</div><div class="line">		…………</div></pre></td></tr></table></figure></p>
-<p>访问：<a href="http://localhost:8080/testRestController/xxx" target="_blank" rel="external">http://localhost:8080/testRestController/xxx</a> 或 <a href="http://localhost:8080/testRestController/xxx.xml" target="_blank" rel="external">http://localhost:8080/testRestController/xxx.xml</a><br>返回：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">message</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>jhon<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">message</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>实体类上添加<code>@XmlRootElement</code>注解后，默认返回<code>xml</code>格式了，如果要返回<code>json</code>，url就要加上<code>.json</code>的后缀了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;实体类（POJO）&quot;&gt;&lt;a href=&quot;#实体类（POJO）&quot; class=&quot;headerlink&quot; title=&quot;实体类（POJO）&quot;&gt;&lt;/a&gt;实体类（POJO）&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; org.code0.restController.model;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.xml.bind.annotation.XmlRootElement;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@Title&lt;/span&gt;: Message.java&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@Package&lt;/span&gt; org.code0.restController.model&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@Description&lt;/span&gt;: Message.java&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@author&lt;/span&gt; Code0   &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * &lt;span class=&quot;doctag&quot;&gt;@date&lt;/span&gt; 2017年9月14日 上午11:15:16 &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Message&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; name */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; name 要设置的 name */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String name)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name = name;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; text */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;getText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;/** &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; text 要设置的 text */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String text)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.text = text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="springMVC" scheme="maode.github.io/tags/springMVC/"/>
     
   </entry>
   
