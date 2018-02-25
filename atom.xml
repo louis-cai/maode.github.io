@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="maode.github.io/"/>
-  <updated>2018-02-22T15:05:21.476Z</updated>
+  <updated>2018-02-25T15:35:43.792Z</updated>
   <id>maode.github.io/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MongoDB安装配置</title>
+    <link href="maode.github.io/2018/02/25/180225-MongoDB-install/"/>
+    <id>maode.github.io/2018/02/25/180225-MongoDB-install/</id>
+    <published>2018-02-25T13:36:17.000Z</published>
+    <updated>2018-02-25T15:35:43.792Z</updated>
+    
+    <content type="html"><![CDATA[<p>官网最新版（社区版）：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external">https://www.mongodb.com/download-center#community</a></p>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>安装过程中选择  “Custom(自定义)” 可以自定义安装路径。</p>
+<p>安装时注意左下角的 “install mongo compass（安装指南）” 取消勾选。否则会卡住。无法完成安装（3.6版本的）</p>
+<h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><h3 id="创建数据和日志文件存放位置："><a href="#创建数据和日志文件存放位置：" class="headerlink" title="创建数据和日志文件存放位置："></a>创建数据和日志文件存放位置：</h3><p>如：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\data</div><div class="line"><span class="built_in">mkdir</span> D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\logs</div></pre></td></tr></table></figure></p>
+<h3 id="启动MongoDB服务"><a href="#启动MongoDB服务" class="headerlink" title="启动MongoDB服务"></a>启动MongoDB服务</h3><p>在bin目录下执行以下命令（如果报错<a href="#安装完执行命令时报错">看这里</a>）：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod.exe --dbpath "D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\data"</div></pre></td></tr></table></figure></p>
+<p><code>--dbpath</code>指向刚才新建的数据库目录。如果不指定，默认会在C盘创建一个文件夹用来存放数据。<br>正常的话控制台会打印一大串信息，开头是启动的进程id，系统信息等等，最后一行是端口信息。如：<code>2018-02-25T22:05:23.019+0800 I NETWORK  [initandlisten] waiting for connections on port 27017</code>。</p>
+<h3 id="测试链接"><a href="#测试链接" class="headerlink" title="测试链接"></a>测试链接</h3><p>目前服务已经启动，处于等待链接状态，这时另外打开一个cmd命令窗口用来测试一下链接。<br>（记得如果没有配置环境变量的话，要切换到bin目录下去执行命令）<br>在新打开的cmd命令窗口执行命令 <code>mongo</code> 如果没问题的话，控制台会打印链接信息。如下：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">code0</span>&gt;<span class="title">mongo</span></span></div><div class="line"><span class="function"><span class="title">MongoDB</span> <span class="title">shell</span> <span class="title">version</span> <span class="title">v3</span>.6.3</span></div><div class="line"><span class="function"><span class="title">connecting</span> <span class="title">to</span>: <span class="title">mongodb</span>://127.0.0.1:27017</span></div><div class="line"><span class="function"><span class="title">MongoDB</span> <span class="title">server</span> <span class="title">version</span>: 3.6.3</span></div><div class="line"><span class="function">.................后面的省略</span></div></pre></td></tr></table></figure></p>
+<p>同时另一个用来启动服务的窗口也会有对应的链接信息显示。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">06</span>:<span class="number">17</span>.<span class="number">176</span>+<span class="number">0800</span> I NETWORK  [listener] connection accepted from <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">58527</span> #<span class="number">1</span> (<span class="number">1</span> connection now open)</div></pre></td></tr></table></figure></p>
+<p>这时就代表链接成功了，可以敲几个命令感觉一下。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; show dbs</div><div class="line">admin   <span class="number">0</span>.<span class="number">000</span>GB</div><div class="line">config  <span class="number">0</span>.<span class="number">000</span>GB</div><div class="line">local   <span class="number">0</span>.<span class="number">000</span>GB</div><div class="line">&gt; use admin</div><div class="line">switched to db admin</div><div class="line">&gt; db.shutdownServer()</div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">357</span>+<span class="number">0800</span> I NETWORK  [thread1] Socket recv() 远程主机强迫关闭了一个现有的连接。 <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">27017</span></div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>这样就算安装成功了，以上为刚完成安装后默认的三个库。这时可以关闭服务了。使用admin库执行<code>db.shutdownServer()</code>命令，关闭服务。<br>这时启动服务的cmd窗口也会有对应的信息显示。如：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">47</span>.<span class="number">830</span>+<span class="number">0800</span> I STORAGE  [conn1] WiredTigerKVEngine shutting down</div><div class="line"></div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">353</span>+<span class="number">0800</span> I STORAGE  [conn1] shutdown: removing <span class="built_in">fs</span> lock...</div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">353</span>+<span class="number">0800</span> I CONTROL  [conn1] now exiting</div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">354</span>+<span class="number">0800</span> I CONTROL  [conn1] shutting down with code:<span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>然后关闭这两个cmd窗口，测试结束。</p>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>安装完成后，将MongoDB路径下的bin目录加入Path，方便使用，否则每次都要进入bin目录下敲命令，太麻烦。</p>
+<h3 id="将MongoDB服务注册为windows服务"><a href="#将MongoDB服务注册为windows服务" class="headerlink" title="将MongoDB服务注册为windows服务"></a>将MongoDB服务注册为windows服务</h3><p>用管理员身份打开cmd窗口（非管理员用户，试了一下不管用）执行以下命令。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod --logpath "D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\logs\mongodb.log" --logappend -dbpath "D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\data" --serviceName "mongodb" --install</div></pre></td></tr></table></figure></p>
+<p>以上参数含义：<br><code>--logpath</code> 指向刚才创建的用来存放日志文件的路径。<br><code>-dbpath</code> 指向刚才创建的用来存放数据库文件的路径。<br><code>--logappend</code> 以追加的方式记录日志。<br><code>--serviceName</code> 注册的服务名。<br>注册完成后，可以在cmd窗口执行<code>services.msc</code>命令，在弹出的服务列表中能够看到我们新注册的名字为“mongodb”的服务，默认是自动启动的，如果不想自动启动，可以改为手动。手动启动的方式和启动其它windows服务是一样的。<code>net start mongodb</code>。</p>
+<p><strong>关闭服务</strong>推荐使用上面介绍的 <code>db.shutdownServer()</code> 命令。</p>
+<p>如果要从windows服务中<strong>注销（删除）该服务</strong>，使用命令：<br><code>mongod.exe --remove --serviceName &quot;mongodb&quot;</code></p>
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><p>Robo 3T： <a href="https://robomongo.org/download" target="_blank" rel="external">https://robomongo.org/download</a></p>
+<h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><h3 id="安装完执行命令时报错"><a href="#安装完执行命令时报错" class="headerlink" title="安装完执行命令时报错"></a>安装完执行命令时报错</h3><p>安装完成后使用时报错缺少<code>api-ms-win-crt-runtime-l1-1-0.dll</code>。试了几种方法，最后用下面这种方法搞定了。</p>
+<p>缺少的dll文件包含在windows的某个更新文件中去<a href="https://support.microsoft.com/zh-tw/kb/2999226" target="_blank" rel="external">这个地址</a>安装缺少的更新文件。</p>
+<p>解决方法参考：<a href="https://helpx.adobe.com/tw/creative-cloud/kb/error_on_launch.html" target="_blank" rel="external">https://helpx.adobe.com/tw/creative-cloud/kb/error_on_launch.html</a></p>
+<p>其它内容参考：<a href="http://www.cnblogs.com/sufferingStriver/p/mongodberror.html" target="_blank" rel="external">http://www.cnblogs.com/sufferingStriver/p/mongodberror.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;官网最新版（社区版）：&lt;a href=&quot;https://www.mongodb.com/download-center#community&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.mongodb.com/download-ce
+    
+    </summary>
+    
+    
+      <category term="MongoDB" scheme="maode.github.io/tags/MongoDB/"/>
+    
+      <category term="Database" scheme="maode.github.io/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>【转】IDEA配置优化</title>
@@ -2421,46 +2464,6 @@ GEQ - 大于或等于
     
     
       <category term="javap" scheme="maode.github.io/tags/javap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JSTL的版本还有aliyun maven的故事</title>
-    <link href="maode.github.io/2017/09/17/170916-JSTL/"/>
-    <id>maode.github.io/2017/09/17/170916-JSTL/</id>
-    <published>2017-09-17T07:32:41.000Z</published>
-    <updated>2017-09-28T03:56:35.598Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一个比较曲折的故事~~，过程比较郁闷。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
-<p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
-<p><img src="/assets/blogImg/170916-jstl-1.png" alt="170916-jstl-1"></p>
-<a id="more"></a>
-<p>配置好依赖（jsp-api和servlet-api的依赖都配了），运行项目，报错：Failed to load or instantiate TagLibraryValidator class: org.apache.taglibs.standard.tlv.JstlCoreTLV。<br>不能加载<code>JstlCoreTLV</code>这个类，打开Libraries查看，类是存在的：</p>
-<p><img src="/assets/blogImg/170916-jstl-3.png" alt="170916-jstl-3"></p>
-<p>然后我就开始了各种Google，各种百度。网上大多是在讲依赖和jar包冲突的问题，仔细检查了一下，并没有这两种情况。<br>接着搜~~，然后搜到了有人说可能是，pom文件依赖只引入的接口标准，而并没有引入具体实现。是吗？好像不是！</p>
-<p><img src="/assets/blogImg/170916-jstl-4.png" alt="170916-jstl-4"></p>
-<p>唔~~~ 凌乱了。不知道怎么回事了。我只好试着换个其他版本看看。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- jstl --&gt;</span></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/javax.servlet/jstl --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>更换完成后，一运行，OK了 没问题了。<br>但是  为什么呢？？？？？打开这个版本的jar文件结构和刚才的没有什么区别啊？ 于是我决定看一下这两个jar文件具体有什么区别。<br>两个jar文件，管用的大小404KB，报错的400KB，看来是有点区别的,为什么一个大一个小？会不会是在下载的过程中jar包数据没有下载完整，于是决定手动下载试试，这个时候发现了本文开头说到的问题  <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 和 <a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a> 上面都没有该版本的jar文件。</p>
-<p><img src="/assets/blogImg/170916-jstl-7.png" alt="170916-jstl-7"></p>
-<p>那么我的jar文件是从哪里下载的呢？因为我使用的阿里云的maven仓库，肯定是从阿里云下载的了。随便打开了几个类，发现问题了……</p>
-<p><strong>400K的<code>javax.servlet.jsp.jstl.jstl</code>版本</strong></p>
-<p><img src="/assets/blogImg/170916-jstl-5.png" alt="170916-jstl-5"></p>
-<p><strong>404K的<code>javax.servlet.jstl</code>版本</strong></p>
-<p><img src="/assets/blogImg/170916-jstl-6.png" alt="170916-jstl-6"></p>
-<p>至此已经发现问题的根源所在了。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>我试着将mvn的远程仓库配置成 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 或 <a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a> jar文件是无法成功下载到本地仓库的，Eclipse都会直接提示找不到jar的错，编译就会报错，但是用阿里云的远程maven仓库就不会，仔细看了一下，原来阿里云的maven仓库中<code>javax.servlet.jsp.jstl.jstl</code>有三个仓库,默认的<code>Central</code>仓库中也是只有<code>sources</code>的jar的，但是另外两个仓库<code>HongKong Nexus</code> 和 <code>jcenter</code>中都有<code>jstl-1.2.jsr</code>估计那个400K的jar就是从这两个仓库中下载下来的，这样不大好。~不大好</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一个比较曲折的故事~~，过程比较郁闷。&lt;br&gt;今天在项目中需要用到jstl，于是就上 &lt;a href=&quot;http://mvnrepository.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mvnrepository.com/&lt;/a&gt; 搜索，一搜出来一大片，关于jstl的实现乱七八糟。&lt;/p&gt;
-&lt;p&gt;一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/blogImg/170916-jstl-1.png&quot; alt=&quot;170916-jstl-1&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="jstl" scheme="maode.github.io/tags/jstl/"/>
     
   </entry>
   
