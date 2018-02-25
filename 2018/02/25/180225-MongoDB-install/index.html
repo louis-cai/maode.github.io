@@ -15,7 +15,7 @@
 <meta property="og:url" content="maode.github.io/2018/02/25/180225-MongoDB-install/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
 <meta property="og:description" content="官网最新版（社区版）：https://www.mongodb.com/download-center#community 安装过程安装过程中选择  “Custom(自定义)” 可以自定义安装路径。 安装时注意左下角的 “install mongo compass（安装指南）” 取消勾选。否则会卡住。无法完成安装（3.6版本的） 配置过程创建数据和日志文件存放位置：如：12mkdir D:\soft">
-<meta property="og:updated_time" content="2018-02-25T15:35:43.792Z">
+<meta property="og:updated_time" content="2018-02-25T15:59:02.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB安装配置">
 <meta name="twitter:description" content="官网最新版（社区版）：https://www.mongodb.com/download-center#community 安装过程安装过程中选择  “Custom(自定义)” 可以自定义安装路径。 安装时注意左下角的 “install mongo compass（安装指南）” 取消勾选。否则会卡住。无法完成安装（3.6版本的） 配置过程创建数据和日志文件存放位置：如：12mkdir D:\soft">
@@ -175,9 +175,9 @@
 <p>然后关闭这两个cmd窗口，测试结束。</p>
 <h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>安装完成后，将MongoDB路径下的bin目录加入Path，方便使用，否则每次都要进入bin目录下敲命令，太麻烦。</p>
 <h3 id="将MongoDB服务注册为windows服务"><a href="#将MongoDB服务注册为windows服务" class="headerlink" title="将MongoDB服务注册为windows服务"></a>将MongoDB服务注册为windows服务</h3><p>用管理员身份打开cmd窗口（非管理员用户，试了一下不管用）执行以下命令。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod --logpath "D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\logs\mongodb.log" --logappend -dbpath "D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\data" --serviceName "mongodb" --install</div></pre></td></tr></table></figure></p>
-<p>以上参数含义：<br><code>--logpath</code> 指向刚才创建的用来存放日志文件的路径。<br><code>-dbpath</code> 指向刚才创建的用来存放数据库文件的路径。<br><code>--logappend</code> 以追加的方式记录日志。<br><code>--serviceName</code> 注册的服务名。<br>注册完成后，可以在cmd窗口执行<code>services.msc</code>命令，在弹出的服务列表中能够看到我们新注册的名字为“mongodb”的服务，默认是自动启动的，如果不想自动启动，可以改为手动。手动启动的方式和启动其它windows服务是一样的。<code>net start mongodb</code>。</p>
+<p>以上参数含义：<br><code>--logpath</code> 指向刚才创建的用来存放日志文件的路径。<br><code>-dbpath</code> 指向刚才创建的用来存放数据库文件的路径。<br><code>--logappend</code> 以追加的方式记录日志。<br><code>--serviceName</code> 注册的服务名。<br>注册完成后，可以在cmd窗口执行<code>services.msc</code>命令，在弹出的服务列表中能够看到我们新注册的名字为“mongodb”的服务，默认是自动启动的，如果不想自动启动，可以改为手动。手动启动的方式和启动其它windows服务是一样的。<code>net start mongodb</code>(以管理员身份运行否则”拒绝访问”)。</p>
 <p><strong>关闭服务</strong>推荐使用上面介绍的 <code>db.shutdownServer()</code> 命令。</p>
-<p>如果要从windows服务中<strong>注销（删除）该服务</strong>，使用命令：<br><code>mongod.exe --remove --serviceName &quot;mongodb&quot;</code></p>
+<p>如果要从windows服务中<strong>注销（删除）该服务</strong>，使用命令：<br><code>mongod --remove --serviceName &quot;mongodb&quot;</code></p>
 <h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><p>Robo 3T： <a href="https://robomongo.org/download" target="_blank" rel="external">https://robomongo.org/download</a></p>
 <h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><h3 id="安装完执行命令时报错"><a href="#安装完执行命令时报错" class="headerlink" title="安装完执行命令时报错"></a>安装完执行命令时报错</h3><p>安装完成后使用时报错缺少<code>api-ms-win-crt-runtime-l1-1-0.dll</code>。试了几种方法，最后用下面这种方法搞定了。</p>
 <p>缺少的dll文件包含在windows的某个更新文件中去<a href="https://support.microsoft.com/zh-tw/kb/2999226" target="_blank" rel="external">这个地址</a>安装缺少的更新文件。</p>
@@ -405,15 +405,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -425,7 +417,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,7 +449,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CLI</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,10 +477,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CLI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -489,11 +485,67 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">getter-setter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">lombok</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,58 +570,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DTO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">getter-setter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">lombok</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境变量</a>
               </li>
              
               <li class="article-tag-list-item">
