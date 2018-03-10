@@ -15,7 +15,7 @@
 <meta property="og:url" content="maode.github.io/2018/02/25/180225-MongoDB-install/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
 <meta property="og:description" content="官网最新版（社区版）：https://www.mongodb.com/download-center#community 安装过程安装过程中选择  “Custom(自定义)” 可以自定义安装路径。 安装时注意左下角的 “install mongo compass（安装指南）” 取消勾选。否则会卡住。无法完成安装（3.6版本的） 配置过程创建数据和日志文件存放位置：如：12mkdir D:\soft">
-<meta property="og:updated_time" content="2018-02-25T15:59:02.152Z">
+<meta property="og:updated_time" content="2018-03-10T03:06:04.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB安装配置">
 <meta name="twitter:description" content="官网最新版（社区版）：https://www.mongodb.com/download-center#community 安装过程安装过程中选择  “Custom(自定义)” 可以自定义安装路径。 安装时注意左下角的 “install mongo compass（安装指南）” 取消勾选。否则会卡住。无法完成安装（3.6版本的） 配置过程创建数据和日志文件存放位置：如：12mkdir D:\soft">
@@ -168,7 +168,9 @@
 <h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><h3 id="创建数据和日志文件存放位置："><a href="#创建数据和日志文件存放位置：" class="headerlink" title="创建数据和日志文件存放位置："></a>创建数据和日志文件存放位置：</h3><p>如：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\data</div><div class="line"><span class="built_in">mkdir</span> D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\logs</div></pre></td></tr></table></figure></p>
 <h3 id="启动MongoDB服务"><a href="#启动MongoDB服务" class="headerlink" title="启动MongoDB服务"></a>启动MongoDB服务</h3><p>在bin目录下执行以下命令（如果报错<a href="#安装完执行命令时报错">看这里</a>）：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod.exe --dbpath "D:\software\MongoDB\Server\<span class="number">3</span>.<span class="number">6</span>\data"</div></pre></td></tr></table></figure></p>
 <p><code>--dbpath</code>指向刚才新建的数据库目录。如果不指定，默认会在C盘创建一个文件夹用来存放数据。<br>正常的话控制台会打印一大串信息，开头是启动的进程id，系统信息等等，最后一行是端口信息。如：<code>2018-02-25T22:05:23.019+0800 I NETWORK  [initandlisten] waiting for connections on port 27017</code>。</p>
-<h3 id="测试链接"><a href="#测试链接" class="headerlink" title="测试链接"></a>测试链接</h3><p>目前服务已经启动，处于等待链接状态，这时另外打开一个cmd命令窗口用来测试一下链接。<br>（记得如果没有配置环境变量的话，要切换到bin目录下去执行命令）<br>在新打开的cmd命令窗口执行命令 <code>mongo</code> 如果没问题的话，控制台会打印链接信息。如下：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">code0</span>&gt;<span class="title">mongo</span></span></div><div class="line"><span class="function"><span class="title">MongoDB</span> <span class="title">shell</span> <span class="title">version</span> <span class="title">v3</span>.6.3</span></div><div class="line"><span class="function"><span class="title">connecting</span> <span class="title">to</span>: <span class="title">mongodb</span>://127.0.0.1:27017</span></div><div class="line"><span class="function"><span class="title">MongoDB</span> <span class="title">server</span> <span class="title">version</span>: 3.6.3</span></div><div class="line"><span class="function">.................后面的省略</span></div></pre></td></tr></table></figure></p>
+<h3 id="测试链接"><a href="#测试链接" class="headerlink" title="测试链接"></a>测试链接</h3><p>目前服务已经启动，处于等待链接状态，这时另外打开一个cmd命令窗口用来测试一下链接。<br>（记得如果没有配置环境变量的话，要切换到bin目录下去执行命令）<br>在新打开的cmd命令窗口执行命令 <code>mongo</code> 如果没问题的话，控制台会打印链接信息。如下：</p>
+<a id="more"></a>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">code0</span>&gt;<span class="title">mongo</span></span></div><div class="line"><span class="function"><span class="title">MongoDB</span> <span class="title">shell</span> <span class="title">version</span> <span class="title">v3</span>.6.3</span></div><div class="line"><span class="function"><span class="title">connecting</span> <span class="title">to</span>: <span class="title">mongodb</span>://127.0.0.1:27017</span></div><div class="line"><span class="function"><span class="title">MongoDB</span> <span class="title">server</span> <span class="title">version</span>: 3.6.3</span></div><div class="line"><span class="function">.................后面的省略</span></div></pre></td></tr></table></figure>
 <p>同时另一个用来启动服务的窗口也会有对应的链接信息显示。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">06</span>:<span class="number">17</span>.<span class="number">176</span>+<span class="number">0800</span> I NETWORK  [listener] connection accepted from <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">58527</span> #<span class="number">1</span> (<span class="number">1</span> connection now open)</div></pre></td></tr></table></figure></p>
 <p>这时就代表链接成功了，可以敲几个命令感觉一下。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; show dbs</div><div class="line">admin   <span class="number">0</span>.<span class="number">000</span>GB</div><div class="line">config  <span class="number">0</span>.<span class="number">000</span>GB</div><div class="line">local   <span class="number">0</span>.<span class="number">000</span>GB</div><div class="line">&gt; use admin</div><div class="line">switched to db admin</div><div class="line">&gt; db.shutdownServer()</div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">357</span>+<span class="number">0800</span> I NETWORK  [thread1] Socket recv() 远程主机强迫关闭了一个现有的连接。 <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">27017</span></div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
 <p>这样就算安装成功了，以上为刚完成安装后默认的三个库。这时可以关闭服务了。使用admin库执行<code>db.shutdownServer()</code>命令，关闭服务。<br>这时启动服务的cmd窗口也会有对应的信息显示。如：<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">47</span>.<span class="number">830</span>+<span class="number">0800</span> I STORAGE  [conn1] WiredTigerKVEngine shutting down</div><div class="line"></div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">353</span>+<span class="number">0800</span> I STORAGE  [conn1] shutdown: removing <span class="built_in">fs</span> lock...</div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">353</span>+<span class="number">0800</span> I CONTROL  [conn1] now exiting</div><div class="line"><span class="number">2018</span>-<span class="number">02</span>-<span class="number">25</span>T22:<span class="number">44</span>:<span class="number">48</span>.<span class="number">354</span>+<span class="number">0800</span> I CONTROL  [conn1] shutting down with code:<span class="number">0</span></div></pre></td></tr></table></figure></p>
@@ -280,8 +282,8 @@
     </a>
   
   
-    <a href="/2018/02/22/180222-IDEA-settings/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【转】IDEA配置优化</div>
+    <a href="/2018/02/21/180221-nodejs-modules-Path/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nodejs安装的modules的环境变量配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -426,19 +428,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,11 +448,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,27 +464,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javap</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CLI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,6 +485,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,15 +520,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,6 +548,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
@@ -566,15 +564,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,7 +576,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">

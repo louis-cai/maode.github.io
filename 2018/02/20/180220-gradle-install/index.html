@@ -15,7 +15,7 @@
 <meta property="og:url" content="maode.github.io/2018/02/20/180220-gradle-install/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
 <meta property="og:description" content="下载安装官网下载压缩包解压安装：https://gradle.org/releases/ 其它安装方式见：https://gradle.org/install/ 配置环境变量： 在环境变量中添加一个变量GRADLE_HOME指向gradle的根目录。 1setx GRADLE_HOME &quot;C:\software\gradle-4.5.1&quot;  将gradle的可执行文件路径追加至Path。 1set">
-<meta property="og:updated_time" content="2018-02-20T13:55:00.811Z">
+<meta property="og:updated_time" content="2018-03-10T04:22:53.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gradle安装配置">
 <meta name="twitter:description" content="下载安装官网下载压缩包解压安装：https://gradle.org/releases/ 其它安装方式见：https://gradle.org/install/ 配置环境变量： 在环境变量中添加一个变量GRADLE_HOME指向gradle的根目录。 1setx GRADLE_HOME &quot;C:\software\gradle-4.5.1&quot;  将gradle的可执行文件路径追加至Path。 1set">
@@ -172,7 +172,9 @@
 <figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setx <span class="built_in">Path</span> "<span class="variable">%Path%</span>;<span class="variable">%GRADLE_HOME%</span>\bin"</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="自定义gradle本地仓库"><a href="#自定义gradle本地仓库" class="headerlink" title="自定义gradle本地仓库"></a>自定义gradle本地仓库</h3><p>有几种不同的方式，大多采用配置环境变量的方式。<br>设置一个名称为<code>GRADLE_USER_HOME</code>的环境变量指向自定义的仓库目录。<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setx GRADLE_USER_HOME "D:\repos\gradle"</div></pre></td></tr></table></figure></p>
+<h3 id="自定义gradle本地仓库"><a href="#自定义gradle本地仓库" class="headerlink" title="自定义gradle本地仓库"></a>自定义gradle本地仓库</h3><p>有几种不同的方式，大多采用配置环境变量的方式。<br>设置一个名称为<code>GRADLE_USER_HOME</code>的环境变量指向自定义的仓库目录。</p>
+<a id="more"></a>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setx GRADLE_USER_HOME "D:\repos\gradle"</div></pre></td></tr></table></figure>
 <p>或使用以下命令：<code>gradle -g 目录路径</code>,例如<code>gradle -g D:\Gradle\.gradle</code></p>
 <h3 id="复用maven本地仓库"><a href="#复用maven本地仓库" class="headerlink" title="复用maven本地仓库"></a>复用maven本地仓库</h3><p><strong>前提：</strong><br>gradle复用maven本地仓库，是通过maven的<code>settings.xml</code>配置文件来搜索maven本地仓库路径的，<br>gradle默认会按以下顺序去查找本地的仓库：<br>USER_HOME/.m2/settings.xml &gt;&gt; M2_HOME/conf/settings.xml &gt;&gt; USER_HOME/.m2/repository所以要保证C盘用户目录存在<code>settings.xml</code>或者设置了<code>M2_HOME</code>环境变量。</p>
 <p>确认具备以上条件后。在项目的<code>build.gradle</code>文件中调用<code>mavenLocal</code>方法即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">  mavenLocal()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -421,19 +423,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -445,11 +443,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,27 +459,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javap</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CLI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,6 +480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,15 +515,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +543,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
@@ -561,15 +559,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,7 +571,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">

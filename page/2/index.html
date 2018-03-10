@@ -139,115 +139,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-180208-jquery-RESTful-plugin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/180208-jquery-RESTful-plugin/">【转】jQuery的RESTful插件</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/08/180208-jquery-RESTful-plugin/" class="archive-article-date">
-  	<time datetime="2018-02-08T09:50:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>转自：</strong> <a href="https://qtdebug.com/fe-rest/" target="_blank" rel="external">https://qtdebug.com/fe-rest/</a></p>
-<p>使用 REST 风格提交请求时，Content-Type 标准的来说应该用 <strong>application/json</strong>，但是服务器端获取请求的参数时必须从 Request Body 中获取，而且有些框架对从 Request Body 中获取数据支持不好，需要我们自己实现，SpringMVC 中使用注解 <strong>@RequestBody</strong>从 Request Body 中获取数据，但不能使用 Filter 进行 XSS 过滤。</p>
-<p>这里主要使用 SpringMVC 来作为后端进行介绍，SpringMVC 提供了一个 Filter <strong>HiddenHttpMethodFilter</strong>，把 Content-Type 为 <strong>application/x-www-form-urlencoded</strong> 的 POST 请求，参数中 <strong>_method</strong> 值为 <strong>PUT</strong> 的请求分发为 PUT 请求，为 <strong>DELETE</strong> 请求分发为 DELETE 请求，实现了普通表单的 REST 风格提交，这样就可以使用 <strong>@RequestParam</strong> 获取参数的值了。</p>
-<p>下面结合 SpringMVC 来介绍:</p>
-<ul>
-<li>Content-Type 为 application/x-www-form-urlencoded + HiddenHttpMethodFilter<ul>
-<li>优点: 服务器端 GET, PUT, POST, DELETE 时直接参数映射为对象，或则都使用 @RequestParam 获取参数，使用形式一致、简洁</li>
-<li>缺点:<ul>
-<li>不是标准的 REST 规范</li>
-<li>参数是按照 key/value 的形式发送的，和普通表单的参数形式一样，有兴趣的可以在 Chrome 的 Network 中查看请求的 Headers</li>
-<li>不能传递复杂对象，例如 value 又是一个 Json 对象，只能传递简单的 key/value，也就是作为参数的 Json 对象只能有一层 key/value，不过非特殊情况也够用了，普通表单能做的它都能做</li>
-<li>PUT 时参数中需要带上 _method=”PUT”，DELETE 时参数中需要带上 _method=”DELETE”</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Content-Type 为 application/json<ul>
-<li>优点: 标准的 REST 规范，GET 处理和上面的一样，但是 POST, PUT, DELETE 的参数是序列化后的 JSON 字符串，能够传递复杂的对象</li>
-<li>缺点:<ul>
-<li>服务器端直接参数映射为对象，或则 GET 时使用 @RequestParam 获取参数，POST, PUT, DELETE 使用 @RequestBody 获取参数到 Map 中，然后再从 Map 中获取一个一个的参数，非常繁琐</li>
-<li>GET 和 POST, PUT, DELETE 获取参数的形式不统一，一个用 @RequestParam，其他的用 @RequestBody，需要脑子转换一下</li>
-<li>还有就是浏览器端 PUT, POST, DELETE 传递的 JSON 对象需要序列化后才能传给服务器端，可以使用 JSON.stringify(jsonObject) 进行序列化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>总结下来，在 SpringMVC 中推荐使用 <code>application/x-www-form-urlencoded + HiddenHttpMethodFilter</code> 的方式实现 REST 的请求，就是为了获取参数时比较统一，当需要传递复杂的参数时，例如属性是多层嵌套的对象，Json 对象的数组，这时再使用 application/json 的方式。</p>
-<p>为了简化 Rest Ajax 的访问，下面对 jQuery 的 Ajax 进行了简单的封装，例如更新用户名原始实现大致如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    url        : <span class="string">'/users/1/username'</span>,</div><div class="line">    data       : <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;),</div><div class="line">    type       : <span class="string">'PUT'</span>,</div><div class="line">    dataType   : <span class="string">'json'</span>,</div><div class="line">    contentType: <span class="string">'application/json'</span></div><div class="line">&#125;)</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(result);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>如果每个 REST 的请求都像上面这样写一遍: <code>PUT</code>, <code>POST</code>, <code>DELETE</code> 时需要 <code>JSON.stringify(data)</code>, 请求不同时 type 也不同，dataType 和 contentType 是固定的，这么多限制，很容易出错。使用下面实现的 rest 插件后，简化如下，只需要关心参数和回调，不需要处理其他额外信息，而且 $.rest.update 名字也更有语义化，一看就知道是更新操作:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.rest.update(&#123;</div><div class="line">    url    : <span class="string">'/users/1/username'</span>, </div><div class="line">    data   : &#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;, </div><div class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(result);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2018/02/08/180208-jquery-RESTful-plugin/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RESTful</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/08/180208-jquery-RESTful-plugin/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-180208-java-pojo-status" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -823,6 +714,87 @@
 
 
   
+    <article id="post-170922-IDEA-settings" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/22/170922-IDEA-settings/">IDEA配置优化</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/22/170922-IDEA-settings/" class="archive-article-date">
+  	<time datetime="2017-09-22T14:55:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="优化JVM参数"><a href="#优化JVM参数" class="headerlink" title="优化JVM参数"></a>优化JVM参数</h3><p><strong>用户级别修改：</strong><br>打开IDEA，选择Help–&gt;Edit Custom VM Options… 将以下参数内容内容复制过来。<br>（会在操作系统的当前用户目录下生成一份配置文件，如：<code>C:\Users\code0\.IntelliJIdea\config\idea64.exe.vmoptions</code>）</p>
+<p><strong>系统级别修改：</strong><br>直接修改 IntelliJ IDEA 安装目录下的/bin/idea64.exe.vmoptions【记得备份】文件，如果是32位系统，修改idea.exe.vmoptions文件中的参数。<br>（直接覆写系统默认设置对当前操作系统所有用户都有效）</p>
+<p><strong>具体参数如下：</strong></p>
+<p>-Xms512m<br>-Xmx750m<br>-Xmn264m<br>-XX:MaxPermSize=350m<br>-XX:PermSize=128m<br>-XX:ReservedCodeCacheSize=240m<br>-Xverify:none<br>-Xnoclassgc<br>-XX:+UseParNewGC<br>-XX:+UseConcMarkSweepGC<br>-XX:SoftRefLRUPolicyMSPerMB=50<br>-ea<br>-server<br>-Dsun.io.useCanonCaches=false<br>-Dsun.awt.keepWorkingSetOnMinimize=true<br>-Djava.net.preferIPv4Stack=true<br>-XX:+HeapDumpOnOutOfMemoryError<br>-XX:-OmitStackTraceInFastThrow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度</div><div class="line"></div><div class="line">　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能。</div><div class="line"></div><div class="line">　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的</div><div class="line">而启动的过程中无需装入类，缩短了启动时间</div><div class="line"></div><div class="line">　　　　-XX:+UseParNewGC 使用并行收集算法</div><div class="line"></div><div class="line">　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集</div><div class="line"></div><div class="line">　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，</div><div class="line">                         当你重新回到IDEA，能够被快速显示，而不是由灰白的</div><div class="line">                         界面逐渐显现整个界面，加快回复到原界面的速度。</div></pre></td></tr></table></figure>
+<h3 id="基本常用设置"><a href="#基本常用设置" class="headerlink" title="基本常用设置"></a>基本常用设置</h3>
+        
+          <a class="article-more-a" href="/2017/09/22/170922-IDEA-settings/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IDEA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/22/170922-IDEA-settings/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-170919-heap-stack-string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1109,19 +1081,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1133,11 +1101,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1149,27 +1117,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javap</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CLI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1178,6 +1138,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1209,15 +1173,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1241,6 +1201,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
@@ -1249,15 +1217,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1269,7 +1229,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:url" content="maode.github.io/2018/02/19/180219-Git-sparsecheckout/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
 <meta property="og:description" content="转自： Git只获取部分目录的内容（稀疏检出）  公司的开发从SVN切换到Git，在SVN下，可以很方便的只获取版本库中一个或多个目录的内容，但是Git的克隆，默认是直接拉取整个远程仓库，如果项目比较大，大量和自己无关的内容也会拉到本地，占用很多硬盘空间。 在网上搜了一下，Git在1.7版本后，已经支持只Checkout部分内容，这个功能叫做 sparse checkout（稀疏检出）。 打开 s">
-<meta property="og:updated_time" content="2018-02-19T13:52:47.942Z">
+<meta property="og:updated_time" content="2018-03-10T04:25:25.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【转】Git只获取部分目录的内容（稀疏检出）">
 <meta name="twitter:description" content="转自： Git只获取部分目录的内容（稀疏检出）  公司的开发从SVN切换到Git，在SVN下，可以很方便的只获取版本库中一个或多个目录的内容，但是Git的克隆，默认是直接拉取整个远程仓库，如果项目比较大，大量和自己无关的内容也会拉到本地，占用很多硬盘空间。 在网上搜了一下，Git在1.7版本后，已经支持只Checkout部分内容，这个功能叫做 sparse checkout（稀疏检出）。 打开 s">
@@ -167,6 +167,7 @@
 <p>公司的开发从SVN切换到Git，在SVN下，可以很方便的只获取版本库中一个或多个目录的内容，但是Git的克隆，默认是直接拉取整个远程仓库，如果项目比较大，大量和自己无关的内容也会拉到本地，占用很多硬盘空间。</p>
 <p>在网上搜了一下，Git在1.7版本后，已经支持只Checkout部分内容，这个功能叫做 sparse checkout（稀疏检出）。</p>
 <h3 id="打开-sparse-checkout-功能"><a href="#打开-sparse-checkout-功能" class="headerlink" title="打开 sparse checkout 功能"></a>打开 sparse checkout 功能</h3><p>如果本地还没有建版本库，要用这个功能，先进入要放版本库的目录，在命令行执行几条命令：</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git init &lt;project&gt;</div><div class="line">$ <span class="built_in">cd</span> &lt;project&gt;</div><div class="line">$ git remote add origin ssh://&lt;user&gt;@&lt;repository<span class="string">'s url&gt;</span></div><div class="line"><span class="string">$ git config core.sparsecheckout true</span></div><div class="line"><span class="string">$ echo "path1/" &gt;&gt; .git/info/sparse-checkout</span></div><div class="line"><span class="string">$ echo "path2/" &gt;&gt; .git/info/sparse-checkout</span></div><div class="line"><span class="string">$ git pull origin master</span></div></pre></td></tr></table></figure>
 <p>第一条命令<code>git init &lt;project&gt;</code>，先建立一个空的版本库，用实际的目录名替代。<br>第二条命令<code>cd &lt;project&gt;</code>，进入创建的新的版本库的目录。<br>第三条命令<code>git remote add origin ssh://&lt;user&gt;@&lt;repository&#39;s url&gt;</code>，添加远程库的地址。<br>第四条命令<code>git config core.sparsecheckout true</code>，打开sparse checkout功能。<br>第五第六条命令<code>echo &quot;path1/&quot; &gt;&gt; .git/info/sparse-checkout</code>，添加2个目录到checkout的列表。路径是版本库下的相对路径，也可以用文本编辑器编辑这个文件。<br>第七条命令<code>git pull origin master</code>，拉取远程的 master 分支，也可以拉其他分支。</p>
 <p>如果只拉取最近一次的变更，忽略以前的变更记录，在拉取时可以加参数depth，如<code>git pull --depth=1 origin master</code> （浅克隆）</p>
@@ -423,19 +424,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSH</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,11 +444,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+                <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,27 +460,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javap</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CLI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,6 +481,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +516,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,6 +544,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
@@ -563,15 +560,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
+                <a href="javascript:void(0)" class="js-tag color5">temp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,7 +572,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">temp</a>
+                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">

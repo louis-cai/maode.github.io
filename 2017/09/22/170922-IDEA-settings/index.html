@@ -6,26 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="maode.github.io">
-  <title>JSTL的版本还有aliyun maven的故事 | Code0&#39;s notepad</title>
+  <title>IDEA配置优化 | Code0&#39;s notepad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个比较曲折的故事~~，过程比较郁闷。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
-<meta name="keywords" content="jstl">
+  <meta name="description" content="优化JVM参数用户级别修改：打开IDEA，选择Help–&amp;gt;Edit Custom VM Options… 将以下参数内容内容复制过来。（会在操作系统的当前用户目录下生成一份配置文件，如：C:\Users\code0\.IntelliJIdea\config\idea64.exe.vmoptions） 系统级别修改：直接修改 IntelliJ IDEA 安装目录下的/bin/idea64.ex">
+<meta name="keywords" content="IDEA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JSTL的版本还有aliyun maven的故事">
-<meta property="og:url" content="maode.github.io/2017/09/17/170916-JSTL/index.html">
+<meta property="og:title" content="IDEA配置优化">
+<meta property="og:url" content="maode.github.io/2017/09/22/170922-IDEA-settings/index.html">
 <meta property="og:site_name" content="Code0&#39;s notepad">
-<meta property="og:description" content="这是一个比较曲折的故事~~，过程比较郁闷。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
-<meta property="og:image" content="/assets/blogImg/170916-jstl-1.png">
-<meta property="og:image" content="/assets/blogImg/170916-jstl-3.png">
-<meta property="og:image" content="/assets/blogImg/170916-jstl-4.png">
-<meta property="og:image" content="/assets/blogImg/170916-jstl-7.png">
-<meta property="og:image" content="/assets/blogImg/170916-jstl-5.png">
-<meta property="og:image" content="/assets/blogImg/170916-jstl-6.png">
-<meta property="og:updated_time" content="2017-09-28T03:56:35.598Z">
+<meta property="og:description" content="优化JVM参数用户级别修改：打开IDEA，选择Help–&amp;gt;Edit Custom VM Options… 将以下参数内容内容复制过来。（会在操作系统的当前用户目录下生成一份配置文件，如：C:\Users\code0\.IntelliJIdea\config\idea64.exe.vmoptions） 系统级别修改：直接修改 IntelliJ IDEA 安装目录下的/bin/idea64.ex">
+<meta property="og:updated_time" content="2018-03-10T04:11:48.266Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JSTL的版本还有aliyun maven的故事">
-<meta name="twitter:description" content="这是一个比较曲折的故事~~，过程比较郁闷。今天在项目中需要用到jstl，于是就上 http://mvnrepository.com/ 搜索，一搜出来一大片，关于jstl的实现乱七八糟。 一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。">
-<meta name="twitter:image" content="/assets/blogImg/170916-jstl-1.png">
+<meta name="twitter:title" content="IDEA配置优化">
+<meta name="twitter:description" content="优化JVM参数用户级别修改：打开IDEA，选择Help–&amp;gt;Edit Custom VM Options… 将以下参数内容内容复制过来。（会在操作系统的当前用户目录下生成一份配置文件，如：C:\Users\code0\.IntelliJIdea\config\idea64.exe.vmoptions） 系统级别修改：直接修改 IntelliJ IDEA 安装目录下的/bin/idea64.ex">
   
     <link rel="alternative" href="/atom.xml" title="Code0&#39;s notepad" type="application/atom+xml">
   
@@ -149,44 +142,147 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-170916-JSTL" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-170922-IDEA-settings" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JSTL的版本还有aliyun maven的故事
+      IDEA配置优化
     </h1>
   
 
         
-        <a href="/2017/09/17/170916-JSTL/" class="archive-article-date">
-  	<time datetime="2017-09-17T07:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
+        <a href="/2017/09/22/170922-IDEA-settings/" class="archive-article-date">
+  	<time datetime="2017-09-22T14:55:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是一个比较曲折的故事~~，过程比较郁闷。<br>今天在项目中需要用到jstl，于是就上 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 搜索，一搜出来一大片，关于jstl的实现乱七八糟。</p>
-<p>一开始没有多想，就选择了第一个（其实这个版本对应的jar文件已经没了，但是我选择时没有仔细看，直接复制粘贴到项目中了），这就为我下来的错误埋下了伏笔。</p>
-<p><img src="/assets/blogImg/170916-jstl-1.png" alt="170916-jstl-1"></p>
-<a id="more"></a>
-<p>配置好依赖（jsp-api和servlet-api的依赖都配了），运行项目，报错：Failed to load or instantiate TagLibraryValidator class: org.apache.taglibs.standard.tlv.JstlCoreTLV。<br>不能加载<code>JstlCoreTLV</code>这个类，打开Libraries查看，类是存在的：</p>
-<p><img src="/assets/blogImg/170916-jstl-3.png" alt="170916-jstl-3"></p>
-<p>然后我就开始了各种Google，各种百度。网上大多是在讲依赖和jar包冲突的问题，仔细检查了一下，并没有这两种情况。<br>接着搜~~，然后搜到了有人说可能是，pom文件依赖只引入的接口标准，而并没有引入具体实现。是吗？好像不是！</p>
-<p><img src="/assets/blogImg/170916-jstl-4.png" alt="170916-jstl-4"></p>
-<p>唔~~~ 凌乱了。不知道怎么回事了。我只好试着换个其他版本看看。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- jstl --&gt;</span></div><div class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/javax.servlet/jstl --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>更换完成后，一运行，OK了 没问题了。<br>但是  为什么呢？？？？？打开这个版本的jar文件结构和刚才的没有什么区别啊？ 于是我决定看一下这两个jar文件具体有什么区别。<br>两个jar文件，管用的大小404KB，报错的400KB，看来是有点区别的,为什么一个大一个小？会不会是在下载的过程中jar包数据没有下载完整，于是决定手动下载试试，这个时候发现了本文开头说到的问题  <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 和 <a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a> 上面都没有该版本的jar文件。</p>
-<p><img src="/assets/blogImg/170916-jstl-7.png" alt="170916-jstl-7"></p>
-<p>那么我的jar文件是从哪里下载的呢？因为我使用的阿里云的maven仓库，肯定是从阿里云下载的了。随便打开了几个类，发现问题了……</p>
-<p><strong>400K的<code>javax.servlet.jsp.jstl.jstl</code>版本</strong></p>
-<p><img src="/assets/blogImg/170916-jstl-5.png" alt="170916-jstl-5"></p>
-<p><strong>404K的<code>javax.servlet.jstl</code>版本</strong></p>
-<p><img src="/assets/blogImg/170916-jstl-6.png" alt="170916-jstl-6"></p>
-<p>至此已经发现问题的根源所在了。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>我试着将mvn的远程仓库配置成 <a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a> 或 <a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a> jar文件是无法成功下载到本地仓库的，Eclipse都会直接提示找不到jar的错，编译就会报错，但是用阿里云的远程maven仓库就不会，仔细看了一下，原来阿里云的maven仓库中<code>javax.servlet.jsp.jstl.jstl</code>有三个仓库,默认的<code>Central</code>仓库中也是只有<code>sources</code>的jar的，但是另外两个仓库<code>HongKong Nexus</code> 和 <code>jcenter</code>中都有<code>jstl-1.2.jsr</code>估计那个400K的jar就是从这两个仓库中下载下来的，这样不大好。~不大好</p>
+        <h3 id="优化JVM参数"><a href="#优化JVM参数" class="headerlink" title="优化JVM参数"></a>优化JVM参数</h3><p><strong>用户级别修改：</strong><br>打开IDEA，选择Help–&gt;Edit Custom VM Options… 将以下参数内容内容复制过来。<br>（会在操作系统的当前用户目录下生成一份配置文件，如：<code>C:\Users\code0\.IntelliJIdea\config\idea64.exe.vmoptions</code>）</p>
+<p><strong>系统级别修改：</strong><br>直接修改 IntelliJ IDEA 安装目录下的/bin/idea64.exe.vmoptions【记得备份】文件，如果是32位系统，修改idea.exe.vmoptions文件中的参数。<br>（直接覆写系统默认设置对当前操作系统所有用户都有效）</p>
+<p><strong>具体参数如下：</strong></p>
+<p>-Xms512m<br>-Xmx750m<br>-Xmn264m<br>-XX:MaxPermSize=350m<br>-XX:PermSize=128m<br>-XX:ReservedCodeCacheSize=240m<br>-Xverify:none<br>-Xnoclassgc<br>-XX:+UseParNewGC<br>-XX:+UseConcMarkSweepGC<br>-XX:SoftRefLRUPolicyMSPerMB=50<br>-ea<br>-server<br>-Dsun.io.useCanonCaches=false<br>-Dsun.awt.keepWorkingSetOnMinimize=true<br>-Djava.net.preferIPv4Stack=true<br>-XX:+HeapDumpOnOutOfMemoryError<br>-XX:-OmitStackTraceInFastThrow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度</div><div class="line"></div><div class="line">　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能。</div><div class="line"></div><div class="line">　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的</div><div class="line">而启动的过程中无需装入类，缩短了启动时间</div><div class="line"></div><div class="line">　　　　-XX:+UseParNewGC 使用并行收集算法</div><div class="line"></div><div class="line">　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集</div><div class="line"></div><div class="line">　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，</div><div class="line">                         当你重新回到IDEA，能够被快速显示，而不是由灰白的</div><div class="line">                         界面逐渐显现整个界面，加快回复到原界面的速度。</div></pre></td></tr></table></figure>
+<h3 id="基本常用设置"><a href="#基本常用设置" class="headerlink" title="基本常用设置"></a>基本常用设置</h3><a id="more"></a>
+<p><strong>设置外观字体：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; Appearance -&gt; </p>
+<ul>
+<li>勾选 Override default fonts by (not Recommended)</li>
+<li>设置 Name：微软雅黑、Size：12、Presentation Mode：24</li>
+<li>去掉 Animate windows，勾选 Show tool window bars</li>
+</ul>
+<p><strong>启动时不打开工程：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Startup/Shutdown 标签项 -&gt; </p>
+<ul>
+<li>去掉 Reopen last project on startup</li>
+</ul>
+<p><strong>关闭确认退出选项：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Startup/Shutdown 标签项 -&gt; </p>
+<ul>
+<li>去掉 Confirm application exit</li>
+</ul>
+<p><strong>在同一窗口打开工程：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Project Opening 标签项 -&gt; </p>
+<ul>
+<li>勾选 Open project in ths same window</li>
+</ul>
+<p><strong>设置自动保存：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Synchronization 标签项 -&gt;</p>
+<ul>
+<li>全部勾选包括 Save files automatically..  然后设置30 sec.</li>
+</ul>
+<p><strong>关闭自动检测新版本更新：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Updates -&gt; </p>
+<ul>
+<li>去掉 Automatically check updates for…</li>
+</ul>
+<p><strong>关闭IDEA的使用习惯统计：</strong> File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; Usage Statistics -&gt; </p>
+<ul>
+<li>去掉 Allow sending…</li>
+</ul>
+<p><strong>通过 Ctrl + 鼠标调整字体：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Mouse 标签项 -&gt; </p>
+<ul>
+<li>勾选 Change font size (Zoom) with Ctrl + Mouse Wheel</li>
+</ul>
+<p><strong>让光标不随意定位：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Virtual Space 标签项 -&gt; </p>
+<ul>
+<li>去掉 Allow placement of caret after end of line</li>
+</ul>
+<p><strong>显示虚拟空间：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Virtual Space 标签项 -&gt; </p>
+<ul>
+<li>勾选 Show virtual space at file bottom</li>
+</ul>
+<p><strong>去除每行多余空格：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Other 标签项 -&gt; </p>
+<ul>
+<li>设置 Srip trailing spaces on Save，下拉选择 All</li>
+</ul>
+<p><strong>去除光滑滚动：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Scrolling 标签项 -&gt; </p>
+<ul>
+<li>去掉 Smooth scrolling</li>
+</ul>
+<p><strong>自动 import 包：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Auto Import -&gt; </p>
+<ul>
+<li>勾选 Optimize imports on the fly、Add unambiguous imports on the fly</li>
+</ul>
+<p><strong>显示行号：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Appearance -&gt; </p>
+<ul>
+<li>勾选 Show line numbers</li>
+</ul>
+<p><strong>显示空白符：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Appearance -&gt; </p>
+<ul>
+<li>勾选 Show whitespaces</li>
+</ul>
+<p><strong>代码自动补齐(针对小写)：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Completion -&gt; Code Completion 标签项 -&gt; </p>
+<ul>
+<li>设置 Case sensitive completion：none</li>
+<li>勾选 Autopopup documentation in (ms) ： 200</li>
+<li>勾选 Parameter in (ms) ：200</li>
+</ul>
+<p><strong>代码折叠：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Folding -&gt; </p>
+<ul>
+<li>去掉 One-line methods</li>
+</ul>
+<p><strong>用*标识编辑过的文件：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Editor Tabs -&gt; Tab Appearance 标签项 -&gt; </p>
+<ul>
+<li>勾选 Mark modified tabs with asterisk</li>
+</ul>
+<p><strong>限制 Tab 标签页数量：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Editor Tabs -&gt; Tab Closing Policy 标签项 -&gt; </p>
+<ul>
+<li>设置 Tab limit ：20</li>
+</ul>
+<p><strong>输入“右}”时，不要格式化代码块：</strong> File -&gt; Settings -&gt; Editor -&gt; General -&gt; Smart Keys -&gt; </p>
+<ul>
+<li>去掉 Reformat block on typing ‘}’</li>
+<li>设置 Reformat on paste ：None</li>
+</ul>
+<p><strong>代码字体风格：</strong> File -&gt; Settings -&gt; Editor -&gt; Colors &amp; Fonts -&gt; Font -&gt; </p>
+<ul>
+<li>选择 Darcula 设计，点击 Save As备份一套然后编辑</li>
+<li>修改 Primary font 的字体，勾选 Show only monospaced fonts，只显示等宽字体</li>
+</ul>
+<p><strong>设置光标所在行的背景：</strong> File -&gt; Settings -&gt; Editor -&gt; Colors Scheme -&gt; General -&gt; </p>
+<ul>
+<li>在右侧的下拉框中选择 Editor -&gt; Caret row -&gt; 然后修改Background选项</li>
+</ul>
+<p><strong>取消代码拼写检查：</strong> File -&gt; Settings -&gt; Editor -&gt; Inspections -&gt; </p>
+<ul>
+<li>在右侧的下拉框中选择 Spelling -&gt; Typo -&gt; 然后去掉右侧 Process code、Process literals、Process comments</li>
+</ul>
+<p><strong>统一编码格式：</strong> File -&gt; Settings -&gt; Editor -&gt; File Encodings -&gt; </p>
+<ul>
+<li>设置 Global Encoding、Project Encoding、Defalut encoding for properties files</li>
+<li>勾选 Transparent native -to-ascii conversion（properties文件自动转换ASCII编码）</li>
+</ul>
+<p><strong>忽略的文件类型及目录：</strong> File -&gt; Settings -&gt; Editor -&gt; File Types -&gt; </p>
+<ul>
+<li>在右侧底部的Ignore files and folders 文本框中添加<br><code>*.iml;*.idea;*.classpath;*.project;*.settings;target;</code><br>（可以不设置该选项，下载<code>.ignore</code>插件来管理所有忽略文件）</li>
+</ul>
+<p><strong>禁用插件：</strong> File -&gt; Settings -&gt; Plugins -&gt; </p>
+<ul>
+<li>反选自己想要禁用的插件 如：ASP、Cloud Foundry integration、CloudBees integration 等等</li>
+</ul>
+<p><strong>备份个性化设置：</strong> File -&gt; Export Settings</p>
+<hr>
+<p><strong>参考：</strong>  <a href="http://www.cnblogs.com/playcode/p/5588707.html" target="_blank" rel="external">Intellij IDEA配置优化</a></p>
+<p>暂时就这些，后面没有了！(=^ ^=)</p>
 
       
 
@@ -200,7 +296,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jstl</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IDEA</a>
         		</li>
       		
 		</ul>
@@ -256,7 +352,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/17/170916-JSTL/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:maode.github.io/2017/09/22/170922-IDEA-settings/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -270,18 +366,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/18/170918-javap/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/26/170926-CLI-mrd/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          javap 命令详解
+          命令行（CLI）mrd开发记录
         
       </div>
     </a>
   
   
-    <a href="/2017/09/14/170914-RestController-json-xml/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RestController返回json和xml数据</div>
+    <a href="/2017/09/19/170919-heap-stack-string/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 堆、栈、方法区、几种常量池，String</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -308,7 +404,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">1.</span> <span class="toc-text">后记</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#优化JVM参数"><span class="toc-number">1.</span> <span class="toc-text">优化JVM参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本常用设置"><span class="toc-number">2.</span> <span class="toc-text">基本常用设置</span></a></li></ol>
                     </div>
                 </span>
             </div>
