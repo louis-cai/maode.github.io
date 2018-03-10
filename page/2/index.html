@@ -738,7 +738,7 @@
 <p><strong>系统级别修改：</strong><br>直接修改 IntelliJ IDEA 安装目录下的/bin/idea64.exe.vmoptions【记得备份】文件，如果是32位系统，修改idea.exe.vmoptions文件中的参数。<br>（直接覆写系统默认设置对当前操作系统所有用户都有效）</p>
 <p><strong>具体参数如下：</strong></p>
 <p>-Xms512m<br>-Xmx750m<br>-Xmn264m<br>-XX:MaxPermSize=350m<br>-XX:PermSize=128m<br>-XX:ReservedCodeCacheSize=240m<br>-Xverify:none<br>-Xnoclassgc<br>-XX:+UseParNewGC<br>-XX:+UseConcMarkSweepGC<br>-XX:SoftRefLRUPolicyMSPerMB=50<br>-ea<br>-server<br>-Dsun.io.useCanonCaches=false<br>-Dsun.awt.keepWorkingSetOnMinimize=true<br>-Djava.net.preferIPv4Stack=true<br>-XX:+HeapDumpOnOutOfMemoryError<br>-XX:-OmitStackTraceInFastThrow</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度</div><div class="line"></div><div class="line">　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能。</div><div class="line"></div><div class="line">　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的</div><div class="line">而启动的过程中无需装入类，缩短了启动时间</div><div class="line"></div><div class="line">　　　　-XX:+UseParNewGC 使用并行收集算法</div><div class="line"></div><div class="line">　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集</div><div class="line"></div><div class="line">　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，</div><div class="line">                         当你重新回到IDEA，能够被快速显示，而不是由灰白的</div><div class="line">                         界面逐渐显现整个界面，加快回复到原界面的速度。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　注：-Xms512m 设置初时的内存大小，提高Java程序的启动速度</div><div class="line"></div><div class="line">　　　　-Xmx750m 设置最大内存数，提高该值，可以减少内存Garage收集的频率，提高程序性能。</div><div class="line"></div><div class="line">　　　　-Xverify：none 关闭Java字节码验证，从而加快了类装入的速度，并使得在仅为验证目的</div><div class="line">而启动的过程中无需装入类，缩短了启动时间</div><div class="line"></div><div class="line">　　　　-XX:+UseParNewGC 使用并行收集算法</div><div class="line"></div><div class="line">　　　　-server 控制内存garage方式，这样你无需在花一到两分钟等待内存garage的收集</div><div class="line"></div><div class="line">　　　　-Dsun.awt.keepWorkingSetOnMinimize=true 可以让IDEA最小化到任务栏时依然保持以占有的内存，</div><div class="line">      当你重新回到IDEA，能够被快速显示，而不是由灰白的</div><div class="line">      界面逐渐显现整个界面，加快回复到原界面的速度。</div></pre></td></tr></table></figure>
 <h3 id="基本常用设置"><a href="#基本常用设置" class="headerlink" title="基本常用设置"></a>基本常用设置</h3>
         
           <a class="article-more-a" href="/2017/09/22/170922-IDEA-settings/#more">more >></a>
@@ -1069,11 +1069,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1081,11 +1081,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1109,6 +1109,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">bytecode</a>
               </li>
              
@@ -1117,7 +1121,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jstl</a>
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1125,19 +1145,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CLI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,23 +1197,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DevTools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1229,19 +1229,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">heap、stack</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">堆、栈</a>
+                <a href="javascript:void(0)" class="js-tag color4">Database</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">常量池</a>
+                <a href="javascript:void(0)" class="js-tag color1">cache</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
               </li>
              
               <li class="article-tag-list-item">
